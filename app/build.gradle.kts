@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "it.polito.progettolocker"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "it.polito.progettolocker"
