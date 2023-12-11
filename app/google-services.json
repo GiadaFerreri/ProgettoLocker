@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "329953913928",
+    "firebase_url": "https://locker-53147-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "locker-53147",
+    "storage_bucket": "locker-53147.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329953913928:android:12ab1016a964e35d1dfc7d",
+        "android_client_info": {
+          "package_name": "it.polito.progettolocker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9k8qyIMq8zy-2WFzxlHncQ6pm2ozILLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
