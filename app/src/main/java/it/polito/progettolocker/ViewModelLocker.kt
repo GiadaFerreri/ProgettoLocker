@@ -1,13 +1,13 @@
-package it.polito.progettolocker;
+package it.polito.progettolocker
 
-public class ViewModelLocker {
+import androidx.lifecycle.ViewModel
 
+class ViewModelLocker : ViewModel() {
 
     //TODO: collegamento a Firebase
 
     //TODO: lista di articoli
     // ARTICOLO: nome, prezzo, (immagine), quantità (3)
-
     //TODO: carrello
 
     //TODO: locker
@@ -24,5 +24,4 @@ public class ViewModelLocker {
 
     //TODO: fattorino
     // ID fattorino, ruolo, lista spedizioni, orario inizio (presa in carico), orario fine (consegna)
-
 }
