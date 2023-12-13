@@ -1,11 +1,14 @@
 package it.polito.progettolocker
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -24,6 +27,7 @@ import androidx.navigation.compose.rememberNavController
 import it.polito.progettolocker.ui.theme.ProgettoLockerTheme
 
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -39,6 +43,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+@RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun Navigation(mainActivity: MainActivity){
     val navController = rememberNavController()
@@ -52,13 +57,21 @@ fun Navigation(mainActivity: MainActivity){
         composable("Customer"){
             Customer(mainActivity, navController)
         }
+        composable("DaEffettuare"){
+            DaEffettuare(mainActivity, navController)
+        }
+        composable("InCorso"){
+            InCorso(mainActivity, navController)
+        }
     }
 }
 
 @Composable
 fun HomePage( mainActivity: MainActivity, navController: NavController) {
     Row {
-        Button(onClick = {navController.navigate("Delivery")}, modifier = Modifier) {
+        Button(onClick = {navController.navigate("Delivery")},
+            modifier = Modifier
+                .padding(3.dp)) {
             Text(text = "Delivery")
         }
         Button(onClick = {navController.navigate("Customer", )}, modifier = Modifier) {
