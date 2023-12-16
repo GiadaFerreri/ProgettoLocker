@@ -23,6 +23,7 @@ import it.polito.progettolocker.Views.Customer
 import it.polito.progettolocker.Views.DaEffettuare
 import it.polito.progettolocker.Views.Delivery
 import it.polito.progettolocker.Views.InCorso
+import it.polito.progettolocker.Views.Locker
 import it.polito.progettolocker.ui.theme.ProgettoLockerTheme
 
 class MainActivity : ComponentActivity() {
@@ -61,6 +62,9 @@ fun Navigation(mainActivity: MainActivity){
         }
         composable("InCorso"){
             InCorso(mainActivity, navController)
+        }
+        composable("Locker"){
+            Locker(mainActivity, navController)
         }
     }
 }

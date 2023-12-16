@@ -2,10 +2,21 @@ package it.polito.progettolocker.Views
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import it.polito.progettolocker.Graphic.HeaderDouble
+import it.polito.progettolocker.Graphic.HeaderX
 import it.polito.progettolocker.MainActivity
 
 @RequiresApi(Build.VERSION_CODES.Q)
@@ -17,7 +28,8 @@ fun Delivery(mainActivity: MainActivity, navController: NavController){
 @RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
-    HeaderDouble(
+
+ HeaderDouble(
         text1 = "DA EFFETTUARE",
         weight1 = FontWeight.Bold,
         text2 = "IN CORSO",
@@ -25,6 +37,8 @@ fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
         onClickListener2 = "InCorso",
         navController = navController
     )
+
+
 }
 
 @RequiresApi(Build.VERSION_CODES.Q)
@@ -38,4 +52,21 @@ fun InCorso(mainActivity: MainActivity, navController: NavController){
         onClickListener1 = "DaEffettuare",
         navController = navController
     )
+    Row(modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.Bottom,
+        horizontalArrangement = Arrangement.SpaceEvenly) {
+
+        Button(
+            onClick = { navController.navigate("Locker") },
+            modifier = Modifier
+                .padding(3.dp)
+        ) {
+            Text("Consegna il pacco")
+        }
+    }
+}
+@RequiresApi(Build.VERSION_CODES.Q)
+@Composable
+fun Locker(mainActivity: MainActivity, navController: NavController){
+    HeaderX(text="LOCKER", navController=navController,onClickListener = "DaEffettuare")
 }
