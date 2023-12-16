@@ -1,4 +1,4 @@
-package it.polito.progettolocker.dataClass
+package it.polito.progettolocker.DataClass
 
 data class Compartment(
     var closed : Boolean,

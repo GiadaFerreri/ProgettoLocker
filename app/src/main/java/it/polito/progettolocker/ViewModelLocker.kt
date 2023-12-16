@@ -3,7 +3,7 @@ package it.polito.progettolocker
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import it.polito.progettolocker.dataClass.Article
+import it.polito.progettolocker.DataClass.Article
 
 class ViewModelLocker : ViewModel() {
 
