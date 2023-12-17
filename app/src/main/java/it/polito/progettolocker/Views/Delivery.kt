@@ -3,6 +3,7 @@ package it.polito.progettolocker.Views
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -28,8 +29,7 @@ fun Delivery(mainActivity: MainActivity, navController: NavController){
 @RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
-
- HeaderDouble(
+    HeaderDouble(
         text1 = "DA EFFETTUARE",
         weight1 = FontWeight.Bold,
         text2 = "IN CORSO",
@@ -37,6 +37,8 @@ fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
         onClickListener2 = "InCorso",
         navController = navController
     )
+
+
 
 
 }
@@ -68,5 +70,9 @@ fun InCorso(mainActivity: MainActivity, navController: NavController){
 @RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun Locker(mainActivity: MainActivity, navController: NavController){
-    HeaderX(text="LOCKER", navController=navController,onClickListener = "DaEffettuare")
+    Column {
+        HeaderX(text="LOCKER", navController=navController,onClickListener = "DaEffettuare")
+    }
+
 }
+

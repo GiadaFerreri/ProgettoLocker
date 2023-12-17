@@ -1,5 +1,7 @@
 package it.polito.progettolocker.Graphic
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -35,6 +37,7 @@ import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.R
 
 @OptIn(ExperimentalMaterial3Api::class)
+@RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun HeaderX(text: String,
             onClickListener: String = "",
@@ -92,6 +95,16 @@ fun HeaderX(text: String,
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Divider(color = Color.Black, thickness = 1.dp)
+            CardsJustText(text1 = "IL TUO PACCO È STATO DEPOSITATO CORRETTAMENTE?")
+            Row (
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ){
+                Button(text = "CONFERMA")
+                Button(text = "RIAPRI IL CASSETTO")
+            }
+
         }
     }
 }
