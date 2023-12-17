@@ -1,4 +1,4 @@
-package it.polito.progettolocker.DataClass
+package it.polito.progettolocker.dataClass
 
 data class User(
     val userId : String,

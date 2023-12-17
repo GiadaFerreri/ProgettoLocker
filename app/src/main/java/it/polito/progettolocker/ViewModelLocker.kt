@@ -3,7 +3,10 @@ package it.polito.progettolocker
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import it.polito.progettolocker.DataClass.Article
+import it.polito.progettolocker.dataClass.Article
+import it.polito.progettolocker.dataClass.Compartment
+import it.polito.progettolocker.dataClass.Locker
+import it.polito.progettolocker.dataClass.Shipping
 
 class ViewModelLocker : ViewModel() {
 
@@ -16,6 +19,9 @@ class ViewModelLocker : ViewModel() {
     //tabella che ha come chiave primaria (ID cliente - ID carrello)
     private val _cart = MutableLiveData<Map<Article, Int>> (emptyMap())
     val cart : LiveData<Map<Article, Int>> = _cart
+
+    private val _shippings = MutableLiveData<List<Shipping>>(emptyList())
+    val shippings : LiveData<List<Shipping>> = _shippings
 
     // FUNZIONI PER IL CARRELLO
     fun addToCart (article: Article, quantity : Int){
@@ -55,11 +61,52 @@ class ViewModelLocker : ViewModel() {
     // stato (aperto/chiuso)
     // disponibilità (libero/occupato)
 
+    //FUNZIONI LOCKER
+    fun findFreeCompartment (locker: Locker){
+        //trova il primo vano libero
+    }
+
+    // FUNZIONI VANO
+    fun openCompartment (compartment: Compartment) {
+        if(compartment?.closed == true) compartment.closed = false
+    }
+
+    fun closeCompartment(compartment: Compartment){
+        if(compartment?.closed == false) compartment.closed = true
+    }
+
+    fun reserveCompartment(compartment: Compartment){
+        compartment.busy = true
+    }
+
+    fun freeCompartment (compartment: Compartment) {
+        compartment.busy = false
+    }
+
     //TODO: spedizioni
     // ID spedizione, ID cliente, ID fattorino, stato (in corso/ consegnato / conclusa)
 
+    //FUNZIONI SPEDIZIONE
+    fun createShipping(article: Article,quantity: Int,userId:String,deliverymanId:String){
+
+    }
+
+        //UPDATES
+    fun startShipping(shipping: Shipping,deliverymanId: String){
+
+    }
+
+    fun deliveredShipping(shipping: Shipping,deliverymanId: String){
+
+    }
+
+    fun endShipping(shipping: Shipping,deliverymanId: String){
+
+    }
+
     //TODO: utente
     // ID utente (firebase), ruolo, lista spedizioni (storico),
+
 
     //TODO: fattorino
     // ID fattorino, ruolo, lista spedizioni, orario inizio (presa in carico), orario fine (consegna)
