@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -29,6 +30,7 @@ fun CardsJustText(text1: String) {
             colors = CardDefaults.cardColors(
                 containerColor = backgroundColor),
             border = BorderStroke(1.dp, Color.Black),
+            shape= RectangleShape,
             modifier = Modifier
                 .size(width = 400.dp, height = 173.dp)
                 .padding(16.dp)
