@@ -20,11 +20,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import it.polito.progettolocker.Views.Customer
-import it.polito.progettolocker.Views.DaEffettuare
-import it.polito.progettolocker.Views.Delivery
-import it.polito.progettolocker.Views.InCorso
-import it.polito.progettolocker.Views.Locker
+import it.polito.progettolocker.views.customer.Customer
+import it.polito.progettolocker.views.delivery.DaEffettuare
+import it.polito.progettolocker.views.delivery.Delivery
+import it.polito.progettolocker.views.delivery.InCorso
+import it.polito.progettolocker.views.delivery.Locker
 import it.polito.progettolocker.dataClass.DeliveryMan
 import it.polito.progettolocker.dataClass.User
 import it.polito.progettolocker.ui.theme.ProgettoLockerTheme
@@ -33,11 +33,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.IgnoreExtraProperties
 import com.google.firebase.database.database
-import com.google.firebase.database.getValue
 import com.google.firebase.database.ValueEventListener
 
 private lateinit var auth: FirebaseAuth

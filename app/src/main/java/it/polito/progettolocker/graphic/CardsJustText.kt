@@ -1,7 +1,5 @@
-package it.polito.progettolocker.Graphic
+package it.polito.progettolocker.graphic
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -22,7 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-@RequiresApi(Build.VERSION_CODES.Q)
+
 @Composable
 fun CardsJustText(text1: String) {
         val backgroundColor= Color(0xFF_EFEFEF)

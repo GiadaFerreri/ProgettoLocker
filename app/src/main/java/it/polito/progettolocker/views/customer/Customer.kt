@@ -1,9 +1,8 @@
-package it.polito.progettolocker.Views
+package it.polito.progettolocker.views.customer
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
-import it.polito.progettolocker.Graphic.FooterHome
+import it.polito.progettolocker.graphic.FooterHome
 import it.polito.progettolocker.MainActivity
 
 @Composable
