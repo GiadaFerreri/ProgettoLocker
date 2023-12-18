@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,12 +25,42 @@ import it.polito.progettolocker.Views.DaEffettuare
 import it.polito.progettolocker.Views.Delivery
 import it.polito.progettolocker.Views.InCorso
 import it.polito.progettolocker.Views.Locker
+import it.polito.progettolocker.dataClass.DeliveryMan
+import it.polito.progettolocker.dataClass.User
 import it.polito.progettolocker.ui.theme.ProgettoLockerTheme
 
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.IgnoreExtraProperties
+import com.google.firebase.database.database
+import com.google.firebase.database.getValue
+import com.google.firebase.database.ValueEventListener
+
+private lateinit var auth: FirebaseAuth
+private lateinit var eventListener: ValueEventListener
+private lateinit var database: DatabaseReference
+private lateinit var user: User
+private lateinit var deliveryMan : DeliveryMan
+
 class MainActivity : ComponentActivity() {
+
+    private val viewModel: ViewModelLocker by viewModels()
+
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+        auth = Firebase.auth
+        database = Firebase.database("https://locker-53147-default-rtdb.europe-west1.firebasedatabase.app/").reference
+
+        viewModel.WriteInDatabase(database)
+        viewModel.WriteBoolInDatabase(database)
+        viewModel.WriteIntInDatabase(database)
+
         setContent {
             ProgettoLockerTheme {
                 // A surface container using the 'background' color from the theme
