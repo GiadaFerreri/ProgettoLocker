@@ -36,40 +36,30 @@ fun HeaderDouble(
     onClickListener1: String = "",
     onClickListener2: String = "",
     navController: NavController){
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
+    Column(verticalArrangement = Arrangement.Top){
                     Row(modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.Top,
                         horizontalArrangement = Arrangement.SpaceEvenly){
                         Button(colors = ButtonDefaults.buttonColors(Color.Transparent), onClick = { if(onClickListener1 != "") navController.navigate(onClickListener1) }) {
-                                Text(
-                                    text= text1,
-                                    color = Color.Black,
-                                    fontWeight = weight1
-                                )
+                            Text(
+                                text= text1,
+                                color = Color.Black,
+                                fontWeight = weight1
+                            )
                         }
                         Button(colors = ButtonDefaults.buttonColors(Color.Transparent), onClick = { if(onClickListener2 != "") navController.navigate(onClickListener2) }) {
-                                Text(
-                                    text= text2,
-                                    color = Color.Black,
-                                    fontWeight = weight2
-                                )
-                            }
+                            Text(
+                                text= text2,
+                                color = Color.Black,
+                                fontWeight = weight2
+                            )
                         }
-                },
+                    }
 
-            )
-        },
-    )
-    { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            Divider(color = Color.Black, thickness = 1.dp)
+
+
+            Row() {
+                Divider(color = Color.Black, thickness = 1.dp)
+            }
         }
     }
-}

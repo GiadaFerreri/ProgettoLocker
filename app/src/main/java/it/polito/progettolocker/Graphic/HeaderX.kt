@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -43,68 +44,52 @@ fun HeaderX(text: String,
             onClickListener: String = "",
             navController: NavController){
 
-    Scaffold(
-        topBar = {
-            TopAppBar(title = {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.Bottom,
-                    horizontalArrangement = Arrangement.Start
-                ) {
-                    Button(
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        onClick = { if(onClickListener != "") navController.navigate(onClickListener) }) {
-                        Text(
-                            "X", color = Color.Black, style = TextStyle(
-                                fontSize = 20.sp,
-                            )
-                        )
-                       // Icon(Icons.Filled.Clear, contentDescription = "x")
-
-                    }
-                }
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    Button(colors = ButtonDefaults.buttonColors(Color.Transparent),onClick = { /*TODO*/ }) {
-
-                        Text(modifier= Modifier
-                            .width(83.dp)
-                            .height(25.dp),
-                            text = text,
-                            color=Color.Black,
-                            style = TextStyle(
-                                fontSize = 20.sp,
-                            )
-
-                        )
-                    }
-
-
-                }
-
-            }
-            )
-        }
-    )
-    { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+    Column(verticalArrangement = Arrangement.Top){
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Divider(color = Color.Black, thickness = 1.dp)
-            CardsJustText(text1 = "IL TUO PACCO È STATO DEPOSITATO CORRETTAMENTE?")
-            Row (
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.Top,
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ){
-                Button(text = "CONFERMA")
-                Button(text = "RIAPRI IL CASSETTO")
+            Column (horizontalAlignment = Alignment.Start) {
+                Button(
+                    colors = ButtonDefaults.buttonColors(Color.Transparent),
+                    onClick = { if(onClickListener != "") navController.navigate(onClickListener) }) {
+                    /*Text(
+                        "X", color = Color.Black, style = TextStyle(
+                            fontSize = 20.sp,
+                        )
+                    )*/
+                    Icon(Icons.Filled.Close, contentDescription = "x", tint = Color.Black)
+
+                }
+            }
+            Column (horizontalAlignment = Alignment.CenterHorizontally) {
+                Button(colors = ButtonDefaults.buttonColors(Color.Transparent),onClick = { /*TODO*/ }) {
+
+                    Text(modifier= Modifier
+                        .width(83.dp)
+                        .height(25.dp),
+                        text = text,
+                        color=Color.Black,
+                        style = TextStyle(
+                            fontSize = 20.sp,
+                        )
+
+                    )
+                }
+            }
+            Column {
+
             }
 
+
+
+
+        }
+        Row() {
+            Divider(color = Color.Black, thickness = 1.dp)
         }
     }
 }
+
+

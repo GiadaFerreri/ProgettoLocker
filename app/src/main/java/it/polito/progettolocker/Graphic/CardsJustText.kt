@@ -24,10 +24,7 @@ import androidx.compose.ui.unit.sp
 @RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun CardsJustText(text1: String) {
-    Column (
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        val backgroundColor= Color(0xFF_F8F6F6)
+        val backgroundColor= Color(0xFF_EFEFEF)
         OutlinedCard (
             colors = CardDefaults.cardColors(
                 containerColor = backgroundColor),
@@ -57,5 +54,3 @@ fun CardsJustText(text1: String) {
         }
     }
 
-
-}

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,6 +17,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import it.polito.progettolocker.Graphic.Buttons
+import it.polito.progettolocker.Graphic.CardsJustText
 import it.polito.progettolocker.Graphic.HeaderDouble
 import it.polito.progettolocker.Graphic.HeaderX
 import it.polito.progettolocker.MainActivity
@@ -69,10 +72,29 @@ fun InCorso(mainActivity: MainActivity, navController: NavController){
 }
 @RequiresApi(Build.VERSION_CODES.Q)
 @Composable
-fun Locker(mainActivity: MainActivity, navController: NavController){
-    Column {
-        HeaderX(text="LOCKER", navController=navController,onClickListener = "DaEffettuare")
+fun Locker(mainActivity: MainActivity, navController: NavController) {
+    Column(  modifier = Modifier
+        .fillMaxWidth()){
+        Row {
+            HeaderX(text = "LOCKER", navController = navController, onClickListener = "DaEffettuare")
+
+        }
+        Row ( modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly)
+        {
+            CardsJustText(text1 = "IL TUO PACCO È STATO DEPOSITATO CORRETTAMENTE?")
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Buttons(text = "CONFERMA")
+            Buttons(text = "RIAPRI IL CASSETTO")
+        }
+
     }
 
-}
+    }
 
