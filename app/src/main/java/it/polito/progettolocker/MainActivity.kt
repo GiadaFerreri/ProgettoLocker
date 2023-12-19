@@ -20,11 +20,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import it.polito.progettolocker.views.customer.Customer
-import it.polito.progettolocker.views.delivery.DaEffettuare
-import it.polito.progettolocker.views.delivery.Delivery
-import it.polito.progettolocker.views.delivery.InCorso
-import it.polito.progettolocker.views.delivery.Locker
+import it.polito.progettolocker.views.Customer
+import it.polito.progettolocker.views.DaEffettuare
+import it.polito.progettolocker.views.Delivery
+import it.polito.progettolocker.views.InCorso
+import it.polito.progettolocker.views.Locker
 import it.polito.progettolocker.dataClass.DeliveryMan
 import it.polito.progettolocker.dataClass.User
 import it.polito.progettolocker.ui.theme.ProgettoLockerTheme

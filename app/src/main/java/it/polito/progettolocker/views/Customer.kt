@@ -1,4 +1,4 @@
-package it.polito.progettolocker.views.customer
+package it.polito.progettolocker.views
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
