@@ -35,7 +35,8 @@ fun FooterTotal(price: String){
         ) {
             Column(horizontalAlignment = Alignment.Start,) {
                 Text(
-                    text = "TOTALE", color = Color.Black, style = TextStyle(
+                    text = "TOTALE", color = Color.Black,modifier=Modifier.
+                    padding(start=5.dp), style = TextStyle(
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold
                     )
@@ -43,12 +44,15 @@ fun FooterTotal(price: String){
             }
             Column(horizontalAlignment = Alignment.End) {
                 Text(
-                    text =price+"EUR", style = TextStyle(
+                    text ="$price EUR", modifier=Modifier.
+                    padding(end=5.dp),style = TextStyle(
                         fontSize = 12.sp
                     )
                 )
                 Text(
-                        text = "IVA INCLUSA, SPEDIZIONE INCLUSA", style = TextStyle(
+                        text = "IVA INCLUSA, SPEDIZIONE INCLUSA", modifier=Modifier.
+                    padding(end=5.dp),
+                    style = TextStyle(
                 fontSize = 6.sp
                 )
                 )
