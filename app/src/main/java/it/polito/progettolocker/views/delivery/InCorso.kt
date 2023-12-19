@@ -1,4 +1,4 @@
-package it.polito.progettolocker.views
+package it.polito.progettolocker.views.delivery
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
