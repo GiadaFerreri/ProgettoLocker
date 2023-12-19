@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun FooterTotal(price: String){
+fun FooterTotal(price: Int){
     Column(verticalArrangement = Arrangement.Bottom) {
         Divider(color = Color.Black, thickness = 1.dp)
         Row(

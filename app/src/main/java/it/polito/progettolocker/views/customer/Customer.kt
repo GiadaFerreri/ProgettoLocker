@@ -11,8 +11,8 @@ import androidx.navigation.NavController
 import it.polito.progettolocker.graphic.FooterHome
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.graphic.Buttons
-import it.polito.progettolocker.graphic.CardOrder
 import it.polito.progettolocker.graphic.CardsJustText
+import it.polito.progettolocker.graphic.FooterDoubleBlack
 import it.polito.progettolocker.graphic.FooterTotal
 import it.polito.progettolocker.graphic.HeaderX
 
@@ -21,5 +21,6 @@ fun Customer(mainActivity: MainActivity, navController: NavController){
     FooterHome(navController = navController)
     //Catalogo(mainActivity = mainActivity, navController = navController)
     //FooterTotal(price="10.00")
+   // FooterDoubleBlack(price = 30)
    
 }
