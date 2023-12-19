@@ -30,7 +30,7 @@ import androidx.navigation.NavController
 import it.polito.progettolocker.R
 
 @Composable
-fun CardOrder(navController: NavController, textProduct: String, price: Float) {
+fun CardOrderPhoto(navController: NavController, textProduct: String, price: Float) {
    Column(verticalArrangement = Arrangement.Top) {
         Row(modifier = Modifier
             .fillMaxWidth()
