@@ -17,8 +17,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import it.polito.progettolocker.views.Customer
 import it.polito.progettolocker.views.DaEffettuare
@@ -93,8 +95,39 @@ fun Navigation(mainActivity: MainActivity){
         composable("Locker"){
             Locker(mainActivity, navController)
         }
+
+        /*navigation(startDestination = "DaEffettuare", route = "DaEffettuare") {
+
+            composable("DaEffettuare") {
+                DaEffettuare(mainActivity, navController) }
+            composable("InCorso") {
+                InCorso(mainActivity, navController)
+            }
+        }
+*/
     }
 }
+
+/*
+fun NavGraphBuilder.loginGraph(mainActivity: MainActivity, navController: NavController) {
+    navigation(startDestination = "Delivery", route = "Delivery") {
+
+        composable("Delivery") {
+            Delivery(mainActivity, navController)
+        }
+        composable("DaEffettuare") {
+            DaEffettuare(mainActivity, navController)
+        }
+        composable("InCorso") {
+            InCorso(mainActivity, navController)
+        }
+
+    }
+}
+
+*/
+
+
 
 @Composable
 fun HomePage( mainActivity: MainActivity, navController: NavController) {
