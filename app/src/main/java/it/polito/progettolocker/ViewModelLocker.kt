@@ -1,12 +1,17 @@
 package it.polito.progettolocker
 
 import android.content.ContentValues
+import android.text.Spannable.Factory
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.auth.FirebaseAuth
@@ -24,9 +29,10 @@ import it.polito.progettolocker.dataClass.Locker
 import it.polito.progettolocker.dataClass.Shipping
 import it.polito.progettolocker.dataClass.States
 import it.polito.progettolocker.dataClass.User
+import kotlinx.coroutines.tasks.await
 
 
-class ViewModelLocker : ViewModel() {
+class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseReference, val eventListener: ValueEventListener) : ViewModel() {
 
     private val _articles = MutableLiveData<List<Article>>(emptyList())
     val articles : LiveData<List<Article>> = _articles
@@ -128,28 +134,33 @@ class ViewModelLocker : ViewModel() {
         }
     }
 
+
     //TODO: utente
     // ID utente (firebase), ruolo, lista spedizioni (storico),
-
 
     //TODO: fattorino
     // ID fattorino, ruolo, lista spedizioni, orario inizio (presa in carico), orario fine (consegna)
 
+
     //FUNZIONI FIREBASE (PROVE)
-    fun WriteInDatabase(databaseReference: DatabaseReference) {
-        databaseReference.child("Stringa").setValue("Hello, World!")
+    fun WriteInDatabase() {
+        databaseReference.child("Stringa").setValue("ciao")
     }
 
-    fun WriteBoolInDatabase(databaseReference: DatabaseReference) {
+    fun SetBoolTrueDB() {
         databaseReference.child("Bool").setValue(true)
     }
 
-    fun WriteIntInDatabase(databaseReference: DatabaseReference) {
+    fun SetBoolFalseDB(){
+        databaseReference.child("Bool").setValue(false)
+    }
+
+    fun WriteIntInDatabase() {
         databaseReference.child("Int").setValue(1)
     }
 
     @Composable
-    fun ReadFromDatabase( modifier: Modifier = Modifier, databaseReference: DatabaseReference) {
+    fun ReadFromDatabase(databaseReference: DatabaseReference) {
         // Read from the database
 
         databaseReference.addValueEventListener(object: ValueEventListener {
@@ -166,5 +177,39 @@ class ViewModelLocker : ViewModel() {
             }
 
         })
+    }
+
+    private suspend fun signInAnonymously(auth: FirebaseAuth): Boolean {
+        return try {
+            auth.signInAnonymously().await()
+            true
+        } catch (e: Exception) {
+            // Handle sign-in failure
+            false
+        }
+    }
+
+    //FIREBASE
+    fun database_writeUser(){
+
+    }
+
+    fun database_writeCart(){
+
+    }
+
+    fun database_readCart(){
+
+    }
+
+
+}
+
+class ViewModelLockerFactory (val auth: FirebaseAuth, val databaseReference: DatabaseReference,val eventListener: ValueEventListener) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if(modelClass.isAssignableFrom(ViewModelLocker:: class.java)){
+            return ViewModelLocker(auth,databaseReference,eventListener) as T
+        }
+        else throw IllegalArgumentException("Unknown Class Name")
     }
 }
