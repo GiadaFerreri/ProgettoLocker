@@ -14,13 +14,14 @@ import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.graphic.CardsJustText
 import it.polito.progettolocker.graphic.FooterDoubleBlack
 import it.polito.progettolocker.graphic.FooterTotal
+import it.polito.progettolocker.graphic.FooterWarning
 import it.polito.progettolocker.graphic.HeaderX
 
 @Composable
 fun Customer(mainActivity: MainActivity, navController: NavController){
     FooterHome(navController = navController)
     //Catalogo(mainActivity = mainActivity, navController = navController)
-    //FooterTotal(price="10.00")
-   // FooterDoubleBlack(price = 30)
-   
+    //FooterTotal(price="10.00",navController = navController)
+   // FooterDoubleBlack(price = 30,navController = navController)
+   //FooterWarning(text = "IL TUO ACQUISTO È ANDATO A BUON FINE!",navController = navController)
 }

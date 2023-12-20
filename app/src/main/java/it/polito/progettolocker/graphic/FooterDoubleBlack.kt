@@ -20,11 +20,12 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 
 @Composable
 
-fun FooterDoubleBlack(price: Int){
+fun FooterDoubleBlack(price: Int, navController: NavController){
     Column(verticalArrangement = Arrangement.Bottom) {
         Row{
             Divider(color = Color.Black, thickness = 1.dp)

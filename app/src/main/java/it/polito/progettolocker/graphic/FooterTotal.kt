@@ -21,9 +21,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 @Composable
-fun FooterTotal(price: Int){
+fun FooterTotal(price: Int, navController: NavController){
     Column(verticalArrangement = Arrangement.Bottom) {
         Divider(color = Color.Black, thickness = 1.dp)
         Row(
@@ -33,7 +34,7 @@ fun FooterTotal(price: Int){
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Column(horizontalAlignment = Alignment.Start,) {
+            Column(horizontalAlignment = Alignment.Start) {
                 Text(
                     text = "TOTALE", color = Color.Black,modifier=Modifier.
                     padding(start=5.dp), style = TextStyle(
