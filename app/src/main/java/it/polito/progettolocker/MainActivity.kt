@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -47,15 +48,18 @@ import it.polito.progettolocker.views.customer.SpedizioniInCorso
 import it.polito.progettolocker.views.customer.StoricoConsegne
 import it.polito.progettolocker.views.delivery.LockerConfirm
 
-private lateinit var auth: FirebaseAuth
-private lateinit var eventListener: ValueEventListener
-private lateinit var database: DatabaseReference
-private lateinit var user: User
-private lateinit var deliveryMan : DeliveryMan
-
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: ViewModelLocker by viewModels()
+    private val viewModel: ViewModelLocker by lazy {
+        val factory = ViewModelLockerFactory(auth,database, eventListener)
+        ViewModelProvider(this, factory).get(ViewModelLocker::class.java)
+    }
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var eventListener: ValueEventListener
+    private lateinit var database: DatabaseReference
+    private lateinit var user: User
+    private lateinit var deliveryMan : DeliveryMan
 
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,9 +68,8 @@ class MainActivity : ComponentActivity() {
         auth = Firebase.auth
         database = Firebase.database("https://locker-53147-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
-        viewModel.WriteInDatabase(database)
-        viewModel.WriteBoolInDatabase(database)
-        viewModel.WriteIntInDatabase(database)
+        viewModel.WriteInDatabase()
+        viewModel.WriteIntInDatabase()
 
         setContent {
             ProgettoLockerTheme {
