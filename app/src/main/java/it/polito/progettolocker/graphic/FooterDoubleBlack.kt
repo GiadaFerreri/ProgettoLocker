@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -30,33 +31,44 @@ fun FooterDoubleBlack(price: Int, navController: NavController){
         Row{
             Divider(color = Color.Black, thickness = 1.dp)
         }
-        Row(modifier = Modifier
+        Column(modifier = Modifier
             .fillMaxWidth()
-            .height(60.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly) {
+            .height(60.dp)
 
-    Button( shape= RectangleShape, modifier = Modifier
-        .padding(0.dp)
-        .height(60.dp),colors = ButtonDefaults.buttonColors(contentColor = Color.Black,
-        containerColor = Color.Black), onClick = { }, contentPadding = PaddingValues(0.dp)) {
-        Text(text = "CONTINUA", modifier=Modifier.
-        padding(start=5.dp),
-            style = TextStyle(
-                fontSize = 15.sp),
-            color = Color.White
-        )
+            ) {
+   Row(modifier = Modifier.fillMaxWidth().padding(0.dp).width(174.dp), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically){
+
+       Column(modifier = Modifier.fillMaxHeight().background(Color.Black)) {
+           Button( shape= RectangleShape, modifier = Modifier
+               .padding(0.dp)
+               .height(60.dp),colors = ButtonDefaults.buttonColors(contentColor = Color.Black,
+               containerColor = Color.Black), onClick = { }, contentPadding = PaddingValues(0.dp)) {
+
+
+               Text(
+                   text = "CONTINUA", modifier = Modifier.padding(start = 5.dp),
+                   style = TextStyle(
+                       fontSize = 15.sp
+                   ),
+                   color = Color.White
+               )
+
+           }
+       }
+
+Column(modifier = Modifier.background(Color.White).fillMaxHeight(), verticalArrangement = Arrangement.Center) {
+
+    Text(
+        text ="TOTALE    $price EUR", modifier=Modifier.
+        padding(end=5.dp),style = TextStyle(
+            fontSize = 15.sp,
+        ),  color = Color.Black
+    )
 }
 
 
 
-
-                       Text(
-                               text ="TOTALE    $price EUR", modifier=Modifier.
-                               padding(end=5.dp),style = TextStyle(
-                                   fontSize = 15.sp,
-                               ),  color = Color.Black
-                           )
+}
 
 
         }
