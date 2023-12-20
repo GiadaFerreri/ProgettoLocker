@@ -1,5 +1,6 @@
 package it.polito.progettolocker.views.delivery
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
@@ -16,4 +17,8 @@ fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
         onClickListener2 = "InCorso",
         navController = navController
     )
+
+    //con freccia indietro si esce dall'applicazione
+    BackHandler (enabled = true){
+        mainActivity.finish()    }
 }

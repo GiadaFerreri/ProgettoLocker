@@ -1,5 +1,6 @@
 package it.polito.progettolocker.views.delivery
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,4 +38,9 @@ fun InCorso(mainActivity: MainActivity, navController: NavController){
             Text("Consegna il pacco")
         }
     }
+
+    BackHandler (enabled = true){
+        navController.navigate("DaEffettuare")
+    }
+
 }

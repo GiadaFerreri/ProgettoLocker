@@ -1,5 +1,6 @@
 package it.polito.progettolocker.views.delivery
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,28 +15,11 @@ import it.polito.progettolocker.graphic.HeaderX
 import it.polito.progettolocker.MainActivity
 
 @Composable
+//Prima pagina del locker
 fun Locker(mainActivity: MainActivity, navController: NavController) {
-    Column(  modifier = Modifier
-        .fillMaxWidth()){
-        Row {
-            HeaderX(text = "LOCKER", navController = navController, onClickListener = "DaEffettuare")
 
-        }
-        Row ( modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly)
-        {
-            CardsJustText(text1 = "IL TUO PACCO È STATO DEPOSITATO CORRETTAMENTE?")
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Buttons(text = "CONFERMA")
-            Buttons(text = "RIAPRI IL CASSETTO")
-        }
-
+    BackHandler (enabled = true){
+        navController.navigate("DaEffettuare")
     }
 
 }

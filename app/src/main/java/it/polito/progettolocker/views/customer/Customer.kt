@@ -1,5 +1,6 @@
 package it.polito.progettolocker.views.customer
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,7 +22,12 @@ import it.polito.progettolocker.graphic.HeaderX
 fun Customer(mainActivity: MainActivity, navController: NavController){
     FooterHome(navController = navController)
     //Catalogo(mainActivity = mainActivity, navController = navController)
+    //Carrello(mainActivity = mainActivity, navController = navController)
     //FooterTotal(price="10.00",navController = navController)
    // FooterDoubleBlack(price = 30,navController = navController)
    //FooterWarning(text = "IL TUO ACQUISTO È ANDATO A BUON FINE!",navController = navController)
+
+    //con freccia indietro si esce dall'applicazione
+    BackHandler (enabled = true){
+        mainActivity.finish()    }
 }

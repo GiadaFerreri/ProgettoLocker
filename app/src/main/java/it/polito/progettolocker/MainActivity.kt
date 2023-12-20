@@ -35,6 +35,17 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
 import com.google.firebase.database.ValueEventListener
+import it.polito.progettolocker.views.customer.Acquisto
+import it.polito.progettolocker.views.customer.AcquistoLocker
+import it.polito.progettolocker.views.customer.Carrello
+import it.polito.progettolocker.views.customer.Catalogo
+import it.polito.progettolocker.views.customer.DettagliOrdine
+import it.polito.progettolocker.views.customer.LockerCode
+import it.polito.progettolocker.views.customer.LockerConfirmCustomer
+import it.polito.progettolocker.views.customer.LockerDysfunction
+import it.polito.progettolocker.views.customer.SpedizioniInCorso
+import it.polito.progettolocker.views.customer.StoricoConsegne
+import it.polito.progettolocker.views.delivery.LockerConfirm
 
 private lateinit var auth: FirebaseAuth
 private lateinit var eventListener: ValueEventListener
@@ -75,17 +86,17 @@ class MainActivity : ComponentActivity() {
 fun Navigation(mainActivity: MainActivity){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "HomePage"){
+
         composable("HomePage"){
             HomePage(mainActivity, navController)
         }
+
+        //NAVIGAZIONE DELIVERY
         composable("Delivery"){
             Delivery(mainActivity, navController)
         }
-        composable("Customer"){
-            Customer(mainActivity, navController)
-        }
         composable("DaEffettuare"){
-            DaEffettuare(mainActivity, navController)
+           DaEffettuare(mainActivity, navController)
         }
         composable("InCorso"){
             InCorso(mainActivity, navController)
@@ -93,6 +104,51 @@ fun Navigation(mainActivity: MainActivity){
         composable("Locker"){
             Locker(mainActivity, navController)
         }
+        composable("LockerConfirm"){
+            LockerConfirm(mainActivity, navController)
+        }
+
+        //NAVIGAZIONE CUSTOMER
+
+        composable("Customer"){
+            Customer(mainActivity, navController)
+        }
+        composable("Carrello"){
+            Carrello(mainActivity, navController)
+        }
+        composable("Catalogo"){
+            Catalogo(mainActivity, navController)
+        }
+        composable("AcquistoLocker"){
+            AcquistoLocker(mainActivity, navController)
+        }
+        composable("Acquisto"){
+            Acquisto(mainActivity, navController)
+        }
+        composable("SpedizioniInCorso"){
+            SpedizioniInCorso(mainActivity, navController)
+        }
+        composable("StoricoConsegne"){
+            StoricoConsegne(mainActivity, navController)
+        }
+        composable("DettagliOrdine"){
+            DettagliOrdine(mainActivity, navController)
+        }
+        composable("LockerConfirmCustomer"){
+          LockerConfirmCustomer(mainActivity, navController)
+        }
+        composable("LockerCode"){
+            LockerCode(mainActivity, navController)
+        }
+        composable("LockerDysfunction"){
+            LockerDysfunction(mainActivity, navController)
+        }
+
+
+
+
+
+
 
         /*navigation(startDestination = "DaEffettuare", route = "DaEffettuare") {
 
