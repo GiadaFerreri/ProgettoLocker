@@ -9,7 +9,7 @@ import it.polito.progettolocker.graphic.FooterHome
 @Composable
 fun Catalogo(mainActivity: MainActivity, navController: NavController){
     CardOrderPhoto(navController = navController, textProduct = "ZW COLLECTION SEQUINNED VELVET BLAZER", price = 99.95F)
-
+    FooterHome(navController = navController)
 
     BackHandler (enabled = true){
         navController.navigate("Customer")

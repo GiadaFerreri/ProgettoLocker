@@ -5,22 +5,33 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import it.polito.progettolocker.views.customer.Customer
 import it.polito.progettolocker.views.delivery.DaEffettuare
 import it.polito.progettolocker.views.delivery.Delivery
@@ -36,6 +47,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.database
 import com.google.firebase.database.ValueEventListener
+import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.views.customer.Acquisto
 import it.polito.progettolocker.views.customer.AcquistoLocker
 import it.polito.progettolocker.views.customer.Carrello
@@ -51,7 +63,7 @@ import it.polito.progettolocker.views.delivery.LockerConfirm
 class MainActivity : ComponentActivity() {
 
     private val viewModel: ViewModelLocker by lazy {
-        val factory = ViewModelLockerFactory(auth,database, eventListener)
+        val factory = ViewModelLockerFactory(auth, database, eventListener)
         ViewModelProvider(this, factory).get(ViewModelLocker::class.java)
     }
 
@@ -59,17 +71,17 @@ class MainActivity : ComponentActivity() {
     private lateinit var eventListener: ValueEventListener
     private lateinit var database: DatabaseReference
     private lateinit var user: User
-    private lateinit var deliveryMan : DeliveryMan
+    private lateinit var deliveryMan: DeliveryMan
 
-    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
-        database = Firebase.database("https://locker-53147-default-rtdb.europe-west1.firebasedatabase.app/").reference
+        database =
+            Firebase.database("https://locker-53147-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
-        viewModel.WriteInDatabase()
-        viewModel.WriteIntInDatabase()
+        //viewModel.WriteInDatabase()
+        //viewModel.WriteIntInDatabase()
 
         setContent {
             ProgettoLockerTheme {
@@ -78,13 +90,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                 Navigation(mainActivity = this)
+                    val systemUiController = rememberSystemUiController()
+
+                    SideEffect {
+                        systemUiController.setStatusBarColor(color = Color.White)
+                    }
+
+                    Navigation(mainActivity = this)
+
                 }
             }
         }
     }
 }
-@RequiresApi(Build.VERSION_CODES.Q)
+
 @Composable
 fun Navigation(mainActivity: MainActivity){
     val navController = rememberNavController()
@@ -187,18 +206,41 @@ fun NavGraphBuilder.loginGraph(mainActivity: MainActivity, navController: NavCon
 
 
 @Composable
-fun HomePage( mainActivity: MainActivity, navController: NavController) {
-    Row {
-        Button(onClick = {navController.navigate("Delivery")},
+fun HomePage(mainActivity: MainActivity, navController: NavController) {
+    Row(
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Button(
+            onClick = { navController.navigate("Delivery") },
+            shape= RectangleShape,
             modifier = Modifier
-                .padding(3.dp)) {
+                .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
+                .border(width = 1.dp, color = Color.Black)
+                .width(116.dp)
+                .height(45.dp)
+                .background(color = Color(0xFFF8F6F6)),
+            colors = ButtonDefaults.buttonColors(
+                contentColor = Color.Black,
+                containerColor = Color.Transparent)
+        ){
             Text(text = "Delivery")
         }
-        Button(onClick = {navController.navigate("Customer", )}, modifier = Modifier) {
-        Text(text = "Customer")
+        Button(
+            onClick = {navController.navigate("Customer") },
+            shape= RectangleShape,
+            modifier = Modifier
+                .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
+                .border(width = 1.dp, color = Color.Black)
+                .width(116.dp)
+                .height(45.dp)
+                .background(color = Color(0xFFF8F6F6)),
+            colors = ButtonDefaults.buttonColors(
+                contentColor = Color.Black,
+                containerColor = Color.Transparent)
+        ){
+            Text(text = "Customer")
+        }
     }
-    }
-
-
 }
 

@@ -1,5 +1,6 @@
 package it.polito.progettolocker.graphic
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,7 +27,7 @@ import androidx.navigation.NavController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HeaderX(text: String,
-            onClickListener: String = "",
+            onClickDestination: String = "",
             navController: NavController){
 
     Column(verticalArrangement = Arrangement.Top){
@@ -34,37 +35,37 @@ fun HeaderX(text: String,
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.SpaceBetween
-        ) {
+        ){
             Column (horizontalAlignment = Alignment.Start) {
                 Button(
                     colors = ButtonDefaults.buttonColors(Color.Transparent),
-                    onClick = { if(onClickListener != "") navController.navigate(onClickListener) }) {
-                    /*Text(
-                        "X", color = Color.Black, style = TextStyle(
-                            fontSize = 20.sp,
-                        )
-                    )*/
-                    Icon(Icons.Filled.Close, contentDescription = "x", tint = Color.Black)
-
+                    onClick = { if(onClickDestination != "") navController.navigate(onClickDestination) }
+                ){
+                    Icon(Icons.Filled.Close, contentDescription = "Chiudi", tint = Color.Black)
                 }
             }
             Column (horizontalAlignment = Alignment.CenterHorizontally) {
-                Button(colors = ButtonDefaults.buttonColors(Color.Transparent),onClick = { /*TODO*/ }) {
-
+                Button(colors = ButtonDefaults.buttonColors(Color.Transparent),onClick = { /*TODO*/ }
+                ){
                     Text(modifier= Modifier
-                        .width(83.dp)
-                        .height(25.dp),
+                        //.width(83.dp)
+                        .height(30.dp),
                         text = text,
-                        color=Color.Black,
+                        color = Color.Black,
                         style = TextStyle(
                             fontSize = 20.sp,
                         )
-
                     )
                 }
             }
-            Column {
-
+            Column(horizontalAlignment = Alignment.End
+            ){
+                Button(
+                    colors = ButtonDefaults.buttonColors(Color.Transparent),
+                    onClick = { }
+                ){
+                    Icon(Icons.Filled.Close, contentDescription = "Chiudi", tint = Color.Transparent)
+                }
             }
 
 

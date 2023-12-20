@@ -14,7 +14,7 @@ fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
         weight1 = FontWeight.Bold,
         text2 = "IN CORSO",
         weight2 = FontWeight.Normal,
-        onClickListener2 = "InCorso",
+        onClickDestination2 = "InCorso",
         navController = navController
     )
 

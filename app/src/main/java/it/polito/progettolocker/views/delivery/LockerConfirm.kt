@@ -21,7 +21,7 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
     Column(  modifier = Modifier
         .fillMaxWidth()){
         Row {
-            HeaderX(text = "LOCKER", navController = navController, onClickListener = "DaEffettuare")
+            HeaderX(text = "LOCKER", navController = navController, onClickDestination = "DaEffettuare")
 
         }
         Row ( modifier = Modifier.fillMaxWidth(),

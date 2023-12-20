@@ -74,4 +74,5 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("androidx.navigation:navigation-compose:2.7.5")
     implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.31.1-alpha")
 }

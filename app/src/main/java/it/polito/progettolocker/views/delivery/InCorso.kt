@@ -23,7 +23,7 @@ fun InCorso(mainActivity: MainActivity, navController: NavController){
         weight1 = FontWeight.Normal,
         text2 = "IN CORSO",
         weight2 = FontWeight.Bold,
-        onClickListener1 = "DaEffettuare",
+        onClickDestination1 = "DaEffettuare",
         navController = navController
     )
     Row(modifier = Modifier.fillMaxWidth(),

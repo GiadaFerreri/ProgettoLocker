@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
@@ -24,28 +25,30 @@ fun HeaderDouble(
     weight1: FontWeight,
     text2: String,
     weight2: FontWeight,
-    onClickListener1: String = "",
-    onClickListener2: String = "",
-    navController: NavController){
+    onClickDestination1: String = "",
+    onClickDestination2: String = "",
+    navController: NavController
+){
     Column(verticalArrangement = Arrangement.Top){
-                    Row(modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.Top,
-                        horizontalArrangement = Arrangement.SpaceEvenly){
-                        Button(colors = ButtonDefaults.buttonColors(Color.Transparent), onClick = { if(onClickListener1 != "") navController.navigate(onClickListener1) }) {
-                            Text(
-                                text= text1,
-                                color = Color.Black,
-                                fontWeight = weight1
-                            )
-                        }
-                        Button(colors = ButtonDefaults.buttonColors(Color.Transparent), onClick = { if(onClickListener2 != "") navController.navigate(onClickListener2) }) {
-                            Text(
-                                text= text2,
-                                color = Color.Black,
-                                fontWeight = weight2
-                            )
-                        }
-                    }
+        Row(modifier = Modifier.fillMaxWidth().height(60.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ){
+            Button(colors = ButtonDefaults.buttonColors(Color.Transparent), onClick = { if(onClickDestination1 != "") navController.navigate(onClickDestination1) }) {
+                Text(
+                    text= text1,
+                    color = Color.Black,
+                    fontWeight = weight1
+                )
+            }
+            Button(colors = ButtonDefaults.buttonColors(Color.Transparent), onClick = { if(onClickDestination2 != "") navController.navigate(onClickDestination2) }) {
+                Text(
+                    text= text2,
+                    color = Color.Black,
+                    fontWeight = weight2
+                )
+            }
+        }
 
 
 

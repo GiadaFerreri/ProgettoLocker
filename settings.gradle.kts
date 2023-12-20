@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ProgettoLocker"
+rootProject.name = "Zara LCKR"
 include(":app")
  
