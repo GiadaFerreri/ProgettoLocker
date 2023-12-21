@@ -30,7 +30,7 @@ fun CardsJustText(text1: String) {
             border = BorderStroke(0.5.dp, Color.Black),
             shape= RectangleShape,
             modifier = Modifier
-                .size(width = 400.dp, height = 173.dp)
+                .size(width = 400.dp, height = 200.dp)
                 .padding(16.dp)
 
         )

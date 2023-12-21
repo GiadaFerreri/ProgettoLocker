@@ -28,7 +28,9 @@ import androidx.navigation.NavController
 @Composable
 fun HeaderX(text: String,
             onClickDestination: String = "",
-            navController: NavController){
+            navController: NavController,
+
+){
 
     Column(verticalArrangement = Arrangement.Top){
         Row(
@@ -72,10 +74,10 @@ fun HeaderX(text: String,
 
 
         }
-        Row() {
-            Divider(color = Color.Black, thickness = 0.5.dp)
-        }
+
+        Divider(color = Color.Black, thickness = 0.5.dp)
     }
+
 }
 
 

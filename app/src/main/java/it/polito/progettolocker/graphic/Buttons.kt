@@ -20,9 +20,9 @@ import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun Buttons(text: String) {
+fun Buttons(text: String,  onClickHandler: () -> Unit) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = { onClickHandler() },
         shape= RectangleShape,
         modifier = Modifier
             .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))

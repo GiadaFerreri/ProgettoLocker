@@ -31,7 +31,8 @@ fun CardOrder(
     leftButtonText: String = "VEDI ORDINE",
     rightButtonText: String = "RITIRA IL PACCO",
     mainActivity: MainActivity,
-    navController: NavController
+    navController: NavController,
+    onClickDestination: String = "",
 ){
     OutlinedCard(
         colors = CardDefaults.cardColors(
@@ -66,14 +67,14 @@ fun CardOrder(
                     modifier = Modifier.padding(0.dp,0.dp,32.dp,0.dp)
                 ) {
                     if(leftButton){
-                        Buttons(leftButtonText)
+                        Buttons(leftButtonText,onClickHandler = {if(onClickDestination != "")  navController.navigate(onClickDestination) })
                     }
                 }
                 Column (
                     horizontalAlignment = Alignment.End
                 ){
                     if(rightButton){
-                        Buttons(rightButtonText)
+                        Buttons(rightButtonText, onClickHandler={})
                     }
                 }
             }

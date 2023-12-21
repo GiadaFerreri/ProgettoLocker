@@ -27,7 +27,7 @@ fun Customer(mainActivity: MainActivity, navController: NavController){
     //FooterTotal(price="10.00",navController = navController)
     //FooterDoubleBlack(price = 30,navController = navController)
     //FooterWarning(text = "IL TUO ACQUISTO È ANDATO A BUON FINE!",navController = navController)
-
+    //HeaderX(text = "ciao", navController = navController)
     //con freccia indietro si esce dall'applicazione
     BackHandler (enabled = true){
         mainActivity.finish()

@@ -31,7 +31,8 @@ fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
                 description = "CONSEGNA AL LOCKER DA EFFETTUARE ENTRO LE 18:00",
                 leftButtonText = "PRESA IN CARICO",
                 mainActivity = mainActivity,
-                navController = navController
+                navController = navController,
+                onClickDestination = "InCorso"
             )
         }
         Row{
@@ -40,7 +41,8 @@ fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
                 description = "CONSEGNA AL LOCKER DA EFFETTUARE ENTRO LE 18:00",
                 leftButtonText = "PRESA IN CARICO",
                 mainActivity = mainActivity,
-                navController = navController
+                navController = navController,
+                onClickDestination = "InCorso"
             )
         }
     }

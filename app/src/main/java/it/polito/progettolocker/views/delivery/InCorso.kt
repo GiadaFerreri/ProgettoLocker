@@ -38,21 +38,11 @@ fun InCorso(mainActivity: MainActivity, navController: NavController){
                 description = "CONSEGNA AL LOCKER DA EFFETTUARE ENTRO LE 16:00",
                 leftButtonText = "CONSEGNA IL PACCO",
                 mainActivity = mainActivity,
-                navController = navController
+                navController = navController,
+                onClickDestination = "Locker"
             )
         }
-        Row(modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.Bottom,
-            horizontalArrangement = Arrangement.SpaceEvenly) {
 
-            Button(
-                onClick = { navController.navigate("Locker") },
-                modifier = Modifier
-                    .padding(3.dp)
-            ) {
-                Text("Consegna il pacco")
-            }
-        }
     }
 
 
