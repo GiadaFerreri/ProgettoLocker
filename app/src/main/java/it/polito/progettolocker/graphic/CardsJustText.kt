@@ -27,7 +27,7 @@ fun CardsJustText(text1: String) {
         OutlinedCard (
             colors = CardDefaults.cardColors(
                 containerColor = backgroundColor),
-            border = BorderStroke(1.dp, Color.Black),
+            border = BorderStroke(0.5.dp, Color.Black),
             shape= RectangleShape,
             modifier = Modifier
                 .size(width = 400.dp, height = 173.dp)

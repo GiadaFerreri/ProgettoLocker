@@ -56,6 +56,7 @@ import it.polito.progettolocker.views.customer.DettagliOrdine
 import it.polito.progettolocker.views.customer.LockerCode
 import it.polito.progettolocker.views.customer.LockerConfirmCustomer
 import it.polito.progettolocker.views.customer.LockerDysfunction
+import it.polito.progettolocker.views.customer.Spedizioni
 import it.polito.progettolocker.views.customer.SpedizioniInCorso
 import it.polito.progettolocker.views.customer.StoricoConsegne
 import it.polito.progettolocker.views.delivery.LockerConfirm
@@ -88,7 +89,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = Color.White
                 ) {
                     val systemUiController = rememberSystemUiController()
 
@@ -146,6 +147,9 @@ fun Navigation(mainActivity: MainActivity){
         }
         composable("Acquisto"){
             Acquisto(mainActivity, navController)
+        }
+        composable("Spedizioni"){
+            Spedizioni(mainActivity, navController)
         }
         composable("SpedizioniInCorso"){
             SpedizioniInCorso(mainActivity, navController)
@@ -216,7 +220,7 @@ fun HomePage(mainActivity: MainActivity, navController: NavController) {
             shape= RectangleShape,
             modifier = Modifier
                 .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
-                .border(width = 1.dp, color = Color.Black)
+                .border(width = 0.5.dp, color = Color.Black)
                 .width(116.dp)
                 .height(45.dp)
                 .background(color = Color(0xFFF8F6F6)),
@@ -231,7 +235,7 @@ fun HomePage(mainActivity: MainActivity, navController: NavController) {
             shape= RectangleShape,
             modifier = Modifier
                 .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
-                .border(width = 1.dp, color = Color.Black)
+                .border(width = 0.5.dp, color = Color.Black)
                 .width(116.dp)
                 .height(45.dp)
                 .background(color = Color(0xFFF8F6F6)),

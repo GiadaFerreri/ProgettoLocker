@@ -26,7 +26,7 @@ import androidx.navigation.NavController
 @Composable
 fun FooterTotal(price: Int, navController: NavController){
     Column(verticalArrangement = Arrangement.Bottom) {
-        Divider(color = Color.Black, thickness = 1.dp)
+        Divider(color = Color.Black, thickness = 0.5.dp)
         Row(
             modifier = Modifier
                 .fillMaxWidth()

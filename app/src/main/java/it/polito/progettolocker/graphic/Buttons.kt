@@ -26,7 +26,7 @@ fun Buttons(text: String) {
         shape= RectangleShape,
         modifier = Modifier
             .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
-            .border(width = 1.dp, color = Color.Black)
+            .border(width = 0.5.dp, color = Color.Black)
             .width(116.dp)
             .height(45.dp)
             .background(color = Color(0xFFF8F6F6)),

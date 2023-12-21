@@ -25,7 +25,7 @@ import androidx.navigation.NavController
 fun FooterHome(navController: NavController){
     Column(verticalArrangement = Arrangement.Bottom) {
         Row{
-            Divider(color = Color.Black, thickness = 1.dp)
+            Divider(color = Color.Black, thickness = 0.5.dp)
         }
         Row(modifier = Modifier.fillMaxWidth().height(60.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -74,12 +74,12 @@ fun FooterHome(navController: NavController){
                 modifier = Modifier.padding(0.dp),
                 contentPadding = PaddingValues(0.dp),
                 onClick = {
-                    if(navController.currentDestination?.route != "SpedizioniInCorso") navController.navigate("SpedizioniInCorso")
+                    if(navController.currentDestination?.route != "Spedizioni") navController.navigate("Spedizioni")
                 }) {
                 Text(
                     text = "SPEDIZIONI",
                     color = Color.Black,
-                    fontWeight = if(navController.currentDestination?.route == "SpedizioniInCorso") FontWeight.Bold else FontWeight.Normal
+                    fontWeight = if(navController.currentDestination?.route == "Spedizioni") FontWeight.Bold else FontWeight.Normal
                 )
             }
         }

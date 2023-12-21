@@ -37,7 +37,7 @@ fun CardOrderPhoto(navController: NavController, textProduct: String, price: Flo
             .padding(16.dp)) {
             Image(painter = painterResource(id= R.drawable.zara_product1), contentDescription ="ImmagineProdotto",
                   modifier= Modifier
-                      .border(width = 1.dp, brush=Brush.horizontalGradient(
+                      .border(width = 0.5.dp, brush=Brush.horizontalGradient(
                       0.0f to Color.Black,
                       1.0f to Color.Black,
                       startX = 0.0f,
@@ -79,7 +79,7 @@ fun CardOrderPhoto(navController: NavController, textProduct: String, price: Flo
 
             }
        Row() {
-           Divider(color = Color.LightGray, thickness = 1.dp)
+           Divider(color = Color.LightGray, thickness = 0.5.dp)
        }
 
         }

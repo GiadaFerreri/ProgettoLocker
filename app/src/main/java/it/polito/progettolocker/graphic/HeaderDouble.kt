@@ -25,8 +25,8 @@ fun HeaderDouble(
     weight1: FontWeight,
     text2: String,
     weight2: FontWeight,
-    onClickDestination1: String = "",
-    onClickDestination2: String = "",
+    onClickHandler1: () -> Unit,
+    onClickHandler2: () -> Unit,
     navController: NavController
 ){
     Column(verticalArrangement = Arrangement.Top){
@@ -34,14 +34,14 @@ fun HeaderDouble(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ){
-            Button(colors = ButtonDefaults.buttonColors(Color.Transparent), onClick = { if(onClickDestination1 != "") navController.navigate(onClickDestination1) }) {
+            Button(colors = ButtonDefaults.buttonColors(Color.Transparent), onClick = { onClickHandler1() } ) {
                 Text(
                     text= text1,
                     color = Color.Black,
                     fontWeight = weight1
                 )
             }
-            Button(colors = ButtonDefaults.buttonColors(Color.Transparent), onClick = { if(onClickDestination2 != "") navController.navigate(onClickDestination2) }) {
+            Button(colors = ButtonDefaults.buttonColors(Color.Transparent), onClick = { onClickHandler2() }) {
                 Text(
                     text= text2,
                     color = Color.Black,
@@ -53,7 +53,7 @@ fun HeaderDouble(
 
 
             Row() {
-                Divider(color = Color.Black, thickness = 1.dp)
+                Divider(color = Color.Black, thickness = 0.5.dp)
             }
         }
     }

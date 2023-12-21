@@ -73,7 +73,7 @@ fun HeaderX(text: String,
 
         }
         Row() {
-            Divider(color = Color.Black, thickness = 1.dp)
+            Divider(color = Color.Black, thickness = 0.5.dp)
         }
     }
 }

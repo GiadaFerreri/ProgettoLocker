@@ -29,7 +29,7 @@ import androidx.navigation.NavController
 fun FooterDoubleBlack(price: Int, navController: NavController){
     Column(verticalArrangement = Arrangement.Bottom) {
         Row{
-            Divider(color = Color.Black, thickness = 1.dp)
+            Divider(color = Color.Black, thickness = 0.5.dp)
         }
         Column(modifier = Modifier
             .fillMaxWidth()

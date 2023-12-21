@@ -9,9 +9,9 @@ import androidx.compose.ui.unit.sp
 import it.polito.progettolocker.R
 
 val helveticaFont = FontFamily(
-    Font(R.font.helvetica_neue_regular, FontWeight.Normal),
-    Font(R.font.helvetica_neue_medium, FontWeight.Medium),
-    Font(R.font.helvetica_neue_bold, FontWeight.Bold)
+    Font(R.font.helvetica_neue, FontWeight.Normal),
+    Font(R.font.helvetica_neue, FontWeight.Medium),
+    Font(R.font.helvetica_neue, FontWeight.Bold)
 )
 
 
