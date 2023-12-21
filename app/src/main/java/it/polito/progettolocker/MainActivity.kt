@@ -31,7 +31,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.google.accompanist.systemuicontroller.rememberSystemUiController
+//import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import it.polito.progettolocker.views.customer.Customer
 import it.polito.progettolocker.views.delivery.DaEffettuare
 import it.polito.progettolocker.views.delivery.Delivery
@@ -91,10 +91,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.White
                 ) {
-                    val systemUiController = rememberSystemUiController()
+                  //  val systemUiController = rememberSystemUiController()
 
                     SideEffect {
-                        systemUiController.setStatusBarColor(color = Color.White)
+                      //  systemUiController.setStatusBarColor(color = Color.White)
                     }
 
                     Navigation(mainActivity = this)

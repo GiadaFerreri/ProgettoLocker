@@ -36,13 +36,12 @@ fun FooterDoubleBlack(price: Int, navController: NavController){
             .height(60.dp)
 
             ) {
-   Row(modifier = Modifier.fillMaxWidth().padding(0.dp).width(174.dp), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically){
+   Row(modifier = Modifier.fillMaxWidth().padding(0.dp).width(174.dp),horizontalArrangement=Arrangement.SpaceEvenly , verticalAlignment = Alignment.CenterVertically){
 
-       Column(modifier = Modifier.fillMaxHeight().background(Color.Black)) {
+       Column(modifier = Modifier.fillMaxHeight().width(210.dp).background(Color.Black), horizontalAlignment = Alignment.CenterHorizontally) {
            Button( shape= RectangleShape, modifier = Modifier
                .padding(0.dp)
-               .height(60.dp),colors = ButtonDefaults.buttonColors(contentColor = Color.Black,
-               containerColor = Color.Black), onClick = { }, contentPadding = PaddingValues(0.dp)) {
+               .height(60.dp).width(210.dp), onClick = { }, contentPadding = PaddingValues(0.dp)) {
 
 
                Text(
@@ -56,7 +55,7 @@ fun FooterDoubleBlack(price: Int, navController: NavController){
            }
        }
 
-Column(modifier = Modifier.background(Color.White).fillMaxHeight(), verticalArrangement = Arrangement.Center) {
+Column(modifier = Modifier.background(Color.White).fillMaxHeight().width(210.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
 
     Text(
         text ="TOTALE    $price EUR", modifier=Modifier.
