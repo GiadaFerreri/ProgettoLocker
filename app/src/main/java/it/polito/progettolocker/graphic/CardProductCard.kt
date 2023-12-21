@@ -39,8 +39,7 @@ import it.polito.progettolocker.ui.theme.PurpleGrey40
 //Card pagina Carrello
 @Composable
 fun CardProductCard(navController: NavController, textProduct: String, price: Float) {
-    Column(verticalArrangement = Arrangement.Top, modifier = Modifier
-    ) {
+    Column(verticalArrangement = Arrangement.Top) {
         Row(modifier = Modifier
             .fillMaxWidth() .height(160.dp)) {
             Image(painter = painterResource(id= R.drawable.zara_product1), contentDescription ="ImmagineProdotto",)

@@ -9,6 +9,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.graphic.CardOrder
+import it.polito.progettolocker.graphic.CardProduct
 import it.polito.progettolocker.graphic.CardWarning
 import it.polito.progettolocker.graphic.FooterHome
 import it.polito.progettolocker.graphic.HeaderDouble
@@ -16,15 +17,13 @@ import it.polito.progettolocker.graphic.HeaderDouble
 @Composable
 
 fun StoricoConsegne(mainActivity: MainActivity, navController: NavController){
+    Column {
+        Row(){
+
+        }
+    }
     Row{
-        CardOrder(
-            orderNumber = "76",
-            description = "RITIRATO IL 18 OTTOBRE",
-            leftButton = false,
-            rightButton = false,
-            mainActivity = mainActivity,
-            navController = navController
-        )
+        CardProduct(dataRitiro = "RITIRATO IL 22/12", descrizioneProdotto = "MAGLIONCINO BIANCO DI LANA\n +altri 5" )
     }
 
 }

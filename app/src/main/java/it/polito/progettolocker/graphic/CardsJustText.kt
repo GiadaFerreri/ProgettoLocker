@@ -32,7 +32,6 @@ fun CardsJustText(text1: String) {
             modifier = Modifier
                 .size(width = 400.dp, height = 200.dp)
                 .padding(16.dp)
-
         )
 
         {
