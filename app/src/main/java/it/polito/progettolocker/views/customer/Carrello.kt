@@ -21,7 +21,7 @@ fun Carrello(mainActivity: MainActivity, navController: NavController){
             HeaderX(text = "CARRELLO", navController = navController, onClickDestination = "Customer")
         }
         Row {
-            CardProductCard(navController = navController, textProduct = "VESTITO LINGERIE ZW COLLECTION", price = 88.95F)
+            CardProductCard(navController = navController, textProduct = "ZW COLLECTION SQUINNED VELVET BLAZER", price = 88.95F)
         }
     }
 
