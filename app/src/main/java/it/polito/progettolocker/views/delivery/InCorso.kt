@@ -33,6 +33,7 @@ fun InCorso(mainActivity: MainActivity, navController: NavController){
             )
         }
         Row{
+            //TODO: creare le card dalla lista di spedizioni prese in carico
             CardOrder(
                 orderNumber = "1E67",
                 description = "CONSEGNA AL LOCKER DA EFFETTUARE ENTRO LE 16:00",

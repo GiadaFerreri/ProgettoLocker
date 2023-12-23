@@ -37,7 +37,9 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
+
             Buttons(text = "CONFERMA", onClickHandler = {navController.navigate("DaEffettuare")})
+            //TODO: questo bottone sotto deve cambiare testo se è la seconda volta che si carica la pagina
             Buttons(text = "RIAPRI IL CASSETTO",onClickHandler = {navController.navigate("Locker")})
         }
 

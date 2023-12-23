@@ -26,6 +26,9 @@ fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
         }
 
         Row{
+            //TODO: creare le card dalla lista di spedizioni da efffettuare
+            /*TODO: quando si clicca sul bottone 'presa in carico' si deve eliminare la card da questa schermata e aggiungerla alla schermata 'In corso'
+                    ovvero si deve cambiare lo stato dell'ordine in questione*/
             CardOrder(
                 orderNumber = "242T",
                 description = "CONSEGNA AL LOCKER DA EFFETTUARE ENTRO LE 18:00",
