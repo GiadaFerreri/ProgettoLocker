@@ -34,8 +34,8 @@ fun HeaderX(text: String,
 
     Column(verticalArrangement = Arrangement.Top){
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.Top,
+            modifier = Modifier.fillMaxWidth().height(60.dp),
+            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ){
             Column (horizontalAlignment = Alignment.Start) {
