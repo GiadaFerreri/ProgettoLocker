@@ -51,26 +51,26 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
             {
                 Row(){
                     Text(
-                        text = "ZW COLLECTION SEQUINNED VELVET BLAZER\n", //textproduct
-                        style = TextStyle(
-                            fontSize = 15.sp,
-                            fontWeight = FontWeight(400),
-                            color = Color(0xFF000000),
-                            textAlign = TextAlign.Left
-                        )
+                        text = textProduct
+//                        style = TextStyle(
+//                            fontSize = 15.sp,
+//                            fontWeight = FontWeight(400),
+//                            color = Color(0xFF000000),
+//                            textAlign = TextAlign.Left
+//                        )
 
                     )
                 }
                 Row(Modifier.fillMaxWidth()){
 
                     Text(
-                        text =price.toString()+" EUR\n", //price
-                        style = TextStyle(
-                            fontSize = 15.sp,
-                            fontWeight = FontWeight(400),
-                            color = Color(0xFF000000),
-                            textAlign = TextAlign.Left
-                        )
+                        text = price.toString()+" EUR\n", //price
+//                        style = TextStyle(
+//                            fontSize = 15.sp,
+//                            fontWeight = FontWeight(400),
+//                            color = Color(0xFF000000),
+//                            textAlign = TextAlign.Left
+//                        )
 
                     )
                 }

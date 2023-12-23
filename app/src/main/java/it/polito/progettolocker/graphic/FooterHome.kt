@@ -16,7 +16,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.Typeface
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
@@ -27,7 +30,7 @@ fun FooterHome(navController: NavController){
         Row{
             Divider(color = Color.Black, thickness = 0.5.dp)
         }
-        Row(modifier = Modifier.fillMaxWidth().height(60.dp),
+        Row(modifier = Modifier.fillMaxWidth().height(45.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly) {
             Button(
@@ -40,7 +43,8 @@ fun FooterHome(navController: NavController){
                 Text(
                     text = "HOME",
                     color = Color.Black,
-                    fontWeight = if(navController.currentDestination?.route == "Customer") FontWeight.Bold else FontWeight.Normal
+                    fontWeight = if(navController.currentDestination?.route == "Customer") FontWeight.Bold else FontWeight.Normal,
+                    fontFamily = it.polito.progettolocker.ui.theme.helveticaFont
                 )
             }
             Button(

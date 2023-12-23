@@ -42,11 +42,8 @@ fun CardsJustText(text1: String) {
             .wrapContentSize(align = Alignment.Center)){
                 Text(
                     text = text1,
-                    style = TextStyle(
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight(400),
-                        color = Color(0xFF000000),
-                    )
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Medium
                 )
             }
 

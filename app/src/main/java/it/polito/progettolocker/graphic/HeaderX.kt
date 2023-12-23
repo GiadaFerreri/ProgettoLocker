@@ -9,6 +9,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.sharp.Close
+import androidx.compose.material.icons.twotone.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
@@ -31,8 +34,7 @@ fun HeaderX(text: String,
             navController: NavController,
 
 ){
-
-    Column(verticalArrangement = Arrangement.Top){
+    Column{
         Row(
             modifier = Modifier.fillMaxWidth().height(60.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -43,20 +45,15 @@ fun HeaderX(text: String,
                     colors = ButtonDefaults.buttonColors(Color.Transparent),
                     onClick = { if(onClickDestination != "") navController.navigate(onClickDestination) }
                 ){
-                    Icon(Icons.Filled.Close, contentDescription = "Chiudi", tint = Color.Black)
+                    Icon(Icons.Outlined.Close, contentDescription = "Chiudi", tint = Color.Black)
                 }
             }
             Column (horizontalAlignment = Alignment.CenterHorizontally) {
                 Button(colors = ButtonDefaults.buttonColors(Color.Transparent),onClick = { /*TODO*/ }
                 ){
-                    Text(modifier= Modifier
-                        //.width(83.dp)
-                        .height(30.dp),
+                    Text(
                         text = text,
-                        color = Color.Black,
-                        style = TextStyle(
-                            fontSize = 20.sp,
-                        )
+                        color = Color.Black
                     )
                 }
             }

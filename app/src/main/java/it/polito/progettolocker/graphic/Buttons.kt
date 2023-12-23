@@ -36,11 +36,10 @@ fun Buttons(text: String,  onClickHandler: () -> Unit) {
     ) {
         Text(
             text = text,
-            style = TextStyle(
-                fontSize = 12.sp,
-                fontWeight = FontWeight(400),
-                color = Color(0xFF000000),
-                textAlign = TextAlign.Center)
+            fontWeight = FontWeight.Normal,
+            fontSize = 12.sp,
+            textAlign = TextAlign.Center,
+            lineHeight = 12.sp
         )
     }
 }

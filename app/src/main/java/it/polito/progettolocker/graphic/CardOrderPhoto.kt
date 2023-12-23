@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.R
+import org.w3c.dom.Text
 
 @Composable
 //Card pagina storico consegne???
@@ -47,27 +48,17 @@ fun CardOrderPhoto(navController: NavController, textProduct: String, price: Flo
             {
                 Row(){
                 Text(
-                    text = "ZW COLLECTION SEQUINNED VELVET BLAZER\n", //textproduct
-                    style = TextStyle(
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight(400),
-                        color = Color(0xFF000000),
-                        textAlign = TextAlign.Center
-                    )
-
+                    text = textProduct,
+                    fontSize = 16.sp,
+                    textAlign = TextAlign.Center
                 )
             }
                 Row(){
 
                     Text(
-                        text =price.toString()+" EUR", //price
-                        style = TextStyle(
-                            fontSize = 15.sp,
-                            fontWeight = FontWeight(400),
-                            color = Color(0xFF000000),
-                            textAlign = TextAlign.Center
-                        )
-
+                        text = "$price EUR", //price
+                        fontSize = 16.sp,
+                        textAlign = TextAlign.Center
                     )
                 }
                 Row(){ Icon(Icons.Filled.AddCircle, contentDescription = "+", tint = Color.DarkGray)}

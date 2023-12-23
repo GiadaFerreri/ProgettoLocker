@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -228,7 +229,7 @@ fun HomePage(mainActivity: MainActivity, navController: NavController) {
                 contentColor = Color.Black,
                 containerColor = Color.Transparent)
         ){
-            Text(text = "Delivery")
+            Text(text = "DELIVERY", fontWeight = FontWeight.Normal)
         }
         Button(
             onClick = {navController.navigate("Customer") },
@@ -243,7 +244,7 @@ fun HomePage(mainActivity: MainActivity, navController: NavController) {
                 contentColor = Color.Black,
                 containerColor = Color.Transparent)
         ){
-            Text(text = "Customer")
+            Text(text = "CUSTOMER", fontWeight = FontWeight.Normal)
         }
     }
 }

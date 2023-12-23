@@ -14,9 +14,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import it.polito.progettolocker.ui.theme.Typography
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,7 +41,8 @@ fun HeaderDouble(
                 Text(
                     text= text1,
                     color = Color.Black,
-                    fontWeight = weight1
+                    fontWeight = weight1,
+                    fontStyle = FontStyle.Normal
                 )
             }
             Button(colors = ButtonDefaults.buttonColors(Color.Transparent), onClick = { onClickHandler2() }) {

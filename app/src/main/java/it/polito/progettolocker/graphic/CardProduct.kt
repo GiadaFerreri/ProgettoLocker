@@ -39,8 +39,8 @@ fun CardProduct(dataRitiro: String, descrizioneProdotto: String) {
         border = BorderStroke(0.5.dp, Color.Black),
         shape = RectangleShape,
         modifier = Modifier
-            .size(width = 400.dp, height = 173.dp)
-            .padding(10.dp)
+            .fillMaxWidth()
+            .padding(30.dp,30.dp,30.dp,0.dp)
     )
 
     {
@@ -54,11 +54,12 @@ fun CardProduct(dataRitiro: String, descrizioneProdotto: String) {
                 ) {
                 Text(
                     text = dataRitiro,
-                    style = TextStyle(
+                    fontWeight = FontWeight.Medium,
+                    /*style = TextStyle(
                         fontSize = 16.sp,
-                        fontWeight = FontWeight(400),
+                        fontWeight = FontWeight.Medium,
                         color = Color(0xFF000000),
-                    )
+                    )*/
                 )
             }
             Row(
@@ -84,12 +85,13 @@ fun CardProduct(dataRitiro: String, descrizioneProdotto: String) {
                     Row(modifier = Modifier .width(300.dp)) {
                         Text(
                             text = descrizioneProdotto, //textproduct
-                            style = TextStyle(
+                            fontWeight = FontWeight.Medium,
+                            /*style = TextStyle(
                                 fontSize = 15.sp,
-                                fontWeight = FontWeight(400),
+                                fontWeight = FontWeight.Normal,
                                 color = Color(0xFF000000),
                                 textAlign = TextAlign.Left
-                            )
+                            )*/
 
                         )
                     }
