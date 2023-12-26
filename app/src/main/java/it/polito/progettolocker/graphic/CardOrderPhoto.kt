@@ -48,27 +48,26 @@ fun CardOrderPhoto(navController: NavController, textProduct: String, price: Flo
             {
                 Row(){
                 Text(
-                    text = textProduct,
+                    text = textProduct+"\n",
                     fontSize = 16.sp,
                     textAlign = TextAlign.Center
                 )
             }
                 Row(){
-
                     Text(
-                        text = "$price EUR", //price
+                        text = "$price EUR\n", //price
                         fontSize = 16.sp,
                         textAlign = TextAlign.Center
                     )
                 }
                 Row(){ Icon(Icons.Filled.AddCircle, contentDescription = "+", tint = Color.DarkGray)}
                 }
-
             }
+
        Row() {
-           Divider(color = Color.LightGray, thickness = 0.5.dp)
+           Divider(color = Color.LightGray, thickness = 1.dp)
        }
 
-        }
+   }
 
-    }
+}
