@@ -21,7 +21,7 @@ import it.polito.progettolocker.views.delivery.Locker
 
 @Composable
 fun Customer(mainActivity: MainActivity, navController: NavController){
-    FooterHome(navController = navController)
+    //FooterHome(navController = navController)
     //Catalogo(mainActivity = mainActivity, navController = navController)
     //Carrello(mainActivity = mainActivity, navController = navController)
     //FooterTotal(price="10.00",navController = navController)
@@ -29,6 +29,7 @@ fun Customer(mainActivity: MainActivity, navController: NavController){
     //FooterWarning(text = "IL TUO ACQUISTO È ANDATO A BUON FINE!",navController = navController)
     //HeaderX(text = "ciao", navController = navController)
     //con freccia indietro si esce dall'applicazione
+    AcquistoLockerCompleto(mainActivity = mainActivity, navController =navController )
     BackHandler (enabled = true){
         mainActivity.finish()
     }

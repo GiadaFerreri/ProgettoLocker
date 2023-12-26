@@ -51,6 +51,7 @@ import com.google.firebase.database.ValueEventListener
 import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.views.customer.Acquisto
 import it.polito.progettolocker.views.customer.AcquistoLocker
+import it.polito.progettolocker.views.customer.AcquistoLockerCompleto
 import it.polito.progettolocker.views.customer.Carrello
 import it.polito.progettolocker.views.customer.Catalogo
 import it.polito.progettolocker.views.customer.DettagliOrdine
@@ -148,6 +149,9 @@ fun Navigation(mainActivity: MainActivity){
         }
         composable("Acquisto"){
             Acquisto(mainActivity, navController)
+        }
+        composable("LockerDysfunction"){
+            AcquistoLockerCompleto(mainActivity, navController)
         }
         composable("Spedizioni"){
             Spedizioni(mainActivity, navController)

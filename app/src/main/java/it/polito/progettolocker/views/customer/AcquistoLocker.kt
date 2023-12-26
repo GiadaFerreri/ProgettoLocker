@@ -1,16 +1,30 @@
 package it.polito.progettolocker.views.customer
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
+import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.graphic.CardOrder
 import it.polito.progettolocker.graphic.CardProductCard
+import it.polito.progettolocker.graphic.CardPurchase
 import it.polito.progettolocker.graphic.FooterDoubleBlack
 import it.polito.progettolocker.graphic.HeaderX
 
@@ -19,15 +33,33 @@ import it.polito.progettolocker.graphic.HeaderX
 //Prima pagina acquisto
 fun AcquistoLocker(mainActivity: MainActivity, navController: NavController) {
     Column (){
-        Row (){
-           CardOrder(orderNumber = "LOCKER LINGOTTO",
-               description = "VIA NIZZA 294, 10126 TORINO\nAPERO 24H SU 24",
-               mainActivity = mainActivity,
-               navController = navController,
-               onClickDestination = "Acquisto")
+        Row {
+            HeaderX(text = "ACQUISTO", navController =navController, onClickDestination = "Carrello")
         }
-
-    }
+            LazyColumn {
+                item {
+                    CardPurchase(
+                        lockerLocation = "LOCKER LINGOTTO",
+                        description = "VIA NIZZA 294, 10126 TORINO\nAPERTO 24H SU 24",
+                        mainActivity = mainActivity,
+                        navController = navController)
+                }
+                item {
+                    CardPurchase(
+                        lockerLocation = "LOCKER LINGOTTO",
+                        description = "VIA NIZZA 294, 10126 TORINO\nAPERTO 24H SU 24",
+                        mainActivity = mainActivity,
+                        navController = navController)
+                }
+                item {
+                    CardPurchase(
+                        lockerLocation = "LOCKER LINGOTTO",
+                        description = "VIA NIZZA 294, 10126 TORINO\nAPERTO 24H SU 24",
+                        mainActivity = mainActivity,
+                        navController = navController)
+                }
+            }
+        }
 
 
     BackHandler (enabled = true){
