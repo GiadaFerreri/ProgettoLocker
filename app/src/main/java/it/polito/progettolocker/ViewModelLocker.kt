@@ -32,7 +32,7 @@ import it.polito.progettolocker.dataClass.User
 import kotlinx.coroutines.tasks.await
 
 
-class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseReference, val eventListener: ValueEventListener) : ViewModel() {
+class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseReference) : ViewModel() {
 
     private val _articles = MutableLiveData<List<Article>>(emptyList())
     val articles : LiveData<List<Article>> = _articles
@@ -159,6 +159,55 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
         databaseReference.child("Int").setValue(1)
     }
 
+    fun switchBoolean() {
+        val documentReference = databaseReference.child("Bool")
+
+        documentReference.get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    // Il documento esiste, leggere il valore booleano
+                    val currentValue = document.getValue(Boolean::class.java) ?: false
+
+                    // Aggiornare il valore booleano in base al tuo requisito
+                    val updatedValue = !currentValue
+
+                    // Aggiornare il valore booleano nel documento
+                    documentReference.setValue(updatedValue)
+
+                } else {
+                    Log.d(ContentValues.TAG, "Il documento non esiste.")
+                }
+            }.addOnFailureListener { e ->
+                Log.e(ContentValues.TAG, "failed to read value", e)
+            }
+
+    }
+
+    fun incrementInt() {
+        val documentReference = databaseReference.child("Int")
+
+        documentReference.get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    // Il documento esiste, leggere il valore booleano
+                    val currentValue = document.getValue(Int::class.java)
+
+                    // Aggiornare il valore booleano in base al tuo requisito
+                    val updatedValue = currentValue?.plus(1)
+
+                    // Aggiornare il valore booleano nel documento
+                    documentReference.setValue(updatedValue)
+
+                } else {
+                    Log.d(ContentValues.TAG, "Il documento non esiste.")
+                }
+            }.addOnFailureListener { e ->
+                Log.e(ContentValues.TAG, "failed to read value", e)
+            }
+
+    }
+
+
     @Composable
     fun ReadFromDatabase(databaseReference: DatabaseReference) {
         // Read from the database
@@ -202,13 +251,19 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
 
     }
 
+    fun database_catalogue(){
+
+    }
+
+    
+
 
 }
 
-class ViewModelLockerFactory (val auth: FirebaseAuth, val databaseReference: DatabaseReference,val eventListener: ValueEventListener) : ViewModelProvider.Factory {
+class ViewModelLockerFactory (val auth: FirebaseAuth, val databaseReference: DatabaseReference) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(ViewModelLocker:: class.java)){
-            return ViewModelLocker(auth,databaseReference,eventListener) as T
+            return ViewModelLocker(auth,databaseReference) as T
         }
         else throw IllegalArgumentException("Unknown Class Name")
     }

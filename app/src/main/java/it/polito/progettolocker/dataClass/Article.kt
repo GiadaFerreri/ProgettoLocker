@@ -4,7 +4,7 @@ import android.media.Image
 
 data class Article (
     val name: String,
-    val price: Int,
+    val price: Float,
     var quantity: Int,
     val image: Image
 )

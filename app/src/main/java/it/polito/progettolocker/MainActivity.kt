@@ -66,7 +66,7 @@ import it.polito.progettolocker.views.delivery.LockerConfirm
 class MainActivity : ComponentActivity() {
 
     private val viewModel: ViewModelLocker by lazy {
-        val factory = ViewModelLockerFactory(auth, database, eventListener)
+        val factory = ViewModelLockerFactory(auth, database)
         ViewModelProvider(this, factory).get(ViewModelLocker::class.java)
     }
 
@@ -82,9 +82,6 @@ class MainActivity : ComponentActivity() {
         auth = Firebase.auth
         database =
             Firebase.database("https://locker-53147-default-rtdb.europe-west1.firebasedatabase.app/").reference
-
-        //viewModel.WriteInDatabase()
-        //viewModel.WriteIntInDatabase()
 
         setContent {
             ProgettoLockerTheme {
