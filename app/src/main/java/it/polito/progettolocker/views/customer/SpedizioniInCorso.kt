@@ -45,5 +45,6 @@ fun SpedizioniInCorso(mainActivity: MainActivity, navController: NavController) 
             )
         }
     }
+    FooterHome(navController = navController)
 
 }
