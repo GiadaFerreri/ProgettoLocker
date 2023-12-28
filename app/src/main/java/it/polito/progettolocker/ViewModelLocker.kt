@@ -1,34 +1,23 @@
 package it.polito.progettolocker
 
 import android.content.ContentValues
-import android.text.Spannable.Factory
 import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.IgnoreExtraProperties
-import com.google.firebase.database.database
 import com.google.firebase.database.getValue
 import com.google.firebase.database.ValueEventListener
 import it.polito.progettolocker.dataClass.Article
 import it.polito.progettolocker.dataClass.Compartment
-import it.polito.progettolocker.dataClass.DeliveryMan
 import it.polito.progettolocker.dataClass.Locker
 import it.polito.progettolocker.dataClass.Shipping
 import it.polito.progettolocker.dataClass.States
-import it.polito.progettolocker.dataClass.User
 import kotlinx.coroutines.tasks.await
 
 
@@ -44,6 +33,16 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
 
     private val _shippings = MutableLiveData<List<Shipping>>(emptyList())
     val shippings : LiveData<List<Shipping>> = _shippings
+
+    private val _catalogue = MutableLiveData(listOf(
+        Article("Gonna pantalone a pieghe",29.95,5),
+        Article("Camicia Oxford a righe oversize",32.95,5),
+        Article("Jeans Z1975 dritti a vita bassa",39.95,5),
+        Article("Pullover struttura punto intrecciato",49.95,5),
+        Article("Parka lungo",79.95,5),
+        Article("Stivali in vernice con il tacco",79.95,5)
+    ))
+    val catalogue : LiveData<List<Article>> = _catalogue
 
     // FUNZIONI PER IL CARRELLO
     fun addToCart (article: Article, quantity : Int){
