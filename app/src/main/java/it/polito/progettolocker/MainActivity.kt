@@ -145,7 +145,7 @@ fun Navigation(mainActivity: MainActivity){
             AcquistoLocker(mainActivity, navController)
         }
         composable("Acquisto"){
-            Acquisto(mainActivity, navController)
+            Acquisto(mainActivity, navController, price=89)
         }
         composable("LockerDysfunction"){
             AcquistoLockerCompleto(mainActivity, navController)
