@@ -15,24 +15,31 @@ import com.google.firebase.database.getValue
 import com.google.firebase.database.ValueEventListener
 import it.polito.progettolocker.dataClass.Article
 import it.polito.progettolocker.dataClass.Compartment
+import it.polito.progettolocker.dataClass.DeliveryMan
 import it.polito.progettolocker.dataClass.Locker
 import it.polito.progettolocker.dataClass.Shipping
 import it.polito.progettolocker.dataClass.States
+import it.polito.progettolocker.dataClass.User
 import kotlinx.coroutines.tasks.await
 
 
 class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseReference) : ViewModel() {
 
+    private val usersReference = databaseReference.child("Users")
+    private val deliverymenReference = databaseReference.child("Delivery Men")
+    private val catalogueReference = databaseReference.child("Articles")
+    private val shippingReference = databaseReference.child("Shippings")
+
     private val _articles = MutableLiveData<List<Article>>(emptyList())
-    val articles : LiveData<List<Article>> = _articles
+    var articles : LiveData<List<Article>> = _articles
 
     //TODO: carrello (da gestire su firebase)
     //tabella che ha come chiave primaria (ID cliente - ID carrello)
     private val _cart = MutableLiveData<Map<Article, Int>> (emptyMap())
-    val cart : LiveData<Map<Article, Int>> = _cart
+    var cart : LiveData<Map<Article, Int>> = _cart
 
     private val _shippings = MutableLiveData<List<Shipping>>(emptyList())
-    val shippings : LiveData<List<Shipping>> = _shippings
+    var shippings : LiveData<List<Shipping>> = _shippings
 
     private val _catalogue = MutableLiveData(listOf(
         Article("Gonna pantalone a pieghe",29.95,5),
@@ -42,7 +49,7 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
         Article("Parka lungo",79.95,5),
         Article("Stivali in vernice con il tacco",79.95,5)
     ))
-    val catalogue : LiveData<List<Article>> = _catalogue
+    var catalogue : LiveData<List<Article>> = _catalogue
 
     // FUNZIONI PER IL CARRELLO
     fun addToCart (article: Article, quantity : Int){
@@ -133,13 +140,61 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
         }
     }
 
-
     //TODO: utente
     // ID utente (firebase), ruolo, lista spedizioni (storico),
 
     //TODO: fattorino
     // ID fattorino, ruolo, lista spedizioni, orario inizio (presa in carico), orario fine (consegna)
 
+    //FIREBASE
+    fun database_writeUser(user: User){
+        usersReference.child("${user.userId}").setValue(user)
+    }
+
+    fun database_readUser(userId: String){
+
+    }
+
+    fun database_writeDeliveryman(deliveryMan: DeliveryMan){
+        deliverymenReference.child("${deliveryMan.idDeliveryMan}").setValue(deliveryMan)
+    }
+
+    fun database_readDeliveryman(){
+
+    }
+
+    fun database_writeCart(userId: String){
+        //TODO: come gestire il carrello?
+    }
+
+    fun database_addArticletoCart(article: Article){
+
+    }
+
+    fun database_removeArticlefromCart(article: Article){
+
+    }
+
+    fun database_cartArticleQuantity(article: Article){
+        //modifica la quantità di un dato articolo nel carrello
+    }
+
+    fun database_readCart(){
+
+    }
+
+    fun database_writeCatalogue(){
+        catalogueReference.setValue(catalogue)
+    }
+
+    fun database_updateArticleQuantity(article: Article){
+        //modifica la quantità generale dell'articolo
+        
+    }
+
+    fun database_readCatalogue(){
+        //TODO: leggere lista articoli
+    }
 
     //FUNZIONI FIREBASE (PROVE)
     fun WriteInDatabase() {
@@ -236,25 +291,6 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
             false
         }
     }
-
-    //FIREBASE
-    fun database_writeUser(){
-
-    }
-
-    fun database_writeCart(){
-
-    }
-
-    fun database_readCart(){
-
-    }
-
-    fun database_catalogue(){
-
-    }
-
-    
 
 
 }

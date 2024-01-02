@@ -1,5 +1,6 @@
 package it.polito.progettolocker.dataClass
 
 data class DeliveryMan(
-    val idDeliveryMan: String
+    val idDeliveryMan: String,
+    var assignedShippings : List<Shipping>
 )
