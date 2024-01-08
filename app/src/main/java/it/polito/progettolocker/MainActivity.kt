@@ -5,13 +5,26 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.animation.Animatable
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -19,16 +32,26 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -62,6 +85,8 @@ import it.polito.progettolocker.views.customer.Spedizioni
 import it.polito.progettolocker.views.customer.SpedizioniInCorso
 import it.polito.progettolocker.views.customer.StoricoConsegne
 import it.polito.progettolocker.views.delivery.LockerConfirm
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
@@ -98,6 +123,7 @@ class MainActivity : ComponentActivity() {
 
                     Navigation(mainActivity = this)
 
+
                 }
             }
         }
@@ -107,7 +133,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Navigation(mainActivity: MainActivity){
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "HomePage"){
+    NavHost(navController = navController, startDestination = "AnimatedLauncherIcon"){
+        composable("AnimatedLauncherIcon"){
+            AnimatedLauncherIcon(mainActivity,navController)
+        }
 
         composable("HomePage"){
             HomePage(mainActivity, navController)
@@ -221,7 +250,11 @@ fun HomePage(mainActivity: MainActivity, navController: NavController) {
             onClick = { navController.navigate("Delivery") },
             shape= RectangleShape,
             modifier = Modifier
-                .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
+                .shadow(
+                    elevation = 4.dp,
+                    spotColor = Color(0x40000000),
+                    ambientColor = Color(0x40000000)
+                )
                 .border(width = 0.5.dp, color = Color.Black)
                 .width(116.dp)
                 .height(45.dp)
@@ -236,7 +269,11 @@ fun HomePage(mainActivity: MainActivity, navController: NavController) {
             onClick = {navController.navigate("Customer") },
             shape= RectangleShape,
             modifier = Modifier
-                .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
+                .shadow(
+                    elevation = 4.dp,
+                    spotColor = Color(0x40000000),
+                    ambientColor = Color(0x40000000)
+                )
                 .border(width = 0.5.dp, color = Color.Black)
                 .width(116.dp)
                 .height(45.dp)
@@ -249,4 +286,47 @@ fun HomePage(mainActivity: MainActivity, navController: NavController) {
         }
     }
 }
+
+@Composable
+fun AnimatedLauncherIcon(mainActivity: MainActivity, navController: NavController) {
+   val size= remember {
+       androidx.compose.animation.core.Animatable(1f)
+   }
+    LaunchedEffect(true) {
+        size.animateTo(3f,
+            animationSpec = tween(1500, easing = LinearEasing)
+        )
+        delay(1000)
+        navController.navigate("HomePage")
+    }
+
+
+/*
+    val size by infiniteTransition.animateFloat(
+        initialValue = 1.0f,
+        targetValue = 1.2f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 500, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        ), label = ""
+    )
+*/
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.zara_product1),
+            contentDescription = null,
+            modifier = Modifier
+                .padding(16.dp)
+                .scale(size.value)
+        )
+    }
+
+}
+
 
