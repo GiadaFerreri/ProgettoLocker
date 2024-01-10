@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -19,6 +21,10 @@ import it.polito.progettolocker.graphic.HeaderX
 @Composable
 //Seconda pagina del Locker
 fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
+
+    val (firstTry, setFirstTryDone) = remember {
+        mutableStateOf(true)
+    }
 
     Column(  modifier = Modifier
         .fillMaxWidth()){
@@ -38,10 +44,25 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
 
-            Buttons(text = "CONFERMA", onClickHandler = {navController.navigate("DaEffettuare")})
-            //TODO: questo bottone sotto deve cambiare testo se è la seconda volta che si carica la pagina
-            Buttons(text = "RIAPRI IL CASSETTO",onClickHandler = {navController.navigate("Locker")})
-        }
+             Buttons(text = "CONFERMA", onClickHandler = {navController.navigate("DaEffettuare")} )
+            if(firstTry) { //se è la prima volta esce questo bottone
+                //TODO: questo bottone sotto deve cambiare testo se è la seconda volta che si carica la pagina
+                Buttons(
+                    text = "RIAPRI IL CASSETTO",
+                    onClickHandler = {
+                        //navController.navigate("Locker")
+                        setFirstTryDone(!firstTry)
+                    }
+                )
+            }
+            if(!firstTry){
+                Buttons(
+                    text = "CONTATTA L'ASSISTENZA",
+                    onClickHandler = { navController.navigate("InCorso") },
+
+                    )
+            }
+            }
 
     }
 

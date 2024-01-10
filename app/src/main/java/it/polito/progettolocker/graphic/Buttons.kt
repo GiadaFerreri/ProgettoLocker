@@ -22,13 +22,13 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun Buttons(text: String,  onClickHandler: () -> Unit) {
     Button(
-        onClick = { onClickHandler() },
+        onClick = { onClickHandler()  },
         shape= RectangleShape,
         modifier = Modifier
             .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
             .border(width = 0.5.dp, color = Color.Black)
-            .width(116.dp)
-            .height(45.dp)
+            .width(140.dp)
+            .height(50.dp)
             .background(color = Color(0xFFF8F6F6)),
         colors = ButtonDefaults.buttonColors(
             contentColor = Color.Black,

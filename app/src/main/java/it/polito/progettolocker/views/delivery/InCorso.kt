@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -17,9 +19,14 @@ import androidx.navigation.NavController
 import it.polito.progettolocker.graphic.HeaderDouble
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.graphic.CardOrder
+import it.polito.progettolocker.ui.theme.helveticaFont
 
 @Composable
 fun InCorso(mainActivity: MainActivity, navController: NavController){
+    val (firstTry, setFirstTryDone) = remember {
+        mutableStateOf(true)
+    }
+
     Column{
         Row{
             HeaderDouble(
@@ -31,6 +38,7 @@ fun InCorso(mainActivity: MainActivity, navController: NavController){
                 onClickHandler2 = {},
                 navController = navController
             )
+
         }
         Row{
             //TODO: creare le card dalla lista di spedizioni prese in carico
@@ -40,7 +48,8 @@ fun InCorso(mainActivity: MainActivity, navController: NavController){
                 leftButtonText = "CONSEGNA IL PACCO",
                 mainActivity = mainActivity,
                 navController = navController,
-                onClickDestination = "Locker"
+                onClickDestination = "Locker",
+
             )
         }
 

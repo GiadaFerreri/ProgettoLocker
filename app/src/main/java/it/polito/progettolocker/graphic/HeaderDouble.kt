@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import it.polito.progettolocker.ui.theme.Typography
+import it.polito.progettolocker.ui.theme.helveticaFont
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,7 +43,8 @@ fun HeaderDouble(
                     text= text1,
                     color = Color.Black,
                     fontWeight = weight1,
-                    fontStyle = FontStyle.Normal
+                    fontStyle = FontStyle.Normal,
+
                 )
             }
             Button(colors = ButtonDefaults.buttonColors(Color.Transparent), onClick = { onClickHandler2() }) {
