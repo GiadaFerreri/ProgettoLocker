@@ -33,6 +33,7 @@ fun CardOrder(
     mainActivity: MainActivity,
     navController: NavController,
     onClickDestination: String = "",
+    onClickDestination2: String =""
 ){
     OutlinedCard(
         colors = CardDefaults.cardColors(
@@ -74,7 +75,7 @@ fun CardOrder(
                     horizontalAlignment = Alignment.End
                 ){
                     if(rightButton){
-                        Buttons(rightButtonText, onClickHandler={})
+                        Buttons(rightButtonText, onClickHandler = {if(onClickDestination2 != "") navController.navigate(onClickDestination2) })
                     }
                 }
             }

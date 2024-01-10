@@ -48,7 +48,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -87,6 +89,7 @@ import it.polito.progettolocker.views.customer.StoricoConsegne
 import it.polito.progettolocker.views.delivery.LockerConfirm
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
 
 class MainActivity : ComponentActivity() {
 
@@ -290,10 +293,10 @@ fun HomePage(mainActivity: MainActivity, navController: NavController) {
 @Composable
 fun AnimatedLauncherIcon(mainActivity: MainActivity, navController: NavController) {
    val size= remember {
-       androidx.compose.animation.core.Animatable(1f)
+       androidx.compose.animation.core.Animatable(0.5f)
    }
     LaunchedEffect(true) {
-        size.animateTo(3f,
+        size.animateTo(1f,
             animationSpec = tween(1500, easing = LinearEasing)
         )
         delay(1000)
@@ -319,7 +322,7 @@ fun AnimatedLauncherIcon(mainActivity: MainActivity, navController: NavControlle
         verticalArrangement = Arrangement.Center
     ) {
         Image(
-            painter = painterResource(id = R.drawable.zara_product1),
+            painter = painterResource(id = R.drawable.titolo),
             contentDescription = null,
             modifier = Modifier
                 .padding(16.dp)

@@ -31,7 +31,8 @@ fun SpedizioniInCorso(mainActivity: MainActivity, navController: NavController) 
                 orderNumber = "242",
                 description = "IL TUO PACCO E' IN CONSEGNA",
                 mainActivity = mainActivity,
-                navController = navController
+                navController = navController,
+                onClickDestination = "DettagliOrdine"
             )
         }
         Row{
@@ -41,10 +42,11 @@ fun SpedizioniInCorso(mainActivity: MainActivity, navController: NavController) 
                 leftButton = true,
                 rightButton = true,
                 mainActivity = mainActivity,
-                navController = navController
+                navController = navController,
+                onClickDestination = "DettagliOrdine",
+                onClickDestination2="LockerConfirmCustomer"
             )
         }
     }
-    FooterHome(navController = navController)
 
 }
