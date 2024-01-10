@@ -299,7 +299,7 @@ fun AnimatedLauncherIcon(mainActivity: MainActivity, navController: NavControlle
         size.animateTo(1f,
             animationSpec = tween(1500, easing = LinearEasing)
         )
-        delay(1000)
+        delay(1500)
         navController.navigate("HomePage")
     }
 

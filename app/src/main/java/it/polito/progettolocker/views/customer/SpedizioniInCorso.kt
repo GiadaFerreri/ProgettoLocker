@@ -47,6 +47,10 @@ fun SpedizioniInCorso(mainActivity: MainActivity, navController: NavController) 
                 onClickDestination2="LockerConfirmCustomer"
             )
         }
+
+    }
+    BackHandler (enabled = true) {
+        navController.navigate("Customer")
     }
 
 }

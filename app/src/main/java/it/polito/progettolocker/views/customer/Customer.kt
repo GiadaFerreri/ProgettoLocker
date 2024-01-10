@@ -29,6 +29,7 @@ fun Customer(mainActivity: MainActivity, navController: NavController){
     //FooterWarning(text = "IL TUO ACQUISTO È ANDATO A BUON FINE!",navController = navController)
     //HeaderX(text = "ciao", navController = navController)
     //con freccia indietro si esce dall'applicazione
+    //LockerCode(mainActivity = mainActivity, navController = navController)
 
     BackHandler (enabled = true){
         mainActivity.finish()
