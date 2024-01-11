@@ -37,7 +37,7 @@ import it.polito.progettolocker.graphic.HeaderX
 fun LockerCode(mainActivity: MainActivity, navController: NavController){
     Column {
         Row(){
-            HeaderX(text ="LOCKER" , navController = navController, onClickDestination = "SpedizioniInCorso")
+            HeaderX(text ="LOCKER" , navController = navController, onClickDestination = "Spedizioni")
         }
         Row(horizontalArrangement = Arrangement.Center, modifier = Modifier
             .padding(top = 50.dp, bottom = 25.dp)

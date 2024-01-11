@@ -68,7 +68,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
                     modifier = Modifier.padding(16.dp, 5.dp))
             }
             if(openButton){
-                Column(Modifier.weight(1f)
+                Column(Modifier.weight(1f).padding(end=10.dp)
                 ) {
                     Buttons("MODIFICA",
                         onClickHandler = { navController.navigate("AcquistoLocker",) })

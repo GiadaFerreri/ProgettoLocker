@@ -1,6 +1,7 @@
 package it.polito.progettolocker.graphic
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,8 +39,10 @@ fun CardsJustText(text1: String) {
             Column( modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(10.dp)
-            .wrapContentSize(align = Alignment.Center)){
+            .padding(10.dp),
+                verticalArrangement = Arrangement.Center
+           // .wrapContentSize(align = Alignment.Start)
+                    ){
                 Text(
                     text = text1,
                     fontSize = 16.sp,

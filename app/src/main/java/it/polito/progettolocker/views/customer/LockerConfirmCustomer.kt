@@ -25,14 +25,14 @@ import it.polito.progettolocker.graphic.HeaderX
 //Prima pagina locker
 fun LockerConfirmCustomer(mainActivity: MainActivity, navController: NavController){
     Row{
-        HeaderX(text ="LOCKER" , navController = navController, onClickDestination = "DaEffettuare")
+        HeaderX(text ="LOCKER" , navController = navController, onClickDestination = "Spedizioni")
     }
 
     Column( verticalArrangement = Arrangement.spacedBy(16.dp),horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(top=200.dp)){
 
         Text(text="CONFERMI DI ESSERE DAVANTI AL LOCKER?",fontSize = 15.sp,color = Color(0xFF000000))
         Column (horizontalAlignment = Alignment.Start, modifier = Modifier
-            .padding(start = 50.dp)
+            .padding(start = 35.dp)
             .fillMaxWidth()){
             Text(text="ZARA LCKR", fontWeight = FontWeight.ExtraBold,fontSize = 15.sp,color = Color(0xFF000000))
             Text(text="LOCKER LINGOTTO",fontSize = 12.sp,color = Color(0xFF000000) )

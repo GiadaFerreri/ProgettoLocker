@@ -54,7 +54,7 @@ fun CardWarning(text: String, mainActivity: MainActivity, navController: NavCont
                 Row{
                     Text(
                         "ATTENZIONE!",
-                        modifier = Modifier.padding(0.dp,16.dp,16.dp,16.dp),
+                        modifier = Modifier.padding(0.dp,20.dp,16.dp,16.dp),
                         fontWeight = FontWeight.Medium
                     )
                 }

@@ -34,7 +34,7 @@ fun Locker(mainActivity: MainActivity, navController: NavController) {
 
                 Text(text="CONFERMI DI ESSERE DAVANTI AL LOCKER?",fontSize = 15.sp,color = Color(0xFF000000))
             Column (horizontalAlignment = Alignment.Start, modifier = Modifier
-                .padding(start = 50.dp)
+                .padding(start = 35.dp)
                 .fillMaxWidth()){
                 Text(text="ZARA LCKR", fontWeight = FontWeight.ExtraBold,fontSize = 15.sp,color = Color(0xFF000000))
                 Text(text="LOCKER LINGOTTO",fontSize = 12.sp,color = Color(0xFF000000) )

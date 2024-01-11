@@ -27,7 +27,7 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
     Column(  modifier = Modifier
         .fillMaxWidth()){
         Row {
-            HeaderX(text = "LOCKER", navController = navController, onClickDestination = "LockerCode")
+            HeaderX(text = "LOCKER", navController = navController, onClickDestination = "Customer")
 
         }
 
