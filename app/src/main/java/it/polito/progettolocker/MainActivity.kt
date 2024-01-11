@@ -82,6 +82,7 @@ import it.polito.progettolocker.views.customer.Catalogo
 import it.polito.progettolocker.views.customer.DettagliOrdine
 import it.polito.progettolocker.views.customer.LockerCode
 import it.polito.progettolocker.views.customer.LockerConfirmCustomer
+import it.polito.progettolocker.views.customer.LockerCorrectedCode
 import it.polito.progettolocker.views.customer.LockerDysfunction
 import it.polito.progettolocker.views.customer.Spedizioni
 import it.polito.progettolocker.views.customer.SpedizioniInCorso
@@ -203,6 +204,10 @@ fun Navigation(mainActivity: MainActivity){
         composable("LockerDysfunction"){
             LockerDysfunction(mainActivity, navController)
         }
+        composable("LockerCorrectedCode"){
+            LockerCorrectedCode(mainActivity, navController)
+        }
+
 
 
 

@@ -66,7 +66,7 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
             .fillMaxWidth()
             .padding(top = 25.dp))
         {
-            Buttons(text = "CONFERMA", onClickHandler = {})
+            Buttons(text = "CONFERMA", onClickHandler = {navController.navigate("LockerCorrectedCode")})
         }
 
     }
