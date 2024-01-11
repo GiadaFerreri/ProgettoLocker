@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,12 +30,19 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
             HeaderX(text = "LOCKER", navController = navController, onClickDestination = "LockerCode")
 
         }
+
         Row ( modifier = Modifier.fillMaxWidth().padding(top=150.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
             CardsJustText(text1 = "CODICE INSERITO CORRETTO.\n" +
                     "RITIRARE IL PACCO.")
+        }
+        Row ( modifier = Modifier.fillMaxWidth().padding(top=20.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly)
+        {
+            Text("Problemi durante il ritiro?")
         }
         Row(
             modifier = Modifier.fillMaxWidth().padding(top=50.dp),
