@@ -43,7 +43,7 @@ fun HeaderDouble(
                     text= text1,
                     color = Color.Black,
                     fontWeight = weight1,
-                    fontStyle = FontStyle.Normal,
+                    //fontStyle = FontStyle.Normal,
 
                 )
             }

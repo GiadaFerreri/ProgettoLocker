@@ -15,12 +15,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.Typeface
+import androidx.compose.ui.text.style.LineHeightStyle
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -30,7 +36,7 @@ fun FooterHome(navController: NavController){
         Row{
             Divider(color = Color.Black, thickness = 0.5.dp)
         }
-        Row(modifier = Modifier.fillMaxWidth().height(45.dp),
+        Row(modifier = Modifier.fillMaxWidth().height(60.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly) {
             Button(
@@ -41,10 +47,22 @@ fun FooterHome(navController: NavController){
                     if(navController.currentDestination?.route != "Customer") navController.navigate("Customer")
                 }) {
                 Text(
+
                     text = "HOME",
                     color = Color.Black,
                     fontWeight = if(navController.currentDestination?.route == "Customer") FontWeight.Bold else FontWeight.Normal,
-                    fontFamily = it.polito.progettolocker.ui.theme.helveticaFont
+                    //fontFamily = it.polito.progettolocker.ui.theme.helveticaFont ,
+                   style = if(navController.currentDestination?.route == "Customer") TextStyle(textDecoration = TextDecoration.Underline) else TextStyle(textDecoration = TextDecoration.None)
+                    /*modifier = if(navController.currentDestination?.route == "Customer") Modifier.drawBehind {
+                        val strokeWidthPx = 1.dp.toPx()
+                        val verticalOffset = size.height - 2.sp.toPx()
+                        drawLine(
+                            color = Color.Red,
+                            strokeWidth = strokeWidthPx,
+                            start = Offset(0f, verticalOffset),
+                            end = Offset(size.width, verticalOffset)
+                        )
+                    }else Modifier.drawBehind {  }*/
                 )
             }
             Button(
@@ -57,7 +75,8 @@ fun FooterHome(navController: NavController){
                 Text(
                     text = "CATALOGO",
                     color = Color.Black,
-                    fontWeight = if(navController.currentDestination?.route == "Catalogo") FontWeight.Bold else FontWeight.Normal
+                    fontWeight = if(navController.currentDestination?.route == "Catalogo") FontWeight.Bold else FontWeight.Normal,
+                    style = if(navController.currentDestination?.route == "Catalogo") TextStyle(textDecoration = TextDecoration.Underline) else TextStyle(textDecoration = TextDecoration.None)
                 )
             }
             Button(
@@ -70,7 +89,8 @@ fun FooterHome(navController: NavController){
                 Text(
                     text = "CARRELLO",
                     color = Color.Black,
-                    fontWeight = if(navController.currentDestination?.route == "Carrello") FontWeight.Bold else FontWeight.Normal
+                    fontWeight = if(navController.currentDestination?.route == "Carrello") FontWeight.Bold else FontWeight.Normal,
+                    style = if(navController.currentDestination?.route == "Carrello") TextStyle(textDecoration = TextDecoration.Underline) else TextStyle(textDecoration = TextDecoration.None)
                 )
             }
             Button(
@@ -83,7 +103,8 @@ fun FooterHome(navController: NavController){
                 Text(
                     text = "SPEDIZIONI",
                     color = Color.Black,
-                    fontWeight = if(navController.currentDestination?.route == "Spedizioni") FontWeight.Bold else FontWeight.Normal
+                    fontWeight = if(navController.currentDestination?.route == "Spedizioni") FontWeight.Bold else FontWeight.Normal,
+                    style = if(navController.currentDestination?.route == "Spedizioni") TextStyle(textDecoration = TextDecoration.Underline) else TextStyle(textDecoration = TextDecoration.None)
                 )
             }
         }
