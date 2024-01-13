@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -43,28 +44,27 @@ fun Customer(mainActivity: MainActivity, navController: NavController){
         Text("ZARA" , fontWeight = FontWeight.Bold,fontSize = 70.sp )
         Text("LCKR", fontWeight = FontWeight.Bold,fontSize = 70.sp )
     }*/
-Row{
+    Column (Modifier.fillMaxHeight()) {
+        Row (Modifier.height(3000.dp) .fillMaxWidth()){
+            Column (Modifier.height(3000.dp) .fillMaxWidth()) {
+                Image(painter = painterResource(id= R.drawable.zaralocker_home), contentDescription ="ImmagineProdotto", contentScale = ContentScale.Crop,
+                    modifier=Modifier.fillMaxWidth() .height(630.dp))
 
+            }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-
-    ) {
-
-        Image(painter = painterResource(id= R.drawable.zara_product1), contentDescription ="ImmagineProdotto", contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize())
-
-        Column(modifier=Modifier.padding(start=25.dp, top=25.dp)
-        ) {
-            Text("ZARA", fontWeight = FontWeight.Bold, fontSize = 70.sp)
-            Text("LCKR", fontWeight = FontWeight.Bold, fontSize = 70.sp)
+            /*Column(modifier=Modifier.padding(start=25.dp, top=25.dp)
+            ) {
+                Text("ZARA", fontWeight = FontWeight.Bold, fontSize = 70.sp)
+                Text("LCKR", fontWeight = FontWeight.Bold, fontSize = 70.sp)
+            }*/
         }
-
     }
-}
+    FooterHome(navController = navController)
 
-        FooterHome(navController = navController)
+
+
+
+
 
 
     //Catalogo(mainActivity = mainActivity, navController = navController)
