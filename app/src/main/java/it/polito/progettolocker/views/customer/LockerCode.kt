@@ -139,6 +139,7 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
                         }
                         if(contatore==4){
                             setAlert("TENTATIVI TERMINATI. RIPROVA PIÙ TARDI")
+                            navController.navigate("SpedizioniInCorso")
                         }
 
                         setTextFieldValue("")
