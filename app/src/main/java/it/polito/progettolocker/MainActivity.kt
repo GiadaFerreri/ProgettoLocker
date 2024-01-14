@@ -187,14 +187,15 @@ fun Navigation(mainActivity: MainActivity){
         composable("LockerCorrectedCode"){
             LockerCorrectedCode(mainActivity, navController)
         }
-<<<<<<< HEAD
-        composable("LockerBlock"){
+
+        composable("LockerBlock") {
             LockerBlock(mainActivity, navController)
-=======
+        }
         composable("AcquistoLockerOccupied"){
             AcquistoLockerOccupied(mainActivity, navController)
->>>>>>> f5eca11a5cacdeb3bb0eceef6183e20881c20115
         }
+
+
 
 
 
