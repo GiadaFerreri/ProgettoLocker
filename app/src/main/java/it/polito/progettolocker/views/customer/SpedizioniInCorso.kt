@@ -19,13 +19,7 @@ import it.polito.progettolocker.graphic.HeaderX
 
 fun SpedizioniInCorso(mainActivity: MainActivity, navController: NavController) {
     Column{
-        Row{
-            CardWarning(
-                text = "Tutti i locker sono occupati al momento. La spedizione potrebbe richiedere più tempo del previsto.",
-                mainActivity = mainActivity,
-                navController = navController
-            )
-        }
+
         Row{
             CardOrder(
                 orderNumber = "242",

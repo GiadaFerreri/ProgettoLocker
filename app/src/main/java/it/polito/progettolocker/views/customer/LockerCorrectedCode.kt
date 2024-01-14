@@ -31,7 +31,7 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
 
         }
 
-        Row ( modifier = Modifier.fillMaxWidth().padding(top=150.dp),
+        Row ( modifier = Modifier.fillMaxWidth().padding(top=80.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {

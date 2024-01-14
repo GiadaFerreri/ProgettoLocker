@@ -41,7 +41,7 @@ fun FooterDoubleBlack(price: Int, navController: NavController){
        Column(modifier = Modifier.fillMaxHeight().width(210.dp).background(Color.Black), horizontalAlignment = Alignment.CenterHorizontally) {
            Button( shape= RectangleShape, modifier = Modifier
                .padding(0.dp)
-               .height(60.dp).width(210.dp), onClick = {navController.navigate("AcquistoLocker") }, contentPadding = PaddingValues(0.dp)) {
+               .height(60.dp).width(210.dp), /*onClick = {navController.navigate("AcquistoLockerOccupied") }*/onClick = {navController.navigate("AcquistoLocker") }, contentPadding = PaddingValues(0.dp)) {
 
 
                Text(
