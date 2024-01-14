@@ -138,8 +138,8 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
                             setAlert("TERZO CODICE INSERITO ERRATO. RIPROVA")
                         }
                         if(contatore==4){
-                            setAlert("TENTATIVI TERMINATI. RIPROVA PIÙ TARDI")
-                            navController.navigate("Spedizioni")
+                            navController.navigate("LockerBlock")
+
                         }
 
                         setTextFieldValue("")
@@ -160,7 +160,7 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
                 colors = ButtonDefaults.buttonColors(
                     contentColor = Color.Black,
                     containerColor = Color.Transparent),
-                enabled = codice.length == 6
+                enabled = codice.length== 6
             ) {
                 Text(
                     text = "CONFERMA",

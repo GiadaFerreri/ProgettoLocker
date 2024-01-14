@@ -3,6 +3,7 @@ package it.polito.progettolocker.views.customer
 import android.media.Image
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,7 +20,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -44,22 +47,24 @@ fun Customer(mainActivity: MainActivity, navController: NavController){
         Text("ZARA" , fontWeight = FontWeight.Bold,fontSize = 70.sp )
         Text("LCKR", fontWeight = FontWeight.Bold,fontSize = 70.sp )
     }*/
-    Column (Modifier.fillMaxHeight()) {
-        Row (Modifier.height(3000.dp) .fillMaxWidth()){
-            Column (Modifier.height(3000.dp) .fillMaxWidth()) {
-                Image(painter = painterResource(id= R.drawable.zaralocker_home), contentDescription ="ImmagineProdotto", contentScale = ContentScale.Crop,
-                    modifier=Modifier.fillMaxWidth() .height(630.dp))
+      Column (
+          Modifier
+              .background(Color.Magenta)){
+              Image(painter = painterResource(id= R.drawable.zara_home), contentDescription ="ImmagineProdotto",
+                  modifier= Modifier.fillMaxWidth() .fillMaxHeight(), contentScale = ContentScale.Crop)
 
-            }
+              /*Column(modifier=Modifier.padding(start=25.dp, top=25.dp)
+              ) {
+                  Text("ZARA", fontWeight = FontWeight.Bold, fontSize = 70.sp)
+                  Text("LCKR", fontWeight = FontWeight.Bold, fontSize = 70.sp)
+              }*/
 
-            /*Column(modifier=Modifier.padding(start=25.dp, top=25.dp)
-            ) {
-                Text("ZARA", fontWeight = FontWeight.Bold, fontSize = 70.sp)
-                Text("LCKR", fontWeight = FontWeight.Bold, fontSize = 70.sp)
-            }*/
-        }
-    }
+      }
     FooterHome(navController = navController)
+
+
+
+
 
 
 

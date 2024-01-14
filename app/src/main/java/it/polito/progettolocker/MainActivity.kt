@@ -80,6 +80,7 @@ import it.polito.progettolocker.views.customer.AcquistoLockerCompleto
 import it.polito.progettolocker.views.customer.Carrello
 import it.polito.progettolocker.views.customer.Catalogo
 import it.polito.progettolocker.views.customer.DettagliOrdine
+import it.polito.progettolocker.views.customer.LockerBlock
 import it.polito.progettolocker.views.customer.LockerCode
 import it.polito.progettolocker.views.customer.LockerConfirmCustomer
 import it.polito.progettolocker.views.customer.LockerCorrectedCode
@@ -206,6 +207,9 @@ fun Navigation(mainActivity: MainActivity){
         }
         composable("LockerCorrectedCode"){
             LockerCorrectedCode(mainActivity, navController)
+        }
+        composable("LockerBlock"){
+            LockerBlock(mainActivity, navController)
         }
 
 
