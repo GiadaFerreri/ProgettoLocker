@@ -33,7 +33,7 @@ import org.w3c.dom.Text
 @Composable
 //Card pagina storico consegne???
 fun CardOrderPhoto(navController: NavController, textProduct: String, price: Float) {
-   Column(verticalArrangement = Arrangement.Top) {
+   Column(modifier = Modifier.padding(top=60.dp)) {
         Row(modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)) {
