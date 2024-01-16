@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
 
@@ -40,6 +41,7 @@ fun CardPurchase(
             Row (){
                 Text(
                     text = lockerLocation,
+                    fontSize = 15.sp,
                     modifier = Modifier.padding(16.dp, 16.dp, 16.dp, 16.dp),
                     fontWeight = FontWeight.Medium
                 )
@@ -47,6 +49,7 @@ fun CardPurchase(
             Row (){
                 Text(
                     description,
+                    fontSize = 12.sp,
                     modifier = Modifier.padding(16.dp, 0.dp, 16.dp, 32.dp),
                     fontWeight = FontWeight.Normal
                 )

@@ -41,7 +41,7 @@ fun LockerConfirmCustomer(mainActivity: MainActivity, navController: NavControll
         Row(modifier=Modifier.padding(top=70.dp)) {
             Buttons(text = "CONFERMA", onClickHandler = {navController.navigate("LockerCode")})
         }
-        Row(modifier=Modifier.padding(top=200.dp)) {
+        Row(modifier=Modifier.padding(top=180.dp)) {
             CardWarning(text =
                     "La conferma farà comparire il codice segreto di apertura sul Locker selezionato.\n" +
                     "Assicurati di essere realmente davanti al Locker.", mainActivity = mainActivity, navController =navController )

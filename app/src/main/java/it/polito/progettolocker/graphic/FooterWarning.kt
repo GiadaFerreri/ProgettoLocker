@@ -49,7 +49,7 @@ fun FooterWarning(text: String, navController: NavController){
                         text = text,
                         modifier = Modifier.padding(20.dp),
                         style = TextStyle(
-                            fontSize = 10.sp,
+                            fontSize = 12.sp,
                             color = Color(0xFF000000),
                         )
                     )
@@ -61,7 +61,7 @@ fun FooterWarning(text: String, navController: NavController){
                     Button(colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),onClick = { navController.navigate("Spedizioni")}) {
                         Text(text="VEDI", modifier = Modifier.padding(20.dp),
                             style = TextStyle(
-                            fontSize = 10.sp,
+                            fontSize = 12.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color(0xFF000000),
 

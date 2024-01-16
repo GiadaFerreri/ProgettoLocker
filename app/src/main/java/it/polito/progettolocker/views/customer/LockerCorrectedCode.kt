@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.graphic.Buttons
@@ -42,7 +43,7 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
-            Text("Problemi durante il ritiro?")
+            Text("Problemi durante il ritiro?",fontSize = 15.sp,)
         }
         Row(
             modifier = Modifier.fillMaxWidth().padding(top=50.dp),

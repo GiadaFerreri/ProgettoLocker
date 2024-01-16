@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.graphic.CardOrderPhoto
@@ -37,7 +38,8 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController){
                 ){
                     Text(
                         text = "CATALOGO",
-                        color = Color.Black
+                        color = Color.Black,
+                        fontSize = 20.sp
                     )
                 }
             }

@@ -41,7 +41,7 @@ import it.polito.progettolocker.ui.theme.PurpleGrey40
 fun CardProductCard(navController: NavController, textProduct: String, price: Float) {
     Column(verticalArrangement = Arrangement.Top) {
         Row(modifier = Modifier
-            .fillMaxWidth() .height(160.dp)) {
+            .fillMaxWidth() .padding(16.dp)) {
             Image(painter = painterResource(id= R.drawable.zara_product1), contentDescription ="ImmagineProdotto",)
 
             Column (modifier = Modifier
@@ -51,7 +51,8 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
             {
                 Row(){
                     Text(
-                        text = textProduct
+                        text = textProduct,
+                        fontSize = 12.sp
 //                        style = TextStyle(
 //                            fontSize = 15.sp,
 //                            fontWeight = FontWeight(400),
@@ -65,6 +66,7 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
 
                     Text(
                         text = price.toString()+" EUR\n", //price
+                        fontSize = 12.sp
 //                        style = TextStyle(
 //                            fontSize = 15.sp,
 //                            fontWeight = FontWeight(400),

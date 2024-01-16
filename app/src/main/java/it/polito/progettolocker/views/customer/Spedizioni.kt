@@ -51,7 +51,8 @@ fun Spedizioni(mainActivity: MainActivity, navController: NavController) {
             HeaderDouble(
                 text1 = "IN CORSO",
                 weight1 = if(buttonLeft.value) FontWeight.Bold else FontWeight.Normal,
-                text2 = "STORICO CONSEGNE",
+                text2 = "STORICO\n"+
+                        "CONSEGNE",
                 weight2 = if(buttonLeft.value) FontWeight.Normal else FontWeight.Bold,
                 onClickHandler1 = { if(!buttonLeft.value) { buttonLeft.value = true } },
                 onClickHandler2 = { if(buttonLeft.value) buttonLeft.value = false },

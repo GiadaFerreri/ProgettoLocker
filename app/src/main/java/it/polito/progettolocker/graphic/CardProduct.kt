@@ -54,6 +54,7 @@ fun CardProduct(dataRitiro: String, descrizioneProdotto: String) {
                 ) {
                 Text(
                     text = dataRitiro,
+                    fontSize = 15.sp,
                     fontWeight = FontWeight.Medium,
                     /*style = TextStyle(
                         fontSize = 16.sp,
@@ -86,6 +87,7 @@ fun CardProduct(dataRitiro: String, descrizioneProdotto: String) {
                         Text(
                             text = descrizioneProdotto, //textproduct
                             fontWeight = FontWeight.Medium,
+                            fontSize = 12.sp,
                             /*style = TextStyle(
                                 fontSize = 15.sp,
                                 fontWeight = FontWeight.Normal,

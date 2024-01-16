@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.graphic.Buttons
@@ -37,7 +38,7 @@ fun AcquistoLockerOccupied(mainActivity: MainActivity, navController: NavControl
         Row(modifier = Modifier.fillMaxWidth().padding(top=20.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly){
-            Text(text="PROCEDERE COMUNQUE ALL'ACQUISTO?", modifier = Modifier
+            Text(text="PROCEDERE COMUNQUE ALL'ACQUISTO?",fontSize = 15.sp, modifier = Modifier
                 .padding(30.dp,30.dp,30.dp,0.dp))
         }
         Row(modifier = Modifier.fillMaxWidth().padding(top=50.dp),

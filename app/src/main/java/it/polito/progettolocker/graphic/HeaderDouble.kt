@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.ui.theme.Typography
 import it.polito.progettolocker.ui.theme.helveticaFont
@@ -43,6 +44,7 @@ fun HeaderDouble(
                     text= text1,
                     color = Color.Black,
                     fontWeight = weight1,
+                    fontSize = 15.sp
                     //fontStyle = FontStyle.Normal,
 
                 )
@@ -51,7 +53,8 @@ fun HeaderDouble(
                 Text(
                     text= text2,
                     color = Color.Black,
-                    fontWeight = weight2
+                    fontWeight = weight2,
+                    fontSize = 15.sp
                 )
             }
         }

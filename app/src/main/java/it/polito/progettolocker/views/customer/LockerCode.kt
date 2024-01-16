@@ -79,7 +79,7 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
 
             Text(
                 text = "INSERISCI IL CODICE CHE VEDI SULLO SCHERMO DEL LOCKER",
-                fontSize = 14.sp,
+                fontSize = 15.sp,
                 color = Color(0xFF000000),
                 textAlign = TextAlign.Center
             )
@@ -94,7 +94,7 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
                         codice = it
                     }
                 },
-                label = { Text("CODICE LOCKER") },
+                label = { Text("CODICE LOCKER",fontSize = 12.sp,) },
                 maxLines = 1,
                 textStyle = TextStyle(color = Color.Black, fontWeight = FontWeight.Bold),
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
@@ -112,6 +112,7 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
             .fillMaxWidth()
             .padding(top = 25.dp)){
             Text(text = alert,
+                fontSize = 12.sp,
                 color= Color.Red)
         }
         Row( horizontalArrangement = Arrangement.Center, modifier = Modifier

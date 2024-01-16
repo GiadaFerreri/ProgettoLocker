@@ -45,7 +45,7 @@ fun CardsJustText(text1: String) {
                     ){
                 Text(
                     text = text1,
-                    fontSize = 16.sp,
+                    fontSize = 15.sp,
                     fontWeight = FontWeight.Medium
                 )
             }

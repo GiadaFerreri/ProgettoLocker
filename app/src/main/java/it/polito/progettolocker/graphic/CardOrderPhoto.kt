@@ -33,42 +33,57 @@ import org.w3c.dom.Text
 @Composable
 //Card pagina storico consegne???
 fun CardOrderPhoto(navController: NavController, textProduct: String, price: Float) {
-   Column(verticalArrangement = Arrangement.Top) {
-   Column(modifier = Modifier.padding(top=60.dp)) {
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)) {
-            Image(painter = painterResource(id= R.drawable.zara_product1), contentDescription ="ImmagineProdotto",
-                  modifier= Modifier
-                      .border(0.5.dp,Color.Black))
-            Column (verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally,
+    Column(verticalArrangement = Arrangement.Top) {
+        Column(modifier = Modifier.padding(top = 60.dp)) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.zara_product1),
+                    contentDescription = "ImmagineProdotto",
+                    modifier = Modifier
+                        .border(0.5.dp, Color.Black)
+                )
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
                         .width(300.dp)
                         .height(170.dp)
-                        .padding(10.dp))
-            {
-                Row(){
-                Text(
-                    text = textProduct+"\n",
-                    fontSize = 16.sp,
-                    textAlign = TextAlign.Center
+                        .padding(10.dp)
                 )
-            }
-                Row(){
-                    Text(
-                        text = "$price EUR\n", //price
-                        fontSize = 16.sp,
-                        textAlign = TextAlign.Center
-                    )
+                {
+                    Row() {
+                        Text(
+                            text = textProduct + "\n",
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                    Row() {
+                        Text(
+                            text = "$price EUR\n", //price
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                    Row() {
+                        Icon(
+                            Icons.Filled.AddCircle,
+                            contentDescription = "+",
+                            tint = Color.DarkGray
+                        )
+                    }
                 }
-                Row(){ Icon(Icons.Filled.AddCircle, contentDescription = "+", tint = Color.DarkGray)}
-                }
             }
 
-       Row() {
-           Divider(color = Color.LightGray, thickness = 1.dp)
-       }
+            Row() {
+                Divider(color = Color.LightGray, thickness = 1.dp)
+            }
 
-   }
+        }
 
+    }
 }

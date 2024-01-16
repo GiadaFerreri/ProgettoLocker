@@ -49,7 +49,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
             HeaderX(text = "ACQUISTO", navController = navController, onClickDestination = "Carrello")
         }
         Row (modifier = Modifier.padding(16.dp)){
-            Text(text = "3 ARTICOLI")
+            Text(text = "3 ARTICOLI",fontSize = 12.sp)
         }
         Row {
             CardPhotoSwipe(navController = navController)
@@ -57,6 +57,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
         Row (){
             Text(
                 text = "ZARA LCKR",
+                fontSize = 15.sp,
                 modifier = Modifier.padding(16.dp,5.dp),
                 fontWeight = FontWeight.Medium
             )
@@ -65,6 +66,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
             Column (Modifier.weight(2f)){
                 Text(
                     text = "LOCKER LINGOTTO\nVIA NIZZA 294, 10126 TORINO",
+                    fontSize = 12.sp,
                     modifier = Modifier.padding(16.dp, 5.dp))
             }
             if(openButton){

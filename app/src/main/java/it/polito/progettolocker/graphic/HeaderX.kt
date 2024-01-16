@@ -53,7 +53,8 @@ fun HeaderX(text: String,
                 ){
                     Text(
                         text = text,
-                        color = Color.Black
+                        color = Color.Black,
+                        fontSize = 20.sp
                     )
                 }
             }

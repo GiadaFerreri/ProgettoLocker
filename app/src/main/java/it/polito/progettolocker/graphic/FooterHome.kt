@@ -49,6 +49,7 @@ fun FooterHome(navController: NavController){
                 Text(
 
                     text = "HOME",
+                    fontSize = 15.sp,
                     color = Color.Black,
                     fontWeight = if(navController.currentDestination?.route == "Customer") FontWeight.Bold else FontWeight.Normal,
                     //fontFamily = it.polito.progettolocker.ui.theme.helveticaFont ,
@@ -75,6 +76,7 @@ fun FooterHome(navController: NavController){
                 Text(
                     text = "CATALOGO",
                     color = Color.Black,
+                    fontSize = 15.sp,
                     fontWeight = if(navController.currentDestination?.route == "Catalogo") FontWeight.Bold else FontWeight.Normal,
                     style = if(navController.currentDestination?.route == "Catalogo") TextStyle(textDecoration = TextDecoration.Underline) else TextStyle(textDecoration = TextDecoration.None)
                 )
@@ -89,6 +91,7 @@ fun FooterHome(navController: NavController){
                 Text(
                     text = "CARRELLO",
                     color = Color.Black,
+                    fontSize = 15.sp,
                     fontWeight = if(navController.currentDestination?.route == "Carrello") FontWeight.Bold else FontWeight.Normal,
                     style = if(navController.currentDestination?.route == "Carrello") TextStyle(textDecoration = TextDecoration.Underline) else TextStyle(textDecoration = TextDecoration.None)
                 )
@@ -103,6 +106,7 @@ fun FooterHome(navController: NavController){
                 Text(
                     text = "SPEDIZIONI",
                     color = Color.Black,
+                    fontSize = 15.sp,
                     fontWeight = if(navController.currentDestination?.route == "Spedizioni") FontWeight.Bold else FontWeight.Normal,
                     style = if(navController.currentDestination?.route == "Spedizioni") TextStyle(textDecoration = TextDecoration.Underline) else TextStyle(textDecoration = TextDecoration.None)
                 )

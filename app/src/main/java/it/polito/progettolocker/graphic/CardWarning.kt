@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
 
@@ -55,6 +56,7 @@ fun CardWarning(text: String, mainActivity: MainActivity, navController: NavCont
                     Text(
                         "ATTENZIONE!",
                         modifier = Modifier.padding(0.dp,20.dp,16.dp,16.dp),
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.Medium
                     )
                 }
@@ -62,6 +64,7 @@ fun CardWarning(text: String, mainActivity: MainActivity, navController: NavCont
                     Text(
                         text,
                         modifier = Modifier.padding(0.dp,0.dp,16.dp,16.dp),
+                        fontSize = 15.sp,
                         fontWeight = FontWeight.Medium
                     )
                 }
