@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -46,9 +47,8 @@ fun FooterDoubleBlack(price: Int, navController: NavController){
 
                Text(
                    text = "CONTINUA", modifier = Modifier.padding(start = 5.dp),
-                   style = TextStyle(
-                       fontSize = 15.sp
-                   ),
+                   fontSize = 15.sp,
+                   fontWeight = FontWeight.Bold,
                    color = Color.White
                )
 
@@ -58,10 +58,11 @@ fun FooterDoubleBlack(price: Int, navController: NavController){
 Column(modifier = Modifier.background(Color.White).fillMaxHeight().width(210.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
 
     Text(
-        text ="TOTALE    $price EUR", modifier=Modifier.
-        padding(end=5.dp),style = TextStyle(
-            fontSize = 15.sp,
-        ),  color = Color.Black
+        text = "TOTALE    $price EUR",
+        modifier = Modifier.padding(end=5.dp),
+        fontSize = 15.sp,
+        fontWeight = FontWeight.Bold,
+        color = Color.Black
     )
 }
 

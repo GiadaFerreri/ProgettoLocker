@@ -57,11 +57,7 @@ fun FooterTotal(price: Int, navController: NavController) {
                         text = "TOTALE",
                         fontSize = 15.sp,
                         color = Color.Black,
-                        modifier = Modifier.padding(start = 5.dp),
-                        style = TextStyle(
-
-                            fontWeight = FontWeight.Bold
-                        )
+                        modifier = Modifier.padding(start = 5.dp)
                     )
                 }
                 Column(horizontalAlignment = Alignment.End) {
@@ -74,9 +70,7 @@ fun FooterTotal(price: Int, navController: NavController) {
                     Text(
                         text = "IVA INCLUSA, SPEDIZIONE INCLUSA",
                         modifier = Modifier.padding(end = 5.dp),
-
-                            fontSize = 12.sp
-
+                        fontSize = 12.sp
                     )
                 }
 

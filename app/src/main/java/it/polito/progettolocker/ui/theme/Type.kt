@@ -10,8 +10,8 @@ import it.polito.progettolocker.R
 
 val helveticaFont = FontFamily(
     Font(R.font.helvetica_neue, FontWeight.Normal),
-    Font(R.font.helvetica_neue, FontWeight.Medium),
-    Font(R.font.helvetica_neue, FontWeight.Bold)
+    Font(R.font.helvetica_neue_2, FontWeight.Medium),
+    Font(R.font.helvetica_neue_2, FontWeight.Bold)
 )
 
 
@@ -20,39 +20,39 @@ val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = helveticaFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        lineHeight = 24.sp,
+        fontSize = 13.sp,
+        lineHeight = 16.sp,
         letterSpacing = 0.5.sp
     ),
     labelLarge = TextStyle(
         fontFamily = helveticaFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
+        fontSize = 13.sp,
         lineHeight = 16.sp
     ),
     labelMedium = TextStyle(
         fontFamily = helveticaFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
+        fontSize = 13.sp,
         lineHeight = 16.sp
     ),
     labelSmall = TextStyle(
         fontFamily = helveticaFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        lineHeight = 16.sp
+        fontSize = 15.sp,
+        lineHeight = 18.sp
     ),
     titleLarge = TextStyle(
         fontFamily = helveticaFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp
+        fontSize = 15.sp,
+        lineHeight = 18.sp
     ),
     titleMedium = TextStyle(
         fontFamily = helveticaFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp
+        fontSize = 15.sp,
+        lineHeight = 18.sp
     ),
     /* Other default text styles to override
     titleLarge = TextStyle(
