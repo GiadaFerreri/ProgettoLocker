@@ -70,7 +70,10 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
                     modifier = Modifier.padding(16.dp, 5.dp))
             }
             if(openButton){
-                Column(Modifier.weight(1f).padding(end=10.dp)
+                Column(
+                    Modifier
+                        .weight(1f)
+                        .padding(end = 10.dp)
                 ) {
                     Buttons("MODIFICA",
                         onClickHandler = { navController.navigate("AcquistoLocker",) })
@@ -91,6 +94,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
         }
     }
     if(showFooter) {
+        /*
         Column(verticalArrangement = Arrangement.Bottom) {
             Divider(color = Color.Black, thickness = 0.5.dp)
             Row(
@@ -160,6 +164,9 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
 
             }
         }
+
+         */
+        FooterTotal(price = 10, navController = navController)
     }
 
     if(openDialog){

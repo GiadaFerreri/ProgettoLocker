@@ -22,7 +22,7 @@ import it.polito.progettolocker.graphic.HeaderX
 
 fun DettagliOrdine(mainActivity: MainActivity, navController: NavController){
 Row{
-    HeaderX(text = "DETTAGLI ORDINE", navController = navController, onClickDestination = "SpedizioniInCorso")
+    HeaderX(text = "DETTAGLI ORDINE", navController = navController, onClickDestination = "Spedizioni")
 }
 
     Column( verticalArrangement = Arrangement.spacedBy(16.dp),horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(top=200.dp)) {
