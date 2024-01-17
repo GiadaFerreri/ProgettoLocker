@@ -29,7 +29,7 @@ fun CardOrder(
     description: String,
     leftButton: Boolean = true,
     rightButton: Boolean = false,
-    leftButtonText: String = "VEDI ORDINE",
+    leftButtonText: String = "VEDI DETTAGLI",
     rightButtonText: String = "RITIRA IL PACCO",
     mainActivity: MainActivity,
     navController: NavController,

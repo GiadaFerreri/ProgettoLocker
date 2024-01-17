@@ -65,7 +65,7 @@ fun CardWarning(text: String, mainActivity: MainActivity, navController: NavCont
                         text,
                         modifier = Modifier.padding(0.dp,0.dp,16.dp,16.dp),
                         fontSize = 15.sp,
-                        fontWeight = FontWeight.Medium
+                        fontWeight = FontWeight.Normal
                     )
                 }
             }

@@ -39,8 +39,8 @@ Row{
                 fontSize = 15.sp,
                 color = Color(0xFF000000)
             )
-            Text(text = "LOCKER LINGOTTO", fontSize = 12.sp, color = Color(0xFF000000))
-            Text(text = "VIA NIZZA 294, 10126 TORINO", fontSize = 12.sp, color = Color(0xFF000000))
+            Text(text = "LOCKER LINGOTTO", fontSize = 12.sp, color = Color(0xFF000000), modifier = Modifier.padding(top=5.dp),)
+            Text(text = "VIA NIZZA 294, 10126 TORINO", modifier = Modifier.padding(top=1.dp), fontSize = 12.sp, color = Color(0xFF000000))
         }
     }
     BackHandler (enabled = true){

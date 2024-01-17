@@ -39,14 +39,14 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
             CardsJustText(text1 = "CODICE INSERITO CORRETTO.\n" +
                     "RITIRARE IL PACCO.")
         }
-        Row ( modifier = Modifier.fillMaxWidth().padding(top=20.dp),
+        Row ( modifier = Modifier.fillMaxWidth().padding(top=50.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
             Text("Problemi durante il ritiro?",fontSize = 15.sp,)
         }
         Row(
-            modifier = Modifier.fillMaxWidth().padding(top=50.dp),
+            modifier = Modifier.fillMaxWidth().padding(top=20.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {

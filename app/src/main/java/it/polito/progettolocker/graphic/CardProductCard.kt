@@ -11,9 +11,12 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
@@ -40,16 +43,38 @@ import it.polito.progettolocker.ui.theme.PurpleGrey40
 @Composable
 fun CardProductCard(navController: NavController, textProduct: String, price: Float) {
     Column(verticalArrangement = Arrangement.Top) {
-        Row(modifier = Modifier
-            .fillMaxWidth() .padding(16.dp)) {
-            Image(painter = painterResource(id= R.drawable.zara_product1), contentDescription ="ImmagineProdotto",)
 
-            Column (modifier = Modifier
-                .width(300.dp)
-                .height(180.dp)
-                .padding(20.dp))
+
+        Row(modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)) {
+            Column(modifier = Modifier.background(Color.Green)) {
+                Image(
+                    painter = painterResource(id = R.drawable.zara_product1),
+                    contentDescription = "ImmagineProdotto",
+                )
+
+            }
+
+            Column(
+                modifier = Modifier
+                    .width(800.dp)
+                    .height(220.dp)
+                    .padding(0.dp), verticalArrangement = Arrangement.SpaceEvenly
+            )
             {
-                Row(){
+                Row (horizontalArrangement = Arrangement.End, modifier = Modifier.width(800.dp).padding(0.dp)){
+                    Button(
+                        colors = ButtonDefaults.buttonColors(Color.Transparent),
+                        onClick = { },
+                        modifier = Modifier .background(Color.Green)
+                    ) {
+                        Icon(Icons.Outlined.Close, contentDescription = "Chiudi", tint = Color.Black, modifier=Modifier.padding(0.dp))
+                    }
+
+                }
+
+                Row() {
                     Text(
                         text = textProduct,
                         fontSize = 12.sp
@@ -62,10 +87,10 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
 
                     )
                 }
-                Row(Modifier.fillMaxWidth()){
+                Row() {
 
                     Text(
-                        text = price.toString()+" EUR\n", //price
+                        text = price.toString() + " EUR\n", //price
                         fontSize = 12.sp
 //                        style = TextStyle(
 //                            fontSize = 15.sp,
@@ -76,69 +101,88 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
 
                     )
                 }
-                Row(verticalAlignment = Alignment.CenterVertically,
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Start,
                     modifier = Modifier
-                        .border(width = 1.dp, color = Color(0xFF000000))
+                        .border(width = 0.5.dp, color = Color(0xFF000000))
                         .width(160.dp)
-                        .height(30.dp))
+                        .height(30.dp)
+                )
                 {
-                    Button(onClick = { /*TODO*/ },
-                            shape = RectangleShape,
-                            colors = ButtonDefaults.buttonColors(Color.Transparent),
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Text(
-                                text = "-",
-                                style = TextStyle(
-                                    fontSize = 12.sp,
-                                    fontWeight = FontWeight(400),
-                                    color = Color(0xFF000000),
-                                    textAlign = TextAlign.Center)
-
+                    Button(
+                        onClick = { /*TODO*/ },
+                        shape = RectangleShape,
+                        colors = ButtonDefaults.buttonColors(Color.Transparent),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(
+                            text = "-",
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight(400),
+                                color = Color(0xFF000000),
+                                textAlign = TextAlign.Center
                             )
-                        }
 
-                        Button(onClick = { /*TODO*/ },
-                            shape = RectangleShape,
-                            colors = ButtonDefaults.buttonColors(Color.Transparent),
-                            border = BorderStroke(1.dp, Color.Black),
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Text(
-                                text = "1",
-                                style = TextStyle(
-                                    fontSize = 12.sp,
-                                    fontWeight = FontWeight(400),
-                                    color = Color(0xFF000000),
-                                    textAlign = TextAlign.Center)
-                            )
-                        }
-
-                       Button(onClick = { /*TODO*/ },
-                            shape = RectangleShape,
-                            colors = ButtonDefaults.buttonColors(Color.Transparent),
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Text(
-                                text = "+",
-                                style = TextStyle(
-                                    fontSize = 12.sp,
-                                    fontWeight = FontWeight(400),
-                                    color = Color(0xFF000000),
-                                    textAlign = TextAlign.Center)
-
-                            )
-                        }
+                        )
 
                     }
 
-            }
+                    Divider(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .width(1.dp), color = Color.Black
+                    )
+                    Button(
+                        onClick = { /*TODO*/ },
+                        shape = RectangleShape,
+                        colors = ButtonDefaults.buttonColors(Color.Transparent),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(
+                            text = "1",
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight(400),
+                                color = Color(0xFF000000),
+                                textAlign = TextAlign.Center
+                            )
+                        )
+                    }
+                    Divider(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .width(1.dp), color = Color.Black
+                    )
 
+                    Button(
+                        onClick = { /*TODO*/ },
+                        shape = RectangleShape,
+                        colors = ButtonDefaults.buttonColors(Color.Transparent),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(
+                            text = "+",
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight(400),
+                                color = Color(0xFF000000),
+                                textAlign = TextAlign.Center
+                            )
+
+                        )
+                    }
+
+                }
+
+            }
         }
 
+
+
             Row {
-                Divider(color = Color.Gray, thickness = 1.dp)
+                Divider(color = Color.Gray, thickness = 0.5.dp)
             }
     }
 

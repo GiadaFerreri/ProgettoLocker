@@ -86,7 +86,7 @@ fun CardProduct(dataRitiro: String, descrizioneProdotto: String) {
                     Row(modifier = Modifier .width(300.dp)) {
                         Text(
                             text = descrizioneProdotto, //textproduct
-                            fontWeight = FontWeight.Medium,
+                            fontWeight = FontWeight.Normal,
                             fontSize = 12.sp,
                             /*style = TextStyle(
                                 fontSize = 15.sp,
