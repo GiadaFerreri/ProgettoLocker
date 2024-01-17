@@ -52,8 +52,9 @@ fun FooterHome(navController: NavController){
                     fontSize = 15.sp,
                     color = Color.Black,
                     fontWeight = if(navController.currentDestination?.route == "Customer") FontWeight.Bold else FontWeight.Normal,
+                    textDecoration = if(navController.currentDestination?.route == "Customer") TextDecoration.Underline else TextDecoration.None
                     //fontFamily = it.polito.progettolocker.ui.theme.helveticaFont ,
-                   style = if(navController.currentDestination?.route == "Customer") TextStyle(textDecoration = TextDecoration.Underline) else TextStyle(textDecoration = TextDecoration.None)
+                    //style = if(navController.currentDestination?.route == "Customer") TextStyle(textDecoration = TextDecoration.Underline) else TextStyle(textDecoration = TextDecoration.None)
                     /*modifier = if(navController.currentDestination?.route == "Customer") Modifier.drawBehind {
                         val strokeWidthPx = 1.dp.toPx()
                         val verticalOffset = size.height - 2.sp.toPx()
@@ -78,7 +79,7 @@ fun FooterHome(navController: NavController){
                     color = Color.Black,
                     fontSize = 15.sp,
                     fontWeight = if(navController.currentDestination?.route == "Catalogo") FontWeight.Bold else FontWeight.Normal,
-                    style = if(navController.currentDestination?.route == "Catalogo") TextStyle(textDecoration = TextDecoration.Underline) else TextStyle(textDecoration = TextDecoration.None)
+                    textDecoration = if(navController.currentDestination?.route == "Catalogo") TextDecoration.Underline else TextDecoration.None
                 )
             }
             Button(
@@ -93,7 +94,7 @@ fun FooterHome(navController: NavController){
                     color = Color.Black,
                     fontSize = 15.sp,
                     fontWeight = if(navController.currentDestination?.route == "Carrello") FontWeight.Bold else FontWeight.Normal,
-                    style = if(navController.currentDestination?.route == "Carrello") TextStyle(textDecoration = TextDecoration.Underline) else TextStyle(textDecoration = TextDecoration.None)
+                    textDecoration = if(navController.currentDestination?.route == "Carrello") TextDecoration.Underline else TextDecoration.None
                 )
             }
             Button(
@@ -108,7 +109,7 @@ fun FooterHome(navController: NavController){
                     color = Color.Black,
                     fontSize = 15.sp,
                     fontWeight = if(navController.currentDestination?.route == "Spedizioni") FontWeight.Bold else FontWeight.Normal,
-                    style = if(navController.currentDestination?.route == "Spedizioni") TextStyle(textDecoration = TextDecoration.Underline) else TextStyle(textDecoration = TextDecoration.None)
+                    textDecoration = if(navController.currentDestination?.route == "Spedizioni") TextDecoration.Underline else TextDecoration.None
                 )
             }
         }
