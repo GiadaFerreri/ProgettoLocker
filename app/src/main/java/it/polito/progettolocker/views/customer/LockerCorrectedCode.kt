@@ -1,5 +1,8 @@
 package it.polito.progettolocker.views.customer
 
+import android.content.Intent
+import android.net.Uri
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,18 +15,22 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.graphic.CardsJustText
 import it.polito.progettolocker.graphic.HeaderX
+
 @Composable
 fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController){
     val (firstTry, setFirstTryDone) = remember {
         mutableStateOf(true)
     }
+    val ctx = LocalContext.current
 
     Column(  modifier = Modifier
         .fillMaxWidth()){
@@ -32,21 +39,35 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
 
         }
 
-        Row ( modifier = Modifier.fillMaxWidth().padding(top=80.dp),
+        Row ( modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 80.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
-            CardsJustText(text1 = "CODICE INSERITO CORRETTO.\n" +
-                    "RITIRARE IL PACCO.")
+            if(firstTry) CardsJustText(text1 =  "CODICE INSERITO CORRETTO.\n" + "RITIRARE IL PACCO.")
+            else CardsJustText(text1 = "CASSETTO APERTO NUOVAMENTE.\n" + "RITIRARE IL PACCO.")
         }
-        Row ( modifier = Modifier.fillMaxWidth().padding(top=20.dp),
+        Row ( modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 24.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly)
+        {
+            Buttons(text = "TORNA ALLA HOME", onClickHandler = {navController.navigate("Customer")})
+        }
+        Row ( modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 70.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
             Text("Problemi durante il ritiro?",fontSize = 15.sp,)
         }
         Row(
-            modifier = Modifier.fillMaxWidth().padding(top=50.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 24.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -57,7 +78,6 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
                 Buttons(
                     text = "RIAPRI IL CASSETTO",
                     onClickHandler = {
-                        //navController.navigate("Locker")
                         setFirstTryDone(!firstTry)
                     }
                 )
@@ -65,7 +85,26 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
             if(!firstTry){
                 Buttons(
                     text = "CONTATTA L'ASSISTENZA",
-                    onClickHandler = { navController.navigate("Customer") },
+                    onClickHandler = {
+                        val u = Uri.parse("tel:" + "3462497262")
+
+                        // Create the intent and set the data for the
+                        // intent as the phone number.
+                        val i = Intent(Intent.ACTION_DIAL, u)
+                        try {
+
+                            // Launch the Phone app's dialer with a phone
+                            // number to dial a call.
+                            ctx.startActivity(i)
+                        } catch (s: SecurityException) {
+
+                            // show() method display the toast with
+                            // exception message.
+                            Toast.makeText(ctx, "An error occurred", Toast.LENGTH_LONG)
+                                .show()
+                        }
+                        navController.navigate("Customer")
+                                     },
 
                     )
             }

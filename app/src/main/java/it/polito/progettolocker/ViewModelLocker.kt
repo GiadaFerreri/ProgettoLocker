@@ -94,6 +94,17 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
         //trova il primo vano libero
     }
 
+    private val _counter = MutableLiveData<Int>().also { it.value = 0 }
+    fun lockerCount(): Int? {
+        if(_counter.value == 0) {
+            _counter.value = _counter.value?.plus(1)
+        }
+        if(_counter.value == 1) {
+            _counter.value = 0
+        }
+        return _counter.value
+    }
+
     // FUNZIONI VANO
     fun openCompartment (compartment: Compartment) {
         if(compartment?.closed == true) compartment.closed = false

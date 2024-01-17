@@ -253,8 +253,8 @@ fun HomePage(mainActivity: MainActivity, navController: NavController) {
                     ambientColor = Color(0x40000000)
                 )
                 .border(width = 0.5.dp, color = Color.Black)
-                .width(116.dp)
-                .height(45.dp)
+                //.width(116.dp)
+                //.height(45.dp)
                 .background(color = Color(0xFFF8F6F6)),
             colors = ButtonDefaults.buttonColors(
                 contentColor = Color.Black,
@@ -272,8 +272,8 @@ fun HomePage(mainActivity: MainActivity, navController: NavController) {
                     ambientColor = Color(0x40000000)
                 )
                 .border(width = 0.5.dp, color = Color.Black)
-                .width(116.dp)
-                .height(45.dp)
+                //.width(116.dp)
+                //.height(45.dp)
                 .background(color = Color(0xFFF8F6F6)),
             colors = ButtonDefaults.buttonColors(
                 contentColor = Color.Black,
