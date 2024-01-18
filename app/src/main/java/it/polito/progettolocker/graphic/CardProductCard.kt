@@ -55,24 +55,34 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                 )
 
             }
+            Column(modifier = Modifier
+                .width(800.dp)
+                .height(200.dp)
+                .padding(start = 8.dp)) {
 
-            Column(
-                modifier = Modifier
-                    .width(800.dp)
-                    .height(220.dp)
-                    .padding(0.dp), verticalArrangement = Arrangement.SpaceEvenly
+
+            Row (horizontalArrangement = Arrangement.End, modifier = Modifier
+                .width(800.dp)
+                .height(60.dp)
+                .padding(0.dp)){
+                Button(
+                    colors = ButtonDefaults.buttonColors(Color.Transparent),
+                    onClick = { /*TODO: eliminare articolo dal carrello*/},
+                    modifier = Modifier .padding(0.dp)
+                ) {
+                    Icon(Icons.Outlined.Close, contentDescription = "Chiudi", tint = Color.Black, modifier=Modifier.padding(0.dp).size(20.dp))
+                }
+
+            }
+           Column(
+               modifier = Modifier
+                   .width(800.dp)
+                   .height(250.dp)
+                   .padding(start = 8.dp)
+                   , verticalArrangement = Arrangement.SpaceEvenly
             )
             {
-                Row (horizontalArrangement = Arrangement.End, modifier = Modifier.width(800.dp).padding(0.dp)){
-                    Button(
-                        colors = ButtonDefaults.buttonColors(Color.Transparent),
-                        onClick = { },
-                        modifier = Modifier .background(Color.Green)
-                    ) {
-                        Icon(Icons.Outlined.Close, contentDescription = "Chiudi", tint = Color.Black, modifier=Modifier.padding(0.dp))
-                    }
 
-                }
 
                 Row() {
                     Text(
@@ -175,6 +185,7 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                     }
 
                 }
+            }
 
             }
         }
