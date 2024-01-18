@@ -38,27 +38,41 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
 
         }
 
-        Row ( modifier = Modifier.fillMaxWidth().padding(top=80.dp),
+        Row ( modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 80.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
-            CardsJustText(text1 = "CODICE INSERITO CORRETTO.\n" +
-                    "RITIRARE IL PACCO.")
+            if(firstTry) CardsJustText(text1 =  "CODICE INSERITO CORRETTO.\n" + "RITIRARE IL PACCO.")
+            else CardsJustText(text1 = "CASSETTO APERTO NUOVAMENTE.\n" + "RITIRARE IL PACCO.")
         }
-        Row ( modifier = Modifier.fillMaxWidth().padding(top=50.dp),
+        Row ( modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 24.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly)
+        {
+            Buttons(text = "TORNA ALLA HOME", onClickHandler = {navController.navigate("Customer")})
+        }
+        Row ( modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 70.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
             Text("Problemi durante il ritiro?",fontSize = 15.sp,)
         }
         Row(
-            modifier = Modifier.fillMaxWidth().padding(top=20.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 24.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
 
 
-            if(firstTry) { //se è la prima volta esce questo bottone
+        if(firstTry) { //se è la prima volta esce questo bottone
                 //TODO: questo bottone sotto deve cambiare testo se è la seconda volta che si carica la pagina
                 Buttons(
                     text = "RIAPRI IL CASSETTO",
