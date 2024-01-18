@@ -18,6 +18,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -96,6 +97,9 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
                 },
                 label = { Text("CODICE LOCKER",fontSize = 12.sp,) },
                 maxLines = 1,
+                colors = TextFieldDefaults.textFieldColors(
+                    containerColor  =Color(0xFF_EFEFEF),
+               ),
                 textStyle = TextStyle(color = Color.Black, fontWeight = FontWeight.Bold),
                 keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
                 modifier = Modifier
@@ -106,7 +110,8 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
                     .onFocusChanged {
                         isTextFieldSelected = it.isFocused
                     }
-            )
+                    )
+
         }
         Row ( horizontalArrangement = Arrangement.Center, modifier = Modifier
             .fillMaxWidth()
@@ -151,8 +156,8 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
                 modifier = Modifier
                     .shadow(
                         elevation = 4.dp,
-                        spotColor = Color(0x40000000),
-                        ambientColor = Color(0x40000000)
+                        spotColor = Color.Black,
+                        ambientColor = Color.Black
                     )
                     .border(width = 0.5.dp, color = Color.Black)
                     .width(140.dp)

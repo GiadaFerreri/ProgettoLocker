@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
@@ -41,6 +42,7 @@ fun CardProduct(dataRitiro: String, descrizioneProdotto: String) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(30.dp,30.dp,30.dp,0.dp)
+            .shadow(elevation = 4.dp, spotColor = Color.Black, ambientColor =Color.Black)
     )
 
     {

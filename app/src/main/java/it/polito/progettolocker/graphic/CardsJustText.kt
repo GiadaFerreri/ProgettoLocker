@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.TextStyle
@@ -33,13 +34,14 @@ fun CardsJustText(text1: String) {
             modifier = Modifier
                 .size(width = 400.dp, height = 200.dp)
                 .padding(16.dp)
+                .shadow(elevation = 4.dp, spotColor = Color.Black, ambientColor =Color.Black)
         )
 
         {
             Column( modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(10.dp),
+            .padding(25.dp),
                 verticalArrangement = Arrangement.Center
            // .wrapContentSize(align = Alignment.Start)
                     ){

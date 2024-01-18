@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.graphic.Buttons
@@ -35,6 +36,9 @@ fun AcquistoLocker(mainActivity: MainActivity, navController: NavController) {
     Column (){
         Row {
             HeaderX(text = "ACQUISTO", navController =navController, onClickDestination = "Carrello")
+        }
+        Row(modifier=Modifier.padding(start=30.dp,top=30.dp,end=30.dp, bottom=5.dp)){
+            Text("SELEZIONA IL LOCKER IN CUI RITIRARE IL TUO ORDINE:", fontSize = 15.sp, fontWeight = FontWeight.Medium )
         }
             LazyColumn {
                 item {

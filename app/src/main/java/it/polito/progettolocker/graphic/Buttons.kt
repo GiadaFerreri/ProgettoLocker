@@ -25,7 +25,7 @@ fun Buttons(text: String,  onClickHandler: () -> Unit) {
         onClick = { onClickHandler()  },
         shape= RectangleShape,
         modifier = Modifier
-            .shadow(elevation = 4.dp, spotColor = Color(0x40000000), ambientColor = Color(0x40000000))
+            .shadow(elevation = 4.dp, spotColor = Color.Black, ambientColor = Color.Black)
             .border(width = 0.5.dp, color = Color.Black)
             .width(140.dp)
             .height(50.dp)

@@ -30,13 +30,13 @@ fun FooterWarning(text: String, navController: NavController){
         OutlinedCard (
             colors = CardDefaults.cardColors(
                 containerColor = Color.White),
-            border = BorderStroke(0.5.dp, Color.Black),
+            border = BorderStroke(1.5.dp, Color.Black),
             shape= RectangleShape,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(129.dp)
-                .padding(horizontal = 1.dp)
-                .padding(bottom = 1.dp)
+                .height(145.dp)
+                .padding(horizontal = 0.5.dp)
+                .padding(bottom = 0.5.dp)
 
         ){
             Column(verticalArrangement = Arrangement.SpaceBetween, modifier=Modifier.fillMaxHeight()) {
