@@ -44,7 +44,7 @@ fun FooterTotal(price: Int, navController: NavController) {
     }
     if(showFooter) {
         Column(verticalArrangement = Arrangement.Bottom) {
-            Divider(color = Color.Black, thickness = 0.5.dp)
+            Divider(color = Color.Black, thickness = 0.8.dp)
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -56,24 +56,21 @@ fun FooterTotal(price: Int, navController: NavController) {
                     Text(
                         text = "TOTALE",
                         fontSize = 15.sp,
-                        color = Color.Black,
-                        modifier = Modifier.padding(start = 5.dp),
-                        style = TextStyle(
-
+                        modifier = Modifier.padding(start = 10.dp),
                             fontWeight = FontWeight.Bold
-                        )
+
                     )
                 }
                 Column(horizontalAlignment = Alignment.End) {
                     Text(
                         text = "$price EUR",
                         fontSize = 12.sp,
-                        modifier = Modifier.padding(end = 5.dp),
+                        modifier = Modifier.padding(end = 10.dp),
 
                     )
                     Text(
                         text = "IVA INCLUSA, SPEDIZIONE INCLUSA",
-                        modifier = Modifier.padding(end = 5.dp),
+                        modifier = Modifier.padding(end = 10.dp),
 
                             fontSize = 10.sp
 
