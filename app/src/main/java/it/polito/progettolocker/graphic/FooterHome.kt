@@ -34,7 +34,7 @@ import androidx.navigation.NavController
 fun FooterHome(navController: NavController){
     Column(verticalArrangement = Arrangement.Bottom) {
         Row{
-            Divider(color = Color.Black, thickness = 0.5.dp)
+            Divider(color = Color.Black, thickness = 0.8.dp)
         }
         Row(modifier = Modifier.fillMaxWidth().height(60.dp),
             verticalAlignment = Alignment.CenterVertically,

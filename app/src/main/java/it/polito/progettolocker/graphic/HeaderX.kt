@@ -75,7 +75,7 @@ fun HeaderX(text: String,
 
         }
 
-        Divider(color = Color.Black, thickness = 0.5.dp)
+        Divider(color = Color.Black, thickness = 0.8.dp)
     }
 
 }

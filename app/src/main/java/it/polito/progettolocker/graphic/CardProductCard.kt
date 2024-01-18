@@ -52,6 +52,8 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                 Image(
                     painter = painterResource(id = R.drawable.zara_product1),
                     contentDescription = "ImmagineProdotto",
+                    modifier = Modifier
+                        .border(0.5.dp, Color.Black)
                 )
 
             }
