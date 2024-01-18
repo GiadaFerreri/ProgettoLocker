@@ -110,6 +110,7 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
                     .onFocusChanged {
                         isTextFieldSelected = it.isFocused
                     }
+                    .shadow(elevation = 4.dp, spotColor = Color.Black, ambientColor =Color.Black)
                     )
 
         }

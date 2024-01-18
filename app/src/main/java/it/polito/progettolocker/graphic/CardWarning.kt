@@ -38,6 +38,7 @@ fun CardWarning(text: String, mainActivity: MainActivity, navController: NavCont
         shape= RectangleShape,
         modifier = Modifier
             .padding(30.dp,30.dp,30.dp,0.dp)
+            .shadow(elevation = 4.dp, spotColor = Color.Black, ambientColor =Color.Black)
     ){
         Row{
             Column(
