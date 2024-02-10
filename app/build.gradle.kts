@@ -75,4 +75,5 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.5")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.31.1-alpha")
+    implementation("androidx.compose.foundation:foundation:1.6.0-alpha04")
 }

@@ -26,6 +26,7 @@ fun Carrello(mainActivity: MainActivity, navController: NavController){
         }
         Row () {
             CardProductCard(navController = navController, textProduct = "ZW COLLECTION SQUINNED VELVET BLAZER", price = 88.95F)
+
         }
     }
     FooterDoubleBlack(price = 89, navController = navController)
