@@ -113,20 +113,20 @@ fun DraggableItem(
 fun CardProductCard(navController: NavController, textProduct: String, price: Float) {
     val density = LocalDensity.current
     val defaultActionSize = 80.dp
-    val endActionSizePx = with(density) { (defaultActionSize * 2).toPx() }
-    val startActionSizePx = with(density) { defaultActionSize.toPx() }
+    val endActionSizePx = with(density) { (defaultActionSize ).toPx() }
+    val startActionSizePx = with(density) { (defaultActionSize*2).toPx() }
 
 
     var state = remember {
         AnchoredDraggableState(
             initialValue = DragAnchors.Center,
             anchors = DraggableAnchors {
-                DragAnchors.Start at -startActionSizePx
+                //DragAnchors.Start at -startActionSizePx
                 DragAnchors.Center at 0f
                 DragAnchors.End at endActionSizePx
             },
-            positionalThreshold = { distance: Float -> distance * 0.5f },
-            velocityThreshold = { with(density) { 100.dp.toPx() } },
+            positionalThreshold = { distance: Float -> distance * 0.1f },
+            velocityThreshold = { with(density) { 70.dp.toPx() } },
             animationSpec = tween(),
         )
     }
@@ -143,7 +143,8 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
         ) {
             DraggableItem(state = state, content = {
 
-                    TextButton(onClick = {
+                    TextButton(shape= RectangleShape
+                        ,onClick = {
                    /*TODO: eliminare articolo da carrello*/
 
                     },
@@ -153,10 +154,12 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                         modifier =
                         Modifier
                             .fillMaxHeight()
+                            .width(100.dp)
+                            .padding(0.dp)
                             .offset {
                                 IntOffset(
                                     ((-state
-                                        .requireOffset() - endActionSizePx))
+                                        .requireOffset() + 5.8*endActionSizePx))
                                         .roundToInt(), 0
                                 )
                             }
