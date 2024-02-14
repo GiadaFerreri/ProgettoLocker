@@ -1,6 +1,8 @@
 package it.polito.progettolocker.dataClass
 
 data class Compartment(
-    var closed : Boolean,
-    var busy : Boolean
+    var idvano: Int? = null,
+    var chiuso : Boolean? = null,
+    var inuso : Boolean? = null,
+    var type : String? = null
 )

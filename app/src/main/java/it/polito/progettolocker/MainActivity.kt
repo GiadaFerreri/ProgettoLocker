@@ -74,7 +74,7 @@ import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: ViewModelLocker by lazy {
+    val viewModel: ViewModelLocker by lazy {
         val factory = ViewModelLockerFactory(auth, database)
         ViewModelProvider(this, factory).get(ViewModelLocker::class.java)
     }

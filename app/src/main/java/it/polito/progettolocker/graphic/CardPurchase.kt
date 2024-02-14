@@ -21,9 +21,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
+import it.polito.progettolocker.dataClass.Locker
 
 @Composable
 fun CardPurchase(
+    locker: Locker,
     lockerLocation: String,
     description: String,
     mainActivity: MainActivity,
@@ -37,7 +39,7 @@ fun CardPurchase(
         modifier = Modifier
             .fillMaxWidth()
             .padding(30.dp, 30.dp, 30.dp, 0.dp)
-            .shadow(elevation = 4.dp, spotColor = Color.Black, ambientColor =Color.Black)
+            .shadow(elevation = 4.dp, spotColor = Color.Black, ambientColor = Color.Black)
     ) {
         Column() {
             Row (){
@@ -60,7 +62,16 @@ fun CardPurchase(
                 Row(
                     modifier = Modifier.padding(16.dp)
                 ) {
-                    Buttons("SELEZIONA", onClickHandler = { navController.navigate("Acquisto") })
+                    var counter = 0
+                    for(vano in locker.compartments!!){
+                        if(vano.inuso!!) counter++
+                    }
+                    if(counter == locker.compartments!!.size){
+                        Text(text = "LOCKER PIENO")
+                    }
+                    else{
+                        Buttons("SELEZIONA", onClickHandler = { navController.navigate("Acquisto") })
+                    }
                 }
             }
         }

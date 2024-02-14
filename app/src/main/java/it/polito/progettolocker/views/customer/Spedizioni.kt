@@ -34,6 +34,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.ViewModelLocker
 import it.polito.progettolocker.graphic.FooterHome
@@ -42,6 +44,8 @@ import it.polito.progettolocker.graphic.HeaderDouble
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Spedizioni(mainActivity: MainActivity, navController: NavController) {
+
+
     
     val buttonLeft = remember { mutableStateOf(true) }
 

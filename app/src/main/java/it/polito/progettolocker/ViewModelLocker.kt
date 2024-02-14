@@ -3,18 +3,23 @@ package it.polito.progettolocker
 import android.content.ContentValues
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.getValue
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.database
 import it.polito.progettolocker.dataClass.Article
-import it.polito.progettolocker.dataClass.Compartment
+import it.polito.progettolocker.dataClass.DataState
 import it.polito.progettolocker.dataClass.DeliveryMan
 import it.polito.progettolocker.dataClass.Locker
 import it.polito.progettolocker.dataClass.Shipping
@@ -30,6 +35,67 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
     private val catalogueReference = databaseReference.child("Articles")
     private val shippingReference = databaseReference.child("Shippings")
 
+    val articleState: MutableState<DataState> = mutableStateOf(DataState.Empty)
+    val lockerState: MutableState<DataState> = mutableStateOf(DataState.Empty)
+
+    val db = Firebase.database.reference
+
+    init {
+        //writeCatalogue()
+        readCatalogueFromDB()
+    }
+
+    fun readCatalogueFromDB() {
+
+        // Read from the database
+        val articleList = mutableListOf<Article>()
+        this.articleState.value = DataState.Loading
+
+        Firebase.database.getReference("Article")
+            .addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val tempList = snapshot.getValue<ArrayList<Map<String,Any>>>() as ArrayList<Map<String,Any>>
+
+                tempList.forEach {
+                    articleList.add(Article(quantity = it["quantity"] as Number, price = it["price"] as Number, name = it["name"] as String, type = it["type"] as String))
+                }
+                this@ViewModelLocker.articleState.value = DataState.Success(articleList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+            }
+        })
+
+        /*FirebaseDatabase.getInstance().getReference("Article")
+        //Firebase.database.reference.child("Article")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val articleList = snapshot.getValue<ArrayList<HashMap<String,Any>>>()
+                    val tempList2 = mutableListOf<Any>()
+
+                    if (articleList != null) {
+                        articleList.forEach {
+                            it.forEach { }
+                        }
+                    }
+                    /*for(DataSnap in snapshot.children){
+                        var article = DataSnap.getValue<Article>()
+                        if(article != null){
+                            tempList.add(Article(article.name,article.price,article.quantity,article.type))
+                        }
+                    }*/
+                    response.value = DataState.Success(tempList)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    response.value = DataState.Failure(error.message)
+                }
+
+            })*/
+    }
+
     private val _articles = MutableLiveData<List<Article>>(emptyList())
     var articles : LiveData<List<Article>> = _articles
 
@@ -42,14 +108,31 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
     var shippings : LiveData<List<Shipping>> = _shippings
 
     private val _catalogue = MutableLiveData(listOf(
-        Article("Gonna pantalone a pieghe",29.95,5),
-        Article("Camicia Oxford a righe oversize",32.95,5),
-        Article("Jeans Z1975 dritti a vita bassa",39.95,5),
-        Article("Pullover struttura punto intrecciato",49.95,5),
-        Article("Parka lungo",79.95,5),
-        Article("Stivali in vernice con il tacco",79.95,5)
+        Article("Gonna pantalone a pieghe",29.95,5, "small"),
+        Article("Camicia Oxford a righe oversize",32.95,5, "small"),
+        Article("Jeans Z1975 dritti a vita bassa",39.95,5, "small"),
+        Article("Pullover struttura punto intrecciato",49.95,5,"small"),
+        Article("Parka lungo",79.95,5, "big"),
+        Article("Stivali in vernice con il tacco",79.95,5, "small")
     ))
     var catalogue : LiveData<List<Article>> = _catalogue
+
+    fun writeCatalogue(){
+        val articleList = mutableListOf<Article>(
+            Article("Gonna pantalone a pieghe",29.95,5, "small"),
+            Article("Camicia Oxford a righe oversize",32.95,5, "small"),
+            Article("Jeans Z1975 dritti a vita bassa",39.95,5, "small"),
+            Article("Pullover struttura punto intrecciato",49.95,5,"small"),
+            Article("Parka lungo",79.95,5, "big"),
+            Article("Stivali in vernice con il tacco",79.95,5, "small")
+        )
+        var index = 0
+        for(article in articleList){
+            Firebase.database.reference.child("Article").child(index.toString()).setValue(article)
+            index++
+        }
+
+    }
 
     // FUNZIONI PER IL CARRELLO
     fun addToCart (article: Article, quantity : Int){
@@ -105,7 +188,7 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
         return _counter.value
     }
 
-    // FUNZIONI VANO
+    /*// FUNZIONI VANO
     fun openCompartment (compartment: Compartment) {
         if(compartment?.closed == true) compartment.closed = false
     }
@@ -122,7 +205,7 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
     fun freeCompartment (compartment: Compartment) {
         compartment.busy = false
         //TODO: controllo
-    }
+    }*/
 
     //TODO: spedizioni
     // ID spedizione, ID cliente, ID fattorino, stato (in corso/ consegnato / conclusa)
