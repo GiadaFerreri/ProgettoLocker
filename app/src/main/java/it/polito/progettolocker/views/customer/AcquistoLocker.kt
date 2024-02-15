@@ -101,26 +101,38 @@ fun AcquistoLocker(mainActivity: MainActivity, navController: NavController) {
             }
 
             is DataState.Success -> {
-                LazyColumn {
-                    items(result.data as List<Locker>) { locker ->
-                        CardPurchase(
-                            locker = locker,
-                            lockerLocation = "LOCKER ${locker.name}",
-                            description = "${locker.address}\n${locker.time}",
-                            mainActivity = mainActivity,
-                            navController = navController)
+               /* var counter = 0
+                for (vano in locker.compartments!!) {
+                    if (vano.inuso!!) counter++
+                }
+                if (counter == locker.compartments!!.size) {
+                    AcquistoLockerOccupied(
+                        mainActivity = mainActivity,
+                        navController = navController
+                    )
+                } else {*/
+                    LazyColumn {
+                        items(result.data as List<Locker>) { locker ->
+                            CardPurchase(
+                                locker = locker,
+                                lockerLocation = "LOCKER ${locker.name}",
+                                description = "${locker.address}\n${locker.time}",
+                                mainActivity = mainActivity,
+                                navController = navController
+                            )
+                        }
                     }
                 }
-            }
+           // }
 
             is DataState.Failure -> {
-                CardWarning(
+                  CardWarning(
                     text = result.message,
                     mainActivity = mainActivity,
                     navController = navController
                 )
-            }
 
+            }
             else -> {
                 CardWarning(
                     text = "Error fetching data",

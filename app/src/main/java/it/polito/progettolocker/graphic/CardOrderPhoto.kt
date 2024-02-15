@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -70,11 +72,15 @@ fun CardOrderPhoto(navController: NavController, textProduct: String, price: Flo
                         )
                     }
                     Row() {
-                        Icon(
-                            Icons.Filled.AddCircle,
-                            contentDescription = "+",
-                            tint = Color.DarkGray
-                        )
+
+                        Button( colors = ButtonDefaults.buttonColors(Color.Transparent),
+                            onClick = { }) {
+                            Icon(
+                                Icons.Filled.AddCircle,
+                                contentDescription = "+",
+                                tint = Color.DarkGray
+                            )
+                        }
                     }
                 }
             }
