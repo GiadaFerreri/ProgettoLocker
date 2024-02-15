@@ -111,7 +111,7 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Button(
                     colors = ButtonDefaults.buttonColors(Color.Transparent),
-                    onClick = { /*TODO*/ }
+                    onClick = { }
                 ) {
                     Text(
                         text = "CATALOGO",
@@ -139,6 +139,7 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
                 items(result.data as List<Article>) { article ->
                     if(article.quantity!!.toFloat() > 0){
                         CardOrderPhoto(
+                            article = article,
                             navController = navController,
                             textProduct = article.name!!,
                             price = article.price!!.toFloat()

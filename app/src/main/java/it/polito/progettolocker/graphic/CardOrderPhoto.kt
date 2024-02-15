@@ -15,6 +15,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,12 +30,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
 import it.polito.progettolocker.R
+import it.polito.progettolocker.dataClass.Article
 import org.w3c.dom.Text
 
 @Composable
 //Card pagina storico consegne???
-fun CardOrderPhoto(navController: NavController, textProduct: String, price: Float) {
+fun CardOrderPhoto(article: Article, navController: NavController, textProduct: String, price: Float) {
     Column(verticalArrangement = Arrangement.Top) {
         Column(modifier = Modifier.padding(top = 60.dp)) {
             Row(
@@ -59,7 +63,7 @@ fun CardOrderPhoto(navController: NavController, textProduct: String, price: Flo
                 {
                     Row() {
                         Text(
-                            text = textProduct + "\n",
+                            text = textProduct + article.quantity + "\n",
                             fontSize = 12.sp,
                             textAlign = TextAlign.Center
                         )
@@ -74,7 +78,11 @@ fun CardOrderPhoto(navController: NavController, textProduct: String, price: Flo
                     Row() {
 
                         Button( colors = ButtonDefaults.buttonColors(Color.Transparent),
-                            onClick = { }) {
+                            enabled = !(article.quantity == 0),
+                            onClick = {
+                                TODO("Decrementa la quantità dal catalogo")
+                                TODO("Aggiungi al carrello")
+                            }) {
                             Icon(
                                 Icons.Filled.AddCircle,
                                 contentDescription = "+",

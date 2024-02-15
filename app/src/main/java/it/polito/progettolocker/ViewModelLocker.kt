@@ -138,7 +138,7 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
     fun addToCart (article: Article, quantity : Int){
         var currentCart = _cart.value
         _cart.value = currentCart?.plus(Pair(article, quantity))
-        //TODO: aggiungere controllo in activity
+        TODO( "aggiungere controllo in activity")
     }
 
     fun removeFromCart (article: Article){

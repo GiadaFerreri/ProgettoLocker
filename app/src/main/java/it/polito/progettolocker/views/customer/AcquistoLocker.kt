@@ -101,16 +101,22 @@ fun AcquistoLocker(mainActivity: MainActivity, navController: NavController) {
             }
 
             is DataState.Success -> {
-               /* var counter = 0
-                for (vano in locker.compartments!!) {
-                    if (vano.inuso!!) counter++
+                var counterVani = 0
+                var vaniOccupati = 0
+                var lockers = result.data as MutableList<Locker>
+                for (locker in lockers){
+                    for (vano in locker.compartments!!) {
+                        if (vano.inuso!!) vaniOccupati++
+                    }
+                    counterVani += locker.compartments!!.size
                 }
-                if (counter == locker.compartments!!.size) {
+
+                if (counterVani == vaniOccupati) {
                     AcquistoLockerOccupied(
                         mainActivity = mainActivity,
                         navController = navController
                     )
-                } else {*/
+                } else {
                     LazyColumn {
                         items(result.data as List<Locker>) { locker ->
                             CardPurchase(
@@ -123,7 +129,7 @@ fun AcquistoLocker(mainActivity: MainActivity, navController: NavController) {
                         }
                     }
                 }
-           // }
+            }
 
             is DataState.Failure -> {
                   CardWarning(
