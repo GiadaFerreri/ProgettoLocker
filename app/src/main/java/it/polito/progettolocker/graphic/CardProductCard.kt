@@ -75,7 +75,6 @@ fun DraggableItem(
 
     Box(
         modifier = Modifier
-            .padding(5.dp)
             .fillMaxWidth()
             .height(200.dp)
             .background(
@@ -132,8 +131,6 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
     }
 
     Column(verticalArrangement = Arrangement.Top) {
-
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -171,7 +168,7 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                         )
                     }
 
-                    Column(modifier = Modifier.background(Color.Green)) {
+                    Column() {
                         Image(
                             painter = painterResource(id = R.drawable.zara_product1),
                             contentDescription = "ImmagineProdotto",
@@ -221,7 +218,7 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                             Row() {
                                 Text(
                                     text = textProduct,
-                                    fontSize = 12.sp
+                                    fontSize = 15.sp
 //                        style = TextStyle(
 //                            fontSize = 15.sp,
 //                            fontWeight = FontWeight(400),
@@ -235,7 +232,7 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
 
                                 Text(
                                     text = price.toString() + " EUR\n", //price
-                                    fontSize = 12.sp
+                                    fontSize = 15.sp
 //                        style = TextStyle(
 //                            fontSize = 15.sp,
 //                            fontWeight = FontWeight(400),
@@ -329,9 +326,6 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
 
             )
 
-        }
-        Row {
-            Divider(color = Color.Gray, thickness = 0.5.dp)
         }
     }
 }

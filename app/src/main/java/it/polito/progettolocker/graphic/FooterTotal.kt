@@ -30,6 +30,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun FooterTotal(price: Int, navController: NavController) {
+    //inutile
     var showFooter by remember { mutableStateOf(true) }
     var openDialog by remember { mutableStateOf(false) }
 
@@ -111,8 +112,4 @@ fun FooterTotal(price: Int, navController: NavController) {
         }
     }
 
-        if(openDialog){
-            FooterWarning(text = "IL TUO ACQUISTO È ANDATO A BUON FINE!",
-                navController = navController)
-        }
 }

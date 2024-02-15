@@ -25,7 +25,7 @@ import androidx.navigation.NavController
 
 @Composable
 
-fun FooterWarning(text: String, navController: NavController){
+fun FooterWarning(text: String, navController: NavController, navigation: String){
     Column(verticalArrangement = Arrangement.Bottom, modifier=Modifier.fillMaxWidth()) {
         OutlinedCard (
             colors = CardDefaults.cardColors(
@@ -58,7 +58,7 @@ fun FooterWarning(text: String, navController: NavController){
                 Row(modifier = Modifier
                     .fillMaxWidth(),horizontalArrangement = Arrangement.End){
 
-                    Button(colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),onClick = { navController.navigate("Spedizioni")}) {
+                    Button(colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),onClick = { navController.navigate(navigation)}) {
                         Text(text="VEDI", modifier = Modifier.padding(20.dp),
                             style = TextStyle(
                             fontSize = 12.sp,

@@ -22,9 +22,6 @@ import it.polito.progettolocker.graphic.HeaderX
 //SCHERMATA LOCKER OCCUPATI
 fun AcquistoLockerOccupied(mainActivity: MainActivity, navController: NavController){
     Column (){
-        Row {
-            HeaderX(text = "ACQUISTO", navController =navController, onClickDestination = "Customer")
-        }
         Row( modifier = Modifier.fillMaxWidth().padding(top=80.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly){

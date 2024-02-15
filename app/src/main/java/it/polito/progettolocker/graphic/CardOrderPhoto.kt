@@ -40,7 +40,7 @@ import org.w3c.dom.Text
 //Card pagina storico consegne???
 fun CardOrderPhoto(article: Article, navController: NavController, textProduct: String, price: Float) {
     Column(verticalArrangement = Arrangement.Top) {
-        Column(modifier = Modifier.padding(top = 60.dp)) {
+        Column(modifier = Modifier.padding(top = 3.5.dp)) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -80,8 +80,8 @@ fun CardOrderPhoto(article: Article, navController: NavController, textProduct: 
                         Button( colors = ButtonDefaults.buttonColors(Color.Transparent),
                             enabled = !(article.quantity == 0),
                             onClick = {
-                                TODO("Decrementa la quantità dal catalogo")
-                                TODO("Aggiungi al carrello")
+                                //TODO("Decrementa la quantità dal catalogo")
+                                //TODO("Aggiungi al carrello")
                             }) {
                             Icon(
                                 Icons.Filled.AddCircle,

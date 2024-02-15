@@ -67,7 +67,7 @@ fun CardPurchase(
                         if(vano.inuso!!) counter++
                     }
                     if(counter == locker.compartments!!.size){
-                        Text(text = "LOCKER PIENO")
+                        Text(text = "LOCKER AL COMPLETO", fontWeight = FontWeight.Bold)
                     }
                     else{
                         Buttons("SELEZIONA", onClickHandler = { navController.navigate("Acquisto") })

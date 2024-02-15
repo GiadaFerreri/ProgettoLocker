@@ -89,9 +89,6 @@ fun AcquistoLocker(mainActivity: MainActivity, navController: NavController) {
         Row {
             HeaderX(text = "ACQUISTO", navController =navController, onClickDestination = "Carrello")
         }
-        Row(modifier=Modifier.padding(start=30.dp,top=30.dp,end=30.dp, bottom=5.dp)){
-            Text("SELEZIONA IL LOCKER IN CUI RITIRARE IL TUO ORDINE:", fontSize = 15.sp, fontWeight = FontWeight.Medium )
-        }
 
         when (val result = lockerState.value) {
             is DataState.Loading -> {
@@ -117,6 +114,9 @@ fun AcquistoLocker(mainActivity: MainActivity, navController: NavController) {
                         navController = navController
                     )
                 } else {
+                    Row(modifier=Modifier.padding(start=30.dp,top=30.dp,end=30.dp, bottom=5.dp)){
+                        Text("SELEZIONA IL LOCKER IN CUI RITIRARE IL TUO ORDINE:", fontSize = 15.sp, fontWeight = FontWeight.Medium )
+                    }
                     LazyColumn {
                         items(result.data as List<Locker>) { locker ->
                             CardPurchase(

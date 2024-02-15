@@ -94,7 +94,6 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
         }
     }
     if(showFooter) {
-        /*
         Column(verticalArrangement = Arrangement.Bottom) {
             Divider(color = Color.Black, thickness = 0.5.dp)
             Row(
@@ -110,7 +109,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
                         color = Color.Black,
                         modifier = Modifier.padding(start = 5.dp),
                         style = TextStyle(
-                            fontSize = 12.sp,
+                            fontSize = 15.sp,
                             fontWeight = FontWeight.Bold
                         )
                     )
@@ -120,14 +119,14 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
                         text = "$price EUR",
                         modifier = Modifier.padding(end = 5.dp),
                         style = TextStyle(
-                            fontSize = 12.sp
+                            fontSize = 15.sp
                         )
                     )
                     Text(
-                        text = "IVA INCLUSA, SPEDIZIONE INCLUSA",
+                        text = "SPEDIZIONE INCLUSA",
                         modifier = Modifier.padding(end = 5.dp),
                         style = TextStyle(
-                            fontSize = 6.sp
+                            fontSize = 10.sp
                         )
                     )
                 }
@@ -164,14 +163,12 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
 
             }
         }
-
-         */
-        FooterTotal(price = 10, navController = navController)
     }
 
     if(openDialog){
         FooterWarning(text = "IL TUO ACQUISTO È ANDATO A BUON FINE!",
-            navController = navController)
+            navController = navController,
+            navigation = "Spedizioni")
     }
 
     BackHandler (enabled = true){

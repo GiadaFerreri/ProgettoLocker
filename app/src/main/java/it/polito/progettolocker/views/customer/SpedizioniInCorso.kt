@@ -19,7 +19,6 @@ import it.polito.progettolocker.graphic.HeaderX
 
 fun SpedizioniInCorso(mainActivity: MainActivity, navController: NavController) {
     Column{
-
         Row{
             CardOrder(
                 orderNumber = "242",
