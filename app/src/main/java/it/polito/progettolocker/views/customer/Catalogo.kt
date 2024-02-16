@@ -214,13 +214,11 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
                                                                 val id = article.idArticle!!
                                                                 var trovato = false
                                                                 openDialog=true
-                                                                for(item in cart){
-                                                                    if(item.idArticle == id){
-                                                                        item.quantity!!.toInt().plus(1)
-                                                                        trovato = true
-                                                                    }
-                                                                }
-                                                                if(trovato){
+                                                                if(cart.filter { it.idArticle == article.idArticle }.size == 1){
+                                                                    var newArticle = cart.filter{it.idArticle == article.idArticle}[0]
+                                                                    cart.filter { it.idArticle != article.idArticle }
+                                                                    newArticle.quantity!!.toInt().plus(1)
+                                                                    cart.add(newArticle)
                                                                     val newCart = Cart(userId = userId,articles = cart)
                                                                     mainActivity.viewModel.db
                                                                         .child("Cart")
