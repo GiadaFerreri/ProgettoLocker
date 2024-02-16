@@ -61,7 +61,7 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
     LaunchedEffect(openDialog) {
         if (openDialog) {
             delay(3000) // 3000 millisecondi (3 secondi)
-            showFooter = false
+            showFooter = true
             openDialog = false
         }
     }

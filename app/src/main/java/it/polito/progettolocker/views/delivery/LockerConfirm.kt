@@ -41,7 +41,7 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
         }
         Row ( modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 150.dp),
+            .padding(top = 100.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {

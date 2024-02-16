@@ -30,17 +30,19 @@ fun Locker(mainActivity: MainActivity, navController: NavController) {
         HeaderX(text ="LOCKER" , navController = navController, onClickDestination = "DaEffettuare")
     }
 
-        Column( verticalArrangement = Arrangement.spacedBy(16.dp),horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(top=200.dp)){
-
-                Text(text="CONFERMI DI ESSERE DAVANTI AL LOCKER?",fontSize = 15.sp,color = Color(0xFF000000))
+        Column( verticalArrangement = Arrangement.spacedBy(16.dp),horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(top=150.dp)){
+            Row ( modifier = Modifier.padding(start = 35.dp, end=35.dp), horizontalArrangement = Arrangement.Start){
+                Text(text="CONFERMI DI ESSERE DAVANTI AL LOCKER?",fontWeight = FontWeight.ExtraBold,fontSize = 18.sp,color = Color(0xFF000000))
+            }
             Column (horizontalAlignment = Alignment.Start, modifier = Modifier
-                .padding(start = 35.dp)
+                .padding(start = 35.dp, top=20.dp)
                 .fillMaxWidth()){
                 Text(text="ZARA LCKR", fontWeight = FontWeight.ExtraBold,fontSize = 15.sp,color = Color(0xFF000000))
-                Text(text="LOCKER LINGOTTO",fontSize = 12.sp,color = Color(0xFF000000) )
-                Text(text="VIA NIZZA 294, 10126 TORINO",fontSize = 12.sp,color = Color(0xFF000000) )
+                Text(text="LOCKER LINGOTTO",fontSize = 15.sp,color = Color(0xFF000000) )
+                Text(text="VIA NIZZA 294, 10126 TORINO",fontSize = 15.sp,color = Color(0xFF000000) )
             }
-            Row(modifier=Modifier.padding(top=70.dp)) {
+            Row(modifier=Modifier.padding(top=50.dp)) {
                 Buttons(text = "CONFERMA", onClickHandler = {navController.navigate("LockerConfirm")})
             }
            Row(modifier=Modifier.padding(top=200.dp)) {

@@ -38,6 +38,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -109,12 +110,14 @@ fun DraggableItem(
 }
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun CardProductCard(navController: NavController, textProduct: String, price: Float) {
+fun CardProductCard(navController: NavController, textProduct: String, price: Float, quantity: Int) {
     val density = LocalDensity.current
     val defaultActionSize = 80.dp
     val endActionSizePx = with(density) { (defaultActionSize ).toPx() }
     val startActionSizePx = with(density) { (defaultActionSize*2).toPx() }
-
+    val (quantityRequired, setquanityRequired) = remember {
+        mutableIntStateOf(1)
+    }
 
     var state = remember {
         AnchoredDraggableState(
@@ -247,20 +250,20 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                                 horizontalArrangement = Arrangement.Start,
                                 modifier = Modifier
                                     .border(width = 0.5.dp, color = Color(0xFF000000))
-                                    .width(160.dp)
+                                    .width(200.dp)
                                     .height(30.dp)
                             )
                             {
                                 Button(
-                                    onClick = { /*TODO*/ },
+                                    onClick = { if (quantityRequired > 0) {setquanityRequired(quantityRequired-1) }},
                                     shape = RectangleShape,
                                     colors = ButtonDefaults.buttonColors(Color.Transparent),
-                                    modifier = Modifier.weight(1f)
+                                    modifier = Modifier.weight(1.5f)
                                 ) {
                                     Text(
                                         text = "-",
                                         style = TextStyle(
-                                            fontSize = 12.sp,
+                                            fontSize = 13.sp,
                                             fontWeight = FontWeight(400),
                                             color = Color(0xFF000000),
                                             textAlign = TextAlign.Center
@@ -279,12 +282,13 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                                     onClick = { /*TODO*/ },
                                     shape = RectangleShape,
                                     colors = ButtonDefaults.buttonColors(Color.Transparent),
-                                    modifier = Modifier.weight(1f)
+                                    modifier = Modifier.weight(1.5f)
                                 ) {
                                     Text(
-                                        text = "1",
+                                        text = quantityRequired.toString(),
+                                        modifier=Modifier.padding(0.dp),
                                         style = TextStyle(
-                                            fontSize = 12.sp,
+                                            fontSize = 13.sp,
                                             fontWeight = FontWeight(400),
                                             color = Color(0xFF000000),
                                             textAlign = TextAlign.Center
@@ -298,10 +302,10 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                                 )
 
                                 Button(
-                                    onClick = { /*TODO*/ },
+                                    onClick = {  if ((quantityRequired<=quantity) /*se la quantità richiesta è minore o uguale a quella disponibile */) {setquanityRequired(quantityRequired+1)} },
                                     shape = RectangleShape,
                                     colors = ButtonDefaults.buttonColors(Color.Transparent),
-                                    modifier = Modifier.weight(1f)
+                                    modifier = Modifier.weight(1.5f)
                                 ) {
                                     Text(
                                         text = "+",

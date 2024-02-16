@@ -74,14 +74,15 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
             HeaderX(text ="LOCKER" , navController = navController, onClickDestination = "Spedizioni")
         }
         Row(horizontalArrangement = Arrangement.Center, modifier = Modifier
-            .padding(top = 50.dp, bottom = 25.dp)
+            .padding(top = 50.dp, bottom = 50.dp)
             .fillMaxWidth())
         {
 
             Text(
                 text = "INSERISCI IL CODICE CHE VEDI SULLO SCHERMO DEL LOCKER",
-                fontSize = 15.sp,
+                fontSize = 18.sp,
                 color = Color(0xFF000000),
+                fontWeight = FontWeight.ExtraBold,
                 textAlign = TextAlign.Center
             )
     }
