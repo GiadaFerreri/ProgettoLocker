@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -177,12 +178,17 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
                                                     .fillMaxWidth()
                                                     .padding(16.dp)
                                             ) {
-                                                Image(
+                                               Image(
                                                     painter = painterResource(id = R.drawable.zara_product1),
                                                     contentDescription = "ImmagineProdotto",
                                                     modifier = Modifier
                                                         .border(0.5.dp, Color.Black)
-                                                )
+                                                )/*
+                                                AsyncImage(
+                                                    model ="",
+                                                    contentDescription = "ImmagineProdotto",
+                                                    modifier = Modifier
+                                                        .border(0.5.dp, Color.Black))*/
                                                 Column(
                                                     verticalArrangement = Arrangement.Center,
                                                     horizontalAlignment = Alignment.CenterHorizontally,

@@ -30,6 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
 import it.polito.progettolocker.R
@@ -46,12 +47,13 @@ fun CardOrderPhoto(article: Article, navController: NavController, textProduct: 
                     .fillMaxWidth()
                     .padding(16.dp)
             ) {
-                Image(
+               /* Image(
                     painter = painterResource(id = R.drawable.zara_product1),
                     contentDescription = "ImmagineProdotto",
                     modifier = Modifier
                         .border(0.5.dp, Color.Black)
-                )
+                ) */
+
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally,
