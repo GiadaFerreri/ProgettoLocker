@@ -1,5 +1,7 @@
 package it.polito.progettolocker.views.customer
 
+import android.content.ContentValues
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -38,11 +40,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.google.firebase.Firebase
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.database
+import com.google.firebase.database.getValue
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.R
 import it.polito.progettolocker.dataClass.Article
+import it.polito.progettolocker.dataClass.Cart
 import it.polito.progettolocker.dataClass.DataState
+import it.polito.progettolocker.dataClass.Locker
 import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.graphic.CardOrderPhoto
 import it.polito.progettolocker.graphic.CardWarning
@@ -50,12 +61,15 @@ import it.polito.progettolocker.graphic.FooterHome
 import it.polito.progettolocker.graphic.FooterWarning
 import it.polito.progettolocker.graphic.HeaderDouble
 import kotlinx.coroutines.delay
+import kotlin.random.Random
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Catalogo(mainActivity: MainActivity, navController: NavController) {
     var showFooter by remember { mutableStateOf(true) }
     var openDialog by remember { mutableStateOf(false) }
+
+    val userId = "carrelloprova"
 
     // Coroutine per far scomparire il popup dopo qualche secondo
     LaunchedEffect(openDialog) {
@@ -66,72 +80,32 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
         }
     }
 
-    /*val articleList = mutableListOf<Article>()
-    val database = Firebase.database.reference.child("Articles").child("value")
+    var cartList = mutableListOf<Cart>()
+    var cart = mutableListOf<Article>()
 
-    fun fetchDataFromFirebase() {
-        // Read from the database
-        val tempList = mutableListOf<Article>()
-        val vm = mainActivity.viewModel
-        vm.response.value = DataState.Loading
+    fun updateCart(){
+        mainActivity.viewModel.db.child("Cart").child(userId).child("articles")
+            .addValueEventListener(object: ValueEventListener {
 
-        FirebaseDatabase.getInstance().getReference("Articles")
-            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    for(DataSnap in snapshot.children){
-                        val article = DataSnap.getValue(Article::class.java)
-                        if(article != null){
-                            tempList.add(article)
-                        }
+                    val tempList = snapshot.getValue<ArrayList<Map<String,Any>>>() as ArrayList<Map<String,Any>>
+
+                    tempList.forEach {
+                        cart.add(Article(idArticle = it["idArticle"] as Number, quantity = it["quantity"] as Number, price = it["price"] as Number, name = it["name"] as String, type = it["type"] as String))
                     }
-                    vm.response.value = DataState.Success(tempList)
-            }
+                    /*val updatedCart = cartList.filter { it.userId == userId }[0].articles as List<Article>
+                    cart.clear()
+                    updatedCart.forEach{
+                        cart.add(it)
+                    }*/
 
-            override fun onCancelled(error: DatabaseError) {
-                vm.response.value = DataState.Failure(error.message)
-            }
+                }
 
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+                }
+            })
     }
-
-    database.addChildEventListener(object : ChildEventListener {
-        override fun onChildAdded(
-            snapshot: DataSnapshot, @Nullable previousChildName: String?
-        ) {
-            // this method is called when new child is added to
-            // our data base and after adding new child
-            // we are adding that item inside our  list
-            articleList.add(snapshot.getValue(String::class.java)!!)
-        }
-
-        override fun onChildChanged(
-            snapshot: DataSnapshot, @Nullable previousChildName: String?
-        ) {
-            // this method is called when the new child is added.
-            // when the new child is added to our list we will be called
-        }
-
-        override fun onChildRemoved(snapshot: DataSnapshot) {
-            // below method is called when we remove a child from our database.
-            // inside this method we are removing the child from our array list
-            // by comparing with it's value.
-            // after removing the data we are notifying our adapter that the
-            // data has been changed.
-        }
-
-        override fun onChildMoved(
-            snapshot: DataSnapshot, @Nullable previousChildName: String?
-        ) {
-            // this method is called when we move our
-            // child in our database.
-            // in our code we are not moving any child.
-        }
-
-        override fun onCancelled(error: DatabaseError) {
-            // this method is called when we get any
-            // error from Firebase with error.
-        }
-    })*/
 
     Scaffold(
         containerColor = Color.White,
@@ -237,9 +211,54 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
                                                         Button( colors = ButtonDefaults.buttonColors(Color.Transparent),
                                                             enabled = !(article.quantity == 0),
                                                             onClick = {
+                                                                val id = article.idArticle!!
+                                                                var trovato = false
                                                                 openDialog=true
-                                                                //TODO("Decrementa la quantità dal catalogo")
-                                                                //TODO("Aggiungi al carrello")
+                                                                for(item in cart){
+                                                                    if(item.idArticle == id){
+                                                                        item.quantity!!.toInt().plus(1)
+                                                                        trovato = true
+                                                                    }
+                                                                }
+                                                                if(trovato){
+                                                                    val newCart = Cart(userId = userId,articles = cart)
+                                                                    mainActivity.viewModel.db
+                                                                        .child("Cart")
+                                                                        .child(userId)
+                                                                        .setValue(newCart)
+                                                                } else {
+                                                                    val newArticle = article
+                                                                    newArticle.quantity = 1
+                                                                    cart.add(newArticle)
+                                                                    val newCart = Cart(userId = userId,articles = cart)
+                                                                    mainActivity.viewModel.db
+                                                                        .child("Cart")
+                                                                        .child(userId)
+                                                                        .setValue(newCart)
+                                                                }
+                                                                /*if(cart!!.any { it.idArticle == id }){
+                                                                    var newArticle = cart.filter { it.idArticle!! == id }[0]
+                                                                    newArticle.quantity!!.toInt().plus(1)
+                                                                    mainActivity.viewModel.db
+                                                                        .child("Cart")
+                                                                        .child(userId)
+                                                                        .child(id.toString())
+                                                                        .setValue(newArticle)
+                                                                } else {
+                                                                    val newArticle = article.copy(quantity = 1)
+                                                                    cart.add(newArticle)
+                                                                    val newCart = Cart(userId = userId,articles = cart)
+                                                                    mainActivity.viewModel.db
+                                                                        .child("Cart")
+                                                                        .child(userId)
+                                                                        .setValue(newCart)
+                                                                }*/
+                                                                updateCart()
+                                                                mainActivity.viewModel.db
+                                                                    .child("Article")
+                                                                    .child(id.toString())
+                                                                    .child("quantity")
+                                                                    .setValue(article.quantity!!.toInt() - 1)
                                                             }) {
                                                             Icon(
                                                                 Icons.Filled.AddCircle,

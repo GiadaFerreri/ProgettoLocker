@@ -128,6 +128,7 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
         {
             Button(
                 onClick = {
+                    //TODO("Cambiare il codice con codice spedizione")
                     if(codice=="123456"){
                         navController.navigate("LockerCorrectedCode")
                         isError=false

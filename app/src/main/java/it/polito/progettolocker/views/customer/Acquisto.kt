@@ -149,7 +149,14 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
                         .padding(0.dp)
                         .fillMaxWidth()
                         .height(60.dp),
-                    onClick = { openDialog = true },
+                    onClick = {
+                        openDialog = true
+
+                        //TODO("Genera codice fattorino e ritiro")
+                        //TODO("Genera id spedizione")
+                        //TODO("Genera nuova spedizione")
+
+                              },
                     contentPadding = PaddingValues(0.dp)
                 ) {
                     Text(

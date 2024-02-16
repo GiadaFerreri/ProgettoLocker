@@ -51,14 +51,15 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
         val articleList = mutableListOf<Article>()
         this.articleState.value = DataState.Loading
 
-        Firebase.database.getReference("Article")
+        db.child("Article")
             .addValueEventListener(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
+                articleList.clear()
                 val tempList = snapshot.getValue<ArrayList<Map<String,Any>>>() as ArrayList<Map<String,Any>>
 
                 tempList.forEach {
-                    articleList.add(Article(quantity = it["quantity"] as Number, price = it["price"] as Number, name = it["name"] as String, type = it["type"] as String))
+                    articleList.add(Article(idArticle = it["idArticle"] as Number, quantity = it["quantity"] as Number, price = it["price"] as Number, name = it["name"] as String, type = it["type"] as String))
                 }
                 this@ViewModelLocker.articleState.value = DataState.Success(articleList)
             }
@@ -68,31 +69,20 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
             }
         })
 
-        /*FirebaseDatabase.getInstance().getReference("Article")
-        //Firebase.database.reference.child("Article")
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val articleList = snapshot.getValue<ArrayList<HashMap<String,Any>>>()
-                    val tempList2 = mutableListOf<Any>()
+        /*db.child("Article")
+            .addValueEventListener(object: ValueEventListener {
 
-                    if (articleList != null) {
-                        articleList.forEach {
-                            it.forEach { }
-                        }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for(snapshot in snapshot.children){
+                        val article = snapshot.getValue(Article::class.java)
+                        articleList.add(article!!)
                     }
-                    /*for(DataSnap in snapshot.children){
-                        var article = DataSnap.getValue<Article>()
-                        if(article != null){
-                            tempList.add(Article(article.name,article.price,article.quantity,article.type))
-                        }
-                    }*/
-                    response.value = DataState.Success(tempList)
+                    articleState.value = DataState.Success(articleList)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    response.value = DataState.Failure(error.message)
+                    Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
                 }
-
             })*/
     }
 
@@ -108,27 +98,27 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
     var shippings : LiveData<List<Shipping>> = _shippings
 
     private val _catalogue = MutableLiveData(listOf(
-        Article("Gonna pantalone a pieghe",29.95,5, "small"),
-        Article("Camicia Oxford a righe oversize",32.95,5, "small"),
-        Article("Jeans Z1975 dritti a vita bassa",39.95,5, "small"),
-        Article("Pullover struttura punto intrecciato",49.95,5,"small"),
-        Article("Parka lungo",79.95,5, "big"),
-        Article("Stivali in vernice con il tacco",79.95,5, "small")
+        Article(0,"Gonna pantalone a pieghe",29.95,5, "small"),
+        Article(1,"Camicia Oxford a righe oversize",32.95,5, "small"),
+        Article(2,"Jeans Z1975 dritti a vita bassa",39.95,5, "small"),
+        Article(3,"Pullover struttura punto intrecciato",49.95,5,"small"),
+        Article(4,"Parka lungo",79.95,5, "big"),
+        Article(5,"Stivali in vernice con il tacco",79.95,5, "small")
     ))
     var catalogue : LiveData<List<Article>> = _catalogue
 
     fun writeCatalogue(){
         val articleList = mutableListOf<Article>(
-            Article("Gonna pantalone a pieghe",29.95,5, "small"),
-            Article("Camicia Oxford a righe oversize",32.95,5, "small"),
-            Article("Jeans Z1975 dritti a vita bassa",39.95,5, "small"),
-            Article("Pullover struttura punto intrecciato",49.95,5,"small"),
-            Article("Parka lungo",79.95,5, "big"),
-            Article("Stivali in vernice con il tacco",79.95,5, "small")
+            Article(0,"Gonna pantalone a pieghe",29.95,5, "small"),
+            Article(1,"Camicia Oxford a righe oversize",32.95,5, "small"),
+            Article(2,"Jeans Z1975 dritti a vita bassa",39.95,5, "small"),
+            Article(3,"Pullover struttura punto intrecciato",49.95,5,"small"),
+            Article(4,"Parka lungo",79.95,5, "big"),
+            Article(5,"Stivali in vernice con il tacco",79.95,5, "small")
         )
         var index = 0
         for(article in articleList){
-            Firebase.database.reference.child("Article").child(index.toString()).setValue(article)
+            db.child("Article").child(index.toString()).setValue(article)
             index++
         }
 

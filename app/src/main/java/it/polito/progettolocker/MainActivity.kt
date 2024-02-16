@@ -79,6 +79,8 @@ class MainActivity : ComponentActivity() {
         ViewModelProvider(this, factory).get(ViewModelLocker::class.java)
     }
 
+    val userId = FirebaseAuth.getInstance().currentUser?.uid
+
     private lateinit var auth: FirebaseAuth
     private lateinit var eventListener: ValueEventListener
     private lateinit var database: DatabaseReference
@@ -243,6 +245,9 @@ fun HomePage(mainActivity: MainActivity, navController: NavController) {
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically
     ) {
+
+        //TODO("Controllo tipo utente")
+
         Button(
             onClick = { navController.navigate("Delivery") },
             shape= RectangleShape,

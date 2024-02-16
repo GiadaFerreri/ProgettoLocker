@@ -69,7 +69,7 @@ fun AcquistoLocker(mainActivity: MainActivity, navController: NavController) {
 
     //writeLocker()
 
-    Firebase.database.getReference("Locker")
+    mainActivity.viewModel.db.child("Locker")
         .addValueEventListener(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
