@@ -121,7 +121,7 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
                 //Toast.makeText(this, "Prodotto aggiunto al carrello! Quantità aggiornata.", Toast.LENGTH_SHORT).show()
             } else {
                 // Il prodotto non è presente nel carrello, aggiungilo
-                val nuovoProdotto = Article(prodotto.idArticle, prodotto.name, prodotto.image, prodotto.price, quantita, prodotto.type)
+                val nuovoProdotto = Article(idArticle = prodotto.idArticle, name = prodotto.name, image = prodotto.image, price = prodotto.price, quantity = quantita, type = prodotto.type)
                 carrelloRef.child("articles/${prodotto.idArticle}").setValue(nuovoProdotto)
 
                 // Mostra un messaggio di conferma all'utente
