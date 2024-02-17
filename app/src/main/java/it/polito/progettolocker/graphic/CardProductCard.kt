@@ -1,7 +1,6 @@
 package it.polito.progettolocker.graphic
 
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,19 +21,13 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -42,7 +35,6 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalDensity
@@ -55,7 +47,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.R
-import it.polito.progettolocker.ui.theme.PurpleGrey40
 import kotlin.math.roundToInt
 
 //Card pagina Carrello
@@ -145,7 +136,7 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
 
                     TextButton(shape= RectangleShape
                         ,onClick = {
-                   /*TODO: eliminare articolo da carrello*/
+                           /*TODO: eliminare articolo da carrello*/
 
                     },
                         colors = ButtonDefaults.buttonColors(
@@ -234,6 +225,7 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                             Row() {
 
                                 Text(
+                                    //TODO("Somma prezzi prodotti")
                                     text = price.toString() + " EUR\n", //price
                                     fontSize = 15.sp
 //                        style = TextStyle(
@@ -255,7 +247,11 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                             )
                             {
                                 Button(
-                                    onClick = { if (quantityRequired > 0) {setquanityRequired(quantityRequired-1) }},
+                                    onClick = {
+                                        //TODO("Diminuire quantità")
+                                        //TODO("Se quantità = 0 -> Elimina prodotto")
+                                        if (quantityRequired > 0) {setquanityRequired(quantityRequired-1) }
+                                              },
                                     shape = RectangleShape,
                                     colors = ButtonDefaults.buttonColors(Color.Transparent),
                                     modifier = Modifier.weight(1.5f)
@@ -302,7 +298,10 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                                 )
 
                                 Button(
-                                    onClick = {  if ((quantityRequired<=quantity) /*se la quantità richiesta è minore o uguale a quella disponibile */) {setquanityRequired(quantityRequired+1)} },
+                                    onClick = {
+                                        //TODO("Incrementare quantità")
+                                        if ((quantityRequired<=quantity) /*se la quantità richiesta è minore o uguale a quella disponibile */) {setquanityRequired(quantityRequired+1)}
+                                              },
                                     shape = RectangleShape,
                                     colors = ButtonDefaults.buttonColors(Color.Transparent),
                                     modifier = Modifier.weight(1.5f)

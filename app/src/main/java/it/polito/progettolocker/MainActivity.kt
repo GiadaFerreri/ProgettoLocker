@@ -1,5 +1,7 @@
 package it.polito.progettolocker
 
+//import com.google.accompanist.systemuicontroller.rememberSystemUiController
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,9 +14,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
@@ -37,28 +37,22 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-//import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import it.polito.progettolocker.views.customer.Customer
-import it.polito.progettolocker.views.delivery.DaEffettuare
-import it.polito.progettolocker.views.delivery.Delivery
-import it.polito.progettolocker.views.delivery.InCorso
-import it.polito.progettolocker.views.delivery.Locker
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.database
 import it.polito.progettolocker.dataClass.DeliveryMan
 import it.polito.progettolocker.dataClass.User
 import it.polito.progettolocker.ui.theme.ProgettoLockerTheme
-
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.database
-import com.google.firebase.database.ValueEventListener
-import it.polito.progettolocker.views.customer.AcquistoLockerOccupied
 import it.polito.progettolocker.views.customer.Acquisto
 import it.polito.progettolocker.views.customer.AcquistoLocker
 import it.polito.progettolocker.views.customer.AcquistoLockerCompleto
+import it.polito.progettolocker.views.customer.AcquistoLockerOccupied
 import it.polito.progettolocker.views.customer.Carrello
 import it.polito.progettolocker.views.customer.Catalogo
+import it.polito.progettolocker.views.customer.Customer
 import it.polito.progettolocker.views.customer.DettagliOrdine
 import it.polito.progettolocker.views.customer.LockerBlock
 import it.polito.progettolocker.views.customer.LockerCode
@@ -68,6 +62,10 @@ import it.polito.progettolocker.views.customer.LockerDysfunction
 import it.polito.progettolocker.views.customer.Spedizioni
 import it.polito.progettolocker.views.customer.SpedizioniInCorso
 import it.polito.progettolocker.views.customer.StoricoConsegne
+import it.polito.progettolocker.views.delivery.DaEffettuare
+import it.polito.progettolocker.views.delivery.Delivery
+import it.polito.progettolocker.views.delivery.InCorso
+import it.polito.progettolocker.views.delivery.Locker
 import it.polito.progettolocker.views.delivery.LockerConfirm
 import kotlinx.coroutines.delay
 
@@ -79,7 +77,7 @@ class MainActivity : ComponentActivity() {
         ViewModelProvider(this, factory).get(ViewModelLocker::class.java)
     }
 
-    val userId = FirebaseAuth.getInstance().currentUser?.uid
+    val userId = "GiovanniMalnati" //FirebaseAuth.getInstance().currentUser?.uid
 
     private lateinit var auth: FirebaseAuth
     private lateinit var eventListener: ValueEventListener

@@ -4,17 +4,14 @@ import android.content.ContentValues
 import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
@@ -38,14 +35,13 @@ import androidx.navigation.NavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.getValue
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.R
 import it.polito.progettolocker.dataClass.Article
-import it.polito.progettolocker.dataClass.DataState
+import it.polito.progettolocker.dataClass.Shipping
+import it.polito.progettolocker.dataClass.States
 import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.graphic.CardPhotoSwipe
-import it.polito.progettolocker.graphic.FooterTotal
 import it.polito.progettolocker.graphic.FooterWarning
 import it.polito.progettolocker.graphic.HeaderX
 import kotlinx.coroutines.delay
@@ -59,24 +55,73 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
 
     val cartList = mutableListOf<Article>()
     val cartState = mainActivity.viewModel.cartState
-    val userId = "carrelloprova"
+    val userId = mainActivity.userId
+    val db = mainActivity.viewModel.db
+
     mainActivity.viewModel.db.child("Cart").child(userId).child("articles")
         .addValueEventListener(object: ValueEventListener {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 cartList.clear()
-                val tempList = snapshot.getValue<ArrayList<Map<String,Any>>>() as ArrayList<Map<String,Any>>
-
-                tempList.forEach {
-                    cartList.add(Article(idArticle = it["idArticle"] as Number, image = it["image"] as String, quantity = it["quantity"] as Number, price = it["price"] as Number, name = it["name"] as String, type = it["type"] as String))
+                for(snapshot in snapshot.children){
+                    val article = snapshot.getValue(Article::class.java)
+                    cartList.add(article!!)
                 }
-                cartState.value = DataState.Success(cartList)
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
             }
         })
+
+    fun generateUniqueShippingId(): String {
+        var shippingId: String = ""
+        // Genera una stringa di 3 numeri casuali
+        val randomString = (100..999).random().toString()
+
+        // Crea una query per controllare se la stringa esiste già
+        val query = db.child("Shipping/${randomString}")
+
+        // Esegui la query e attendi il risultato
+        query.get().addOnSuccessListener {
+            // Se la stringa non esiste, salvala nel database e restituiscila
+            if (!it.exists()) {
+                shippingId = randomString
+            } else {
+                // Se la stringa esiste già, rigenera una nuova stringa
+                generateUniqueShippingId()
+            }
+        }
+
+        // Restituisce una stringa vuota se si verifica un errore
+        return shippingId
+    }
+
+
+    fun newShipping() {
+        var shippingId = (100..999).random().toString()
+        var depositId = (10000..99999).random().toString()
+        var pickupId = (10000..99999).random().toString()
+        var lockerId = "lingotto"
+        var compartmentId = mainActivity.viewModel.vanoDaUsare.value.toString()
+
+        var shipping =
+            Shipping(
+                shippingId = shippingId,
+                userId = userId,
+                deliverymanId = "fattorino",
+                state = States.PENDING,
+                articles = cartList as List<Article>,
+                pickupId = pickupId,
+                depositId = depositId,
+                lockerId = lockerId,
+                compartmentId = compartmentId
+            )
+
+        db.child("Shipping").child("${shippingId}").setValue(shipping)
+        db.child("Cart").child(userId).child("articles").removeValue()
+        db.child("Locker").child("${lockerId}/compartments/${compartmentId}/inuso").setValue(true)
+    }
 
     Column (){
         Row(){
@@ -193,11 +238,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
                         .height(60.dp),
                     onClick = {
                         openDialog = true
-
-                        //TODO("Genera codice fattorino e ritiro")
-                        //TODO("Genera id spedizione")
-                        //TODO("Genera nuova spedizione")
-
+                        newShipping()
                               },
                     contentPadding = PaddingValues(0.dp)
                 ) {

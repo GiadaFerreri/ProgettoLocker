@@ -1,6 +1,6 @@
 package it.polito.progettolocker.views.customer
 
-import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.activity.compose.BackHandler
@@ -13,31 +13,22 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.database
-import com.google.firebase.database.getValue
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.dataClass.Article
 import it.polito.progettolocker.dataClass.Compartment
 import it.polito.progettolocker.dataClass.DataState
 import it.polito.progettolocker.dataClass.Locker
-import it.polito.progettolocker.graphic.CardOrderPhoto
-import it.polito.progettolocker.graphic.CardProductCard
 import it.polito.progettolocker.graphic.CardPurchase
 import it.polito.progettolocker.graphic.CardWarning
-import it.polito.progettolocker.graphic.FooterDoubleBlack
 import it.polito.progettolocker.graphic.HeaderX
 
 
@@ -46,8 +37,28 @@ import it.polito.progettolocker.graphic.HeaderX
 fun AcquistoLocker(mainActivity: MainActivity, navController: NavController) {
 
     val lockerList = mutableListOf<Locker>()
-
     val lockerState = mainActivity.viewModel.lockerState
+
+    val cartList = remember() { mutableListOf<Article>() }
+    val cartState = mainActivity.viewModel.cartState
+    val userId = mainActivity.userId
+    val db = mainActivity.viewModel.db
+
+    mainActivity.viewModel.db.child("Cart").child(userId).child("articles")
+        .addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                cartList.clear()
+                for(snapshot in snapshot.children){
+                    val article = snapshot.getValue(Article::class.java)
+                    cartList.add(article!!)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+            }
+        })
 
     fun writeLocker(){
 
@@ -87,7 +98,7 @@ fun AcquistoLocker(mainActivity: MainActivity, navController: NavController) {
 
     Column (){
         Row {
-            HeaderX(text = "ACQUISTO", navController =navController, onClickDestination = "Carrello")
+            HeaderX(text = "ACQUISTO", navController = navController, onClickDestination = "Carrello")
         }
 
         when (val result = lockerState.value) {
@@ -100,15 +111,41 @@ fun AcquistoLocker(mainActivity: MainActivity, navController: NavController) {
             is DataState.Success -> {
                 var counterVani = 0
                 var vaniOccupati = 0
+                var vanoGrande = false
+                var lockerOccupato = false
+                var totArticles = 0L
                 var lockers = result.data as MutableList<Locker>
+
+                for(article in cartList){
+                    totArticles += article.quantity!!
+                    if(article.type.equals("big") || totArticles >= 5L ){
+                        vanoGrande = true
+                    }
+                }
+
                 for (locker in lockers){
                     for (vano in locker.compartments!!) {
-                        if (vano.inuso!!) vaniOccupati++
+                        if(vanoGrande){
+                            if (vano.type.equals("big") && vano.inuso!!){
+                                lockerOccupato = true
+                            } else if(vano.type.equals("big")) {
+                                var vanoprova = vano.idvano
+                                mainActivity.viewModel.vanoDaUsare.value = vano.idvano!!
+                            }
+                        } else {
+                            if(vano.inuso!!){
+                                vaniOccupati++
+                            } else {
+                                var vanoprova = vano.idvano
+                                mainActivity.viewModel.vanoDaUsare.value = vano.idvano!!
+                            }
+                        }
+
                     }
                     counterVani += locker.compartments!!.size
                 }
 
-                if (counterVani == vaniOccupati) {
+                if (counterVani == vaniOccupati || lockerOccupato) {
                     AcquistoLockerOccupied(
                         mainActivity = mainActivity,
                         navController = navController

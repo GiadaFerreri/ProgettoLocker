@@ -1,7 +1,5 @@
 package it.polito.progettolocker.dataClass
 
-import java.util.Date
-
 enum class States {
     PENDING, HANDLED, DELIVERED, CONCLUDED
 }
@@ -11,5 +9,9 @@ data class Shipping(
     val deliverymanId : String?= null,
     var state : States,
     val articles: List<Article>? = null,
-    var updates : Map<States, Date>
+    val depositId: String? = null,
+    val pickupId: String? = null,
+    val lockerId: String? = null,
+    val compartmentId: String? = null
+    //var updates : Map<States, Date>
 )

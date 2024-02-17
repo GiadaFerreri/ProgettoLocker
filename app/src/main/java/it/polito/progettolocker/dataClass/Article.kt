@@ -1,17 +1,13 @@
 package it.polito.progettolocker.dataClass
 
-import android.media.Image
-import android.net.Uri
-import com.google.firebase.Firebase
 import com.google.firebase.database.IgnoreExtraProperties
-import com.google.firebase.database.database
 
 @IgnoreExtraProperties
 data class Article(
-    var idArticle: Number? = null,
+    var idArticle: String? = null,
     var image: String? = null,
     var name: String? = null,
-    var price: Number? = null,
-    var quantity: Number? = null,
+    var price: Double? = null,
+    var quantity: Long? = null,
     var type: String? = null
 )
