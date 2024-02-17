@@ -37,9 +37,12 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
     private val deliverymenReference = databaseReference.child("Delivery Men")
     private val catalogueReference = databaseReference.child("Articles")
     private val shippingReference = databaseReference.child("Shippings")
+    private val cartReference = databaseReference.child("Cart")
 
     val articleState: MutableState<DataState> = mutableStateOf(DataState.Empty)
     val lockerState: MutableState<DataState> = mutableStateOf(DataState.Empty)
+    val cartState: MutableState<DataState> = mutableStateOf(DataState.Empty)
+    val shippingState: MutableState<DataState> = mutableStateOf(DataState.Empty)
 
     val db = Firebase.database.reference
 
@@ -102,12 +105,12 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
     var shippings : LiveData<List<Shipping>> = _shippings
 
     private val _catalogue = MutableLiveData(listOf(
-        Article(0,"","Gonna pantalone a pieghe",29.95,5, "small"),
-        Article(1,"","Camicia Oxford a righe oversize",32.95,5, "small"),
-        Article(2,"","Jeans Z1975 dritti a vita bassa",39.95,5, "small"),
-        Article(3, "","Pullover struttura punto intrecciato",49.95,5,"small"),
-        Article(4,"","Parka lungo",79.95,5, "big"),
-        Article(5,"","Stivali in vernice con il tacco",79.95,5, "small")
+        Article(0,"https://firebasestorage.googleapis.com/v0/b/locker-53147.appspot.com/o/Gonna%20pantalone%20a%20pieghe.png?alt=media&token=51da885a-7342-44b1-a59f-4e5fc89feb11","Gonna pantalone a pieghe",29.95,5, "small"),
+        Article(1,"https://firebasestorage.googleapis.com/v0/b/locker-53147.appspot.com/o/Camicia%20Oxford%20a%20righe%20oversize.png?alt=media&token=c3fee7f1-271b-4508-bff3-ec192ef45a04","Camicia Oxford a righe oversize",32.95,5, "small"),
+        Article(2,"https://firebasestorage.googleapis.com/v0/b/locker-53147.appspot.com/o/Jeans%20Z1975%20dritti%20a%20vita%20bassa.png?alt=media&token=f8a174ef-4f83-41e3-a7da-b691dc1aa847","Jeans Z1975 dritti a vita bassa",39.95,5, "small"),
+        Article(3, "https://firebasestorage.googleapis.com/v0/b/locker-53147.appspot.com/o/Pullover%20struttura%20punto%20intrecciato.png?alt=media&token=bca04635-6072-4749-8413-a86926d192c5","Pullover struttura punto intrecciato",49.95,5,"small"),
+        Article(4,"https://firebasestorage.googleapis.com/v0/b/locker-53147.appspot.com/o/Parka%20lungo.png?alt=media&token=4887a947-71af-468b-bda2-0f2f5f0c6f91","Parka lungo",79.95,5, "big"),
+        Article(5,"https://firebasestorage.googleapis.com/v0/b/locker-53147.appspot.com/o/Stivali%20in%20vernice%20con%20il%20tacco.png?alt=media&token=ba56322f-1e92-4c44-a6b7-d4160c6f44db","Stivali in vernice con il tacco",79.95,5, "small")
     ))
     var catalogue : LiveData<List<Article>> = _catalogue
 

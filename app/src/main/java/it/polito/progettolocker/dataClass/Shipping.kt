@@ -6,10 +6,10 @@ enum class States {
     PENDING, HANDLED, DELIVERED, CONCLUDED
 }
 data class Shipping(
-    val shippingId: String,
-    val userId: String,
-    val deliverymanId : String,
+    val shippingId: String? = null,
+    val userId: String?= null,
+    val deliverymanId : String?= null,
     var state : States,
-    val articles : Map<Article, Int>,
+    val articles: List<Article>? = null,
     var updates : Map<States, Date>
 )

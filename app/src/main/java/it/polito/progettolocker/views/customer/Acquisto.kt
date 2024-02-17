@@ -1,7 +1,11 @@
 package it.polito.progettolocker.views.customer
 
+import android.content.ContentValues
+import android.util.Log
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -10,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
@@ -24,12 +29,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.getValue
 import it.polito.progettolocker.MainActivity
+import it.polito.progettolocker.R
+import it.polito.progettolocker.dataClass.Article
+import it.polito.progettolocker.dataClass.DataState
 import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.graphic.CardPhotoSwipe
 import it.polito.progettolocker.graphic.FooterTotal
@@ -44,9 +57,38 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
     var showFooter by remember { mutableStateOf(true) }
     var openDialog by remember { mutableStateOf(false) }
 
+    val cartList = mutableListOf<Article>()
+    val cartState = mainActivity.viewModel.cartState
+    val userId = "carrelloprova"
+    mainActivity.viewModel.db.child("Cart").child(userId).child("articles")
+        .addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                cartList.clear()
+                val tempList = snapshot.getValue<ArrayList<Map<String,Any>>>() as ArrayList<Map<String,Any>>
+
+                tempList.forEach {
+                    cartList.add(Article(idArticle = it["idArticle"] as Number, image = it["image"] as String, quantity = it["quantity"] as Number, price = it["price"] as Number, name = it["name"] as String, type = it["type"] as String))
+                }
+                cartState.value = DataState.Success(cartList)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+            }
+        })
+
     Column (){
         Row(){
             HeaderX(text = "ACQUISTO", navController = navController, onClickDestination = "Carrello")
+        }
+        Row(){
+            Image(
+                painter = painterResource(id = R.drawable.zara_product1),
+                contentDescription = "ImmagineProdotto",
+                modifier = Modifier
+                    .border(0.5.dp, Color.Black)
+            )
         }
         Row (modifier = Modifier.padding(16.dp)){
             Text(text = "3 ARTICOLI",fontSize = 12.sp)

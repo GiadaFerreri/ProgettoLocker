@@ -42,7 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import coil.compose.AsyncImage
+//import coil.compose.AsyncImage
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -83,6 +83,7 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
 
     var cartList = mutableListOf<Cart>()
     var cart = mutableListOf<Article>()
+    val cartState = mainActivity.viewModel.cartState
 
     fun updateCart(){
         mainActivity.viewModel.db.child("Cart").child(userId).child("articles")
@@ -94,6 +95,7 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
                     tempList.forEach {
                         cart.add(Article(idArticle = it["idArticle"] as Number, quantity = it["quantity"] as Number, price = it["price"] as Number, name = it["name"] as String, type = it["type"] as String))
                     }
+                    cartState.value = DataState.Success(cartList)
                     /*val updatedCart = cartList.filter { it.userId == userId }[0].articles as List<Article>
                     cart.clear()
                     updatedCart.forEach{
