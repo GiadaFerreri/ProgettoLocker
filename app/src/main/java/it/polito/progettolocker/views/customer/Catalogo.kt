@@ -40,29 +40,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import coil.compose.AsyncImage
-import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.database
 import com.google.firebase.database.getValue
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.R
 import it.polito.progettolocker.dataClass.Article
 import it.polito.progettolocker.dataClass.Cart
 import it.polito.progettolocker.dataClass.DataState
-import it.polito.progettolocker.dataClass.Locker
-import it.polito.progettolocker.graphic.Buttons
-import it.polito.progettolocker.graphic.CardOrderPhoto
 import it.polito.progettolocker.graphic.CardWarning
 import it.polito.progettolocker.graphic.FooterHome
 import it.polito.progettolocker.graphic.FooterWarning
-import it.polito.progettolocker.graphic.HeaderDouble
 import kotlinx.coroutines.delay
-import kotlin.random.Random
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -250,8 +241,8 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
                                                             onClick = {
                                                                 addToCart(article,1)
                                                                 val id = article.idArticle!!
-                                                                /*var trovato = false
                                                                 openDialog=true
+                                                                /*var trovato = false
                                                                 if(cart.filter { it.idArticle == article.idArticle }.size == 1){
                                                                     var newArticle = cart.filter{it.idArticle == article.idArticle}[0]
                                                                     cart.filter { it.idArticle != article.idArticle }
