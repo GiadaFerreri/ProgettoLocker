@@ -42,7 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-//import coil.compose.AsyncImage
+import coil.compose.AsyncImage
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -108,6 +108,35 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
                     Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
                 }
             })
+    }
+
+    fun addToCart(prodotto: Article, quantita: Int) {
+        // Ottieni il carrello dell'utente dal database
+        val carrelloRef = mainActivity.viewModel.db.child("Cart/${userId}")
+
+        // Controlla se il prodotto è già presente nel carrello
+        val prodottoNelCarrelloRef = carrelloRef.child("articles/${prodotto.idArticle}")
+        prodottoNelCarrelloRef.get().addOnSuccessListener {
+            if (it.exists()) {
+                // Il prodotto è già presente nel carrello, aggiorna la quantità
+                val quantitaAttuale = it.child("quantity")
+                val quantitaAttualeValue = quantitaAttuale.value
+                val nuovaQuantita = (quantitaAttualeValue as Long).toInt() + quantita
+
+                // Aggiorna la quantità del prodotto nel carrello
+                prodottoNelCarrelloRef.ref.child("quantity").setValue(nuovaQuantita)
+
+                // Mostra un messaggio di conferma all'utente
+                //Toast.makeText(this, "Prodotto aggiunto al carrello! Quantità aggiornata.", Toast.LENGTH_SHORT).show()
+            } else {
+                // Il prodotto non è presente nel carrello, aggiungilo
+                val nuovoProdotto = Article(prodotto.idArticle, prodotto.name, prodotto.image, prodotto.price, quantita, prodotto.type)
+                carrelloRef.child("articles/${prodotto.idArticle}").setValue(nuovoProdotto)
+
+                // Mostra un messaggio di conferma all'utente
+                //Toast.makeText(this, "Prodotto aggiunto al carrello!", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     Scaffold(
@@ -219,8 +248,9 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
                                                         Button( colors = ButtonDefaults.buttonColors(Color.Transparent),
                                                             enabled = !(article.quantity == 0),
                                                             onClick = {
+                                                                addToCart(article,1)
                                                                 val id = article.idArticle!!
-                                                                var trovato = false
+                                                                /*var trovato = false
                                                                 openDialog=true
                                                                 if(cart.filter { it.idArticle == article.idArticle }.size == 1){
                                                                     var newArticle = cart.filter{it.idArticle == article.idArticle}[0]
@@ -241,7 +271,7 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
                                                                         .child("Cart")
                                                                         .child(userId)
                                                                         .setValue(newCart)
-                                                                }
+                                                                }*/
                                                                 /*if(cart!!.any { it.idArticle == id }){
                                                                     var newArticle = cart.filter { it.idArticle!! == id }[0]
                                                                     newArticle.quantity!!.toInt().plus(1)
@@ -258,8 +288,8 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
                                                                         .child("Cart")
                                                                         .child(userId)
                                                                         .setValue(newCart)
-                                                                }*/
-                                                                updateCart()
+                                                                }
+                                                                updateCart()*/
                                                                 mainActivity.viewModel.db
                                                                     .child("Article")
                                                                     .child(id.toString())
