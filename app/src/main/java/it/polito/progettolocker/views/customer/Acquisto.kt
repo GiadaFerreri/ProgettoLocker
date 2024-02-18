@@ -27,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -195,32 +194,24 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
                         text = "TOTALE",
                         color = Color.Black,
                         modifier = Modifier.padding(start = 5.dp),
-                        style = TextStyle(
-                            fontSize = 15.sp,
-                            fontWeight = FontWeight.Bold
-                        )
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold
                     )
                 }
                 Column(horizontalAlignment = Alignment.End) {
                     Text(
                         text = "$price EUR",
                         modifier = Modifier.padding(end = 5.dp),
-                        style = TextStyle(
-                            fontSize = 15.sp
-                        )
+                        fontSize = 15.sp
                     )
                     Text(
                         text = "SPEDIZIONE INCLUSA",
                         modifier = Modifier.padding(end = 5.dp),
-                        style = TextStyle(
-                            fontSize = 10.sp
-                        )
+                        fontSize = 10.sp
                     )
                 }
 
             }
-
-
 
             Row(
                 modifier = Modifier
@@ -245,9 +236,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
                     Text(
                         text = "ACQUISTA",
                         color = Color.White,
-                        style = TextStyle(
-                            fontSize = 15.sp,
-                        )
+                        fontSize = 15.sp
                     )
                 }
 

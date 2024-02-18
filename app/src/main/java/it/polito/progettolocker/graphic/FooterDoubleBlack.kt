@@ -21,12 +21,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import it.polito.progettolocker.dataClass.Article
 
 
 @Composable
 
-fun FooterDoubleBlack(cart: List<Article>, price: Int, navController: NavController){
+fun FooterDoubleBlack(price: Double, navController: NavController){
+
     Column(verticalArrangement = Arrangement.Bottom) {
         Row{
             Divider(color = Color.Black, thickness = 0.8.dp)
@@ -36,12 +36,19 @@ fun FooterDoubleBlack(cart: List<Article>, price: Int, navController: NavControl
             .height(60.dp)
 
             ) {
-   Row(modifier = Modifier.fillMaxWidth().padding(0.dp).width(174.dp),horizontalArrangement=Arrangement.SpaceEvenly , verticalAlignment = Alignment.CenterVertically){
+   Row(modifier = Modifier
+       .fillMaxWidth()
+       .padding(0.dp)
+       .width(174.dp),horizontalArrangement=Arrangement.SpaceEvenly , verticalAlignment = Alignment.CenterVertically){
 
-       Column(modifier = Modifier.fillMaxHeight().width(210.dp).background(Color.Black), horizontalAlignment = Alignment.CenterHorizontally) {
+       Column(modifier = Modifier
+           .fillMaxHeight()
+           .width(210.dp)
+           .background(Color.Black), horizontalAlignment = Alignment.CenterHorizontally) {
            Button( shape= RectangleShape, modifier = Modifier
                .padding(0.dp)
-               .height(60.dp).width(210.dp), /*onClick = {navController.navigate("AcquistoLockerOccupied") }*/onClick = {navController.navigate("AcquistoLocker") }, contentPadding = PaddingValues(0.dp)) {
+               .height(60.dp)
+               .width(210.dp), /*onClick = {navController.navigate("AcquistoLockerOccupied") }*/onClick = {navController.navigate("AcquistoLocker") }, contentPadding = PaddingValues(0.dp)) {
 
 
                Text(
@@ -54,10 +61,13 @@ fun FooterDoubleBlack(cart: List<Article>, price: Int, navController: NavControl
            }
        }
 
-Column(modifier = Modifier.background(Color.White).fillMaxHeight().width(210.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+Column(modifier = Modifier
+    .background(Color.White)
+    .fillMaxHeight()
+    .width(210.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
 
     Text(
-        text = "TOTALE    $price EUR",
+        text = "TOTALE    ${price.toFloat()} EUR",
         modifier = Modifier.padding(end=5.dp),
         fontSize = 15.sp,
         fontWeight = FontWeight.Bold,

@@ -1,5 +1,7 @@
 package it.polito.progettolocker.graphic
 
+import android.content.ContentValues
+import android.util.Log
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -31,7 +33,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,7 +47,12 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.R
+import it.polito.progettolocker.dataClass.Article
 import kotlin.math.roundToInt
 
 //Card pagina Carrello
@@ -72,7 +78,7 @@ fun DraggableItem(
             .background(
                 color = Color.White,
 
-            )
+                )
     ) {
 
         endAction?.let {
@@ -101,14 +107,34 @@ fun DraggableItem(
 }
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun CardProductCard(navController: NavController, textProduct: String, price: Float, quantity: Int) {
+fun CardProductCard(mainActivity: MainActivity, navController: NavController, article: Article, quantity: Int) {
+    val userId = mainActivity.userId
     val density = LocalDensity.current
     val defaultActionSize = 80.dp
     val endActionSizePx = with(density) { (defaultActionSize ).toPx() }
     val startActionSizePx = with(density) { (defaultActionSize*2).toPx() }
-    val (quantityRequired, setquanityRequired) = remember {
-        mutableIntStateOf(1)
+    //val (quantityRequired, setquanityRequired) = remember { mutableIntStateOf(1) }
+    var catalogueQuantity = 0L
+
+    val catalogueRef = mainActivity.viewModel.db.child("Article/${article.idArticle}")
+
+    catalogueRef.child("quantity").get().addOnSuccessListener {
+        catalogueQuantity = it.value as Long
     }
+
+    catalogueRef.child("quantity").addValueEventListener(object: ValueEventListener {
+
+        override fun onDataChange(snapshot: DataSnapshot) {
+
+            for(snapshot in snapshot.children){
+                catalogueQuantity = snapshot.getValue(Long::class.java)!!
+            }
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
+        }
+    })
 
     var state = remember {
         AnchoredDraggableState(
@@ -124,6 +150,48 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
         )
     }
 
+    fun updateCart(article: Article, delete: Boolean, increase: Boolean) {
+        val cartRef = mainActivity.viewModel.db.child("Cart/${userId}")
+        val articleRef = cartRef.child("articles/${article.idArticle}")
+        var oldQuantity = article.quantity!!
+        var newQuantity = oldQuantity
+        var newCatalogQuantity = catalogueQuantity
+
+        catalogueRef.child("quantity").get().addOnSuccessListener {
+            catalogueQuantity = it.value as Long
+        }
+
+        if(delete) {
+            newQuantity = 0
+            newCatalogQuantity = catalogueQuantity + oldQuantity
+        } else {
+            if(increase){
+                if(catalogueQuantity > 0){
+                    newQuantity = article.quantity!! + 1L
+                    newCatalogQuantity = catalogueQuantity - 1L
+                }
+            } else {
+                if(oldQuantity > 0){
+                    newQuantity = article.quantity!! - 1L
+                    newCatalogQuantity = catalogueQuantity + 1L
+                }
+            }
+        }
+
+        articleRef.get().addOnSuccessListener {
+
+            if(newQuantity == 0L){
+                articleRef.removeValue()
+                catalogueRef.ref.child("quantity").setValue(newCatalogQuantity)
+            } else
+            {
+                articleRef.ref.child("quantity").setValue(newQuantity)
+                catalogueRef.ref.child("quantity").setValue(newCatalogQuantity)
+            }
+
+        }
+    }
+
     Column(verticalArrangement = Arrangement.Top) {
         Row(
             modifier = Modifier
@@ -134,11 +202,12 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
         ) {
             DraggableItem(state = state, content = {
 
-                    TextButton(shape= RectangleShape
-                        ,onClick = {
-                           /*TODO: eliminare articolo da carrello*/
-
-                    },
+                    TextButton(
+                        shape= RectangleShape,
+                        onClick = {
+                            /*TODO: eliminare articolo da carrello*/
+                            updateCart(article = article, delete = true, increase = false)
+                                  },
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.Black
                         ),
@@ -150,7 +219,7 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                             .offset {
                                 IntOffset(
                                     ((-state
-                                        .requireOffset() + 5.8*endActionSizePx))
+                                        .requireOffset() + 5.8 * endActionSizePx))
                                         .roundToInt(), 0
                                 )
                             }
@@ -187,14 +256,19 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                         ) {
                             Button(
                                 colors = ButtonDefaults.buttonColors(Color.Transparent),
-                                onClick = { /*TODO: eliminare articolo dal carrello*/ },
+                                onClick = {
+                                    /*TODO: eliminare articolo dal carrello*/
+                                    updateCart(article = article, delete = true, increase = false)
+                                          },
                                 modifier = Modifier.padding(0.dp)
                             ) {
                                 Icon(
                                     Icons.Outlined.Close,
                                     contentDescription = "Chiudi",
                                     tint = Color.Black,
-                                    modifier = Modifier.padding(0.dp).size(20.dp)
+                                    modifier = Modifier
+                                        .padding(0.dp)
+                                        .size(20.dp)
                                 )
                             }
 
@@ -211,7 +285,7 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
 
                             Row() {
                                 Text(
-                                    text = textProduct,
+                                    text = article.name!!,
                                     fontSize = 15.sp
 //                        style = TextStyle(
 //                            fontSize = 15.sp,
@@ -226,7 +300,7 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
 
                                 Text(
                                     //TODO("Somma prezzi prodotti")
-                                    text = price.toString() + " EUR\n", //price
+                                    text = "${article.price} EUR\n", //price
                                     fontSize = 15.sp
 //                        style = TextStyle(
 //                            fontSize = 15.sp,
@@ -250,8 +324,8 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                                     onClick = {
                                         //TODO("Diminuire quantità")
                                         //TODO("Se quantità = 0 -> Elimina prodotto")
-                                        if (quantityRequired > 0) {setquanityRequired(quantityRequired-1) }
-                                              },
+                                        updateCart(article = article, delete = false, increase = false)
+                                    },
                                     shape = RectangleShape,
                                     colors = ButtonDefaults.buttonColors(Color.Transparent),
                                     modifier = Modifier.weight(1.5f)
@@ -281,14 +355,12 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                                     modifier = Modifier.weight(1.5f)
                                 ) {
                                     Text(
-                                        text = quantityRequired.toString(),
-                                        modifier=Modifier.padding(0.dp),
-                                        style = TextStyle(
-                                            fontSize = 13.sp,
-                                            fontWeight = FontWeight(400),
-                                            color = Color(0xFF000000),
-                                            textAlign = TextAlign.Center
-                                        )
+                                        text = article.quantity.toString(),
+                                        modifier= Modifier.padding(0.dp),
+                                        fontSize = 13.sp,
+                                        fontWeight = FontWeight(400),
+                                        color = Color(0xFF000000),
+                                        textAlign = TextAlign.Center
                                     )
                                 }
                                 Divider(
@@ -300,8 +372,8 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                                 Button(
                                     onClick = {
                                         //TODO("Incrementare quantità")
-                                        if ((quantityRequired<=quantity) /*se la quantità richiesta è minore o uguale a quella disponibile */) {setquanityRequired(quantityRequired+1)}
-                                              },
+                                        updateCart(article = article, delete = false, increase = true)
+                                    },
                                     shape = RectangleShape,
                                     colors = ButtonDefaults.buttonColors(Color.Transparent),
                                     modifier = Modifier.weight(1.5f)
