@@ -76,6 +76,6 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.31.1-alpha")
     implementation("androidx.compose.foundation:foundation:1.6.0-alpha04")
-    implementation("io.coil-kt:coil-compose:2.5.0")
+    implementation("io.coil-kt:coil-compose:2.0.0")
     implementation("com.google.firebase:firebase-storage-ktx")
 }

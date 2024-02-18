@@ -21,8 +21,7 @@ import org.checkerframework.framework.qual.DefaultQualifier
 
 @Composable
 
-fun CardPhotoSwipe( navController: NavController){
-
+fun CardPhotoSwipe( navController: NavController, image: String){
 
 
 }

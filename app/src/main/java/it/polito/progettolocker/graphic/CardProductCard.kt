@@ -46,6 +46,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import it.polito.progettolocker.R
 import kotlin.math.roundToInt
 
@@ -101,7 +102,7 @@ fun DraggableItem(
 }
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun CardProductCard(navController: NavController, textProduct: String, price: Float, quantity: Int) {
+fun CardProductCard(navController: NavController, textProduct: String, price: Float, quantity: Int, image:String) {
     val density = LocalDensity.current
     val defaultActionSize = 80.dp
     val endActionSizePx = with(density) { (defaultActionSize ).toPx() }
@@ -163,9 +164,9 @@ fun CardProductCard(navController: NavController, textProduct: String, price: Fl
                     }
 
                     Column() {
-                        Image(
-                            painter = painterResource(id = R.drawable.zara_product1),
-                            contentDescription = "ImmagineProdotto",
+                        AsyncImage(
+                            model = image,
+                            contentDescription = "Immagine prodotto",
                             modifier = Modifier
                                 .border(0.5.dp, Color.Black)
                         )

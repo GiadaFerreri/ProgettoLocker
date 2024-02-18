@@ -97,7 +97,8 @@ fun Carrello(mainActivity: MainActivity, navController: NavController){
                                                     navController = navController,
                                                     textProduct = article.name!!,
                                                     price = article.price!!.toFloat(),
-                                                    quantity = article.quantity!!.toInt()
+                                                    quantity = article.quantity!!.toInt(),
+                                                    image=article.image!!.toString()
                                                 )
                                                 Divider(color = Color.LightGray, thickness = 1.dp)
 

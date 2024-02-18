@@ -6,15 +6,25 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -29,19 +39,23 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.R
 import it.polito.progettolocker.dataClass.Article
+import it.polito.progettolocker.dataClass.DataState
 import it.polito.progettolocker.dataClass.Shipping
 import it.polito.progettolocker.dataClass.States
 import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.graphic.CardPhotoSwipe
+import it.polito.progettolocker.graphic.CardWarning
 import it.polito.progettolocker.graphic.FooterWarning
 import it.polito.progettolocker.graphic.HeaderX
 import kotlinx.coroutines.delay
@@ -127,20 +141,68 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
         Row(){
             HeaderX(text = "ACQUISTO", navController = navController, onClickDestination = "Carrello")
         }
-        Row(){
-            Image(
-                painter = painterResource(id = R.drawable.zara_product1),
-                contentDescription = "ImmagineProdotto",
-                modifier = Modifier
-                    .border(0.5.dp, Color.Black)
-            )
+        Row {
+            when (val result = mainActivity.viewModel.cartState.value) {
+                is DataState.Loading -> {
+                    Box() {
+                        CircularProgressIndicator()
+                    }
+                }
+
+                is DataState.Success -> {
+                        LazyRow {
+                            items(result.data as List<Article>) { article ->
+                                if (article.quantity!!.toFloat() > 0) {
+                                    Column(verticalArrangement = Arrangement.Top) {
+                                        Column(modifier = Modifier.padding(top = 5.dp)) {
+                                            Row(
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .padding(2.dp)
+                                            ) {
+                                                AsyncImage(
+                                                    model = article.image!!,
+                                                    contentDescription = "Immagine prodotto",
+                                                    modifier = Modifier
+                                                        .border(0.5.dp, Color.Black)
+                                                )
+
+
+
+                                            }
+
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                is DataState.Failure -> {
+                    CardWarning(
+                        text = result.message,
+                        mainActivity = mainActivity,
+                        navController = navController
+                    )
+                }
+
+                else -> {
+                    CardWarning(
+                        text = "Error fetching data",
+                        mainActivity = mainActivity,
+                        navController = navController
+                    )
+                }
+
+            }
         }
+
         Row (modifier = Modifier.padding(16.dp)){
             Text(text = "3 ARTICOLI",fontSize = 12.sp)
         }
-        Row {
-            CardPhotoSwipe(navController = navController)
-        }
+
         Row (){
             Text(
                 text = "ZARA LCKR",

@@ -41,6 +41,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -122,7 +124,6 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
         mainActivity.viewModel.db.child("Article").child("parka").setValue(a4)
         mainActivity.viewModel.db.child("Article").child("stivali").setValue(a5)
     }
-
     //writeCatalog()
 
     /*fun updateCart(){
@@ -249,17 +250,14 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
                                                     .fillMaxWidth()
                                                     .padding(16.dp)
                                             ) {
-                                               Image(
-                                                    painter = painterResource(id = R.drawable.zara_product1),
-                                                    contentDescription = "ImmagineProdotto",
+
+                                                AsyncImage(
+                                                    model = article.image!!,
+                                                    contentDescription = "Immagine prodotto",
                                                     modifier = Modifier
                                                         .border(0.5.dp, Color.Black)
-                                                )/*
-                                                AsyncImage(
-                                                    model ="",
-                                                    contentDescription = "ImmagineProdotto",
-                                                    modifier = Modifier
-                                                        .border(0.5.dp, Color.Black))*/
+                                                )
+
                                                 Column(
                                                     verticalArrangement = Arrangement.Center,
                                                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -271,7 +269,7 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
                                                 {
                                                     Row() {
                                                         Text(
-                                                            text = article.name!! + article.quantity + "\n",
+                                                            text = article.name!!+ "\n",
                                                             fontSize = 15.sp,
                                                             textAlign = TextAlign.Center
                                                         )

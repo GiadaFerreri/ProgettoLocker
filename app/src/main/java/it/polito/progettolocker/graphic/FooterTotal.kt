@@ -29,7 +29,7 @@ import androidx.navigation.NavController
 import kotlinx.coroutines.delay
 
 @Composable
-fun FooterTotal(price: Int, navController: NavController) {
+fun FooterTotal(price: Double, navController: NavController) {
     //inutile
     var showFooter by remember { mutableStateOf(true) }
     var openDialog by remember { mutableStateOf(false) }
