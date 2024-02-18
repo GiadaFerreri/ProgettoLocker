@@ -14,6 +14,8 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -37,6 +39,8 @@ fun Carrello(mainActivity: MainActivity, navController: NavController){
     val cartState = mainActivity.viewModel.cartState
     val userId = mainActivity.userId
 
+    var price = remember { mutableDoubleStateOf(cartList.sumOf { it.price!! * it.quantity!! }) }
+
     //TODO("Controllare che il carrello esista altrimenti crearlo")
 
     mainActivity.viewModel.db.child("Cart").child(userId).child("articles")
@@ -49,6 +53,7 @@ fun Carrello(mainActivity: MainActivity, navController: NavController){
                     cartList.add(article!!)
                 }
                 cartState.value = DataState.Success(cartList)
+                price.value = cartList.sumOf { it.price!! * it.quantity!! }
             }
 
             /*override fun onDataChange2(snapshot: DataSnapshot) {
@@ -74,7 +79,7 @@ fun Carrello(mainActivity: MainActivity, navController: NavController){
             HeaderX(text = "CARRELLO", navController = navController, onClickDestination = "Customer")
         },
         bottomBar = {
-            FooterDoubleBlack(cart = cartList, price = 89, navController = navController)
+            FooterDoubleBlack(price = price.value, navController = navController)
         },
     ) { innerPadding ->
         Column (
@@ -94,11 +99,13 @@ fun Carrello(mainActivity: MainActivity, navController: NavController){
                                     LazyColumn{
                                         items(result.data as List<Article>) { article ->
                                                 CardProductCard(
+                                                    mainActivity=mainActivity,
                                                     navController = navController,
+                                                    article=article,
                                                     textProduct = article.name!!,
                                                     price = article.price!!.toFloat(),
                                                     quantity = article.quantity!!.toInt(),
-                                                    image=article.image!!.toString()
+                                                    image=article.image!!.toString(),
                                                 )
                                                 Divider(color = Color.LightGray, thickness = 1.dp)
 
@@ -108,13 +115,7 @@ fun Carrello(mainActivity: MainActivity, navController: NavController){
 
 
                                     }
-                                }
-
-
-
-
-
-
+                    }
 
                 is DataState.Failure -> {
                     CardWarning(
