@@ -78,6 +78,7 @@ class MainActivity : ComponentActivity() {
     }
 
     val userId = "GiovanniMalnati" //FirebaseAuth.getInstance().currentUser?.uid
+    var shippingId=""
 
     private lateinit var auth: FirebaseAuth
     private lateinit var eventListener: ValueEventListener

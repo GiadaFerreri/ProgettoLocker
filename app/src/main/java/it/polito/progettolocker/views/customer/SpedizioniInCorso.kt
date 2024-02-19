@@ -85,7 +85,6 @@ fun SpedizioniInCorso(mainActivity: MainActivity, navController: NavController) 
                 Row {
                     LazyColumn {
                         items(result.data as List<Shipping>) { shipping ->
-
                             Row{
                                 if(shipping.state==States.PENDING){
                                     CardOrder(
