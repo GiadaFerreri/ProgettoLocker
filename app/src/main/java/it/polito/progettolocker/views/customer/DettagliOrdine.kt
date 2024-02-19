@@ -129,7 +129,7 @@ Row{
         }
     }
     BackHandler (enabled = true){
-        navController.navigate("SpedizioniInCorso")
+        navController.navigate("Spedizioni")
     }
 
 }
