@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
+import it.polito.progettolocker.dataClass.States
 import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.graphic.CardsJustText
 import it.polito.progettolocker.graphic.HeaderX
@@ -28,6 +29,8 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
     val (firstTry, setFirstTryDone) = remember {
         mutableStateOf(true)
     }
+
+    val selectedShipping = mainActivity.viewModel.selectedShipping.value
 
     val ctx = LocalContext.current
 
@@ -53,7 +56,16 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
-            Buttons(text = "TORNA ALLA HOME", onClickHandler = {navController.navigate("Customer")})
+            Buttons(
+                text = "TORNA ALLA HOME",
+                onClickHandler = {
+                    //Imposta la spedizione a CONCLUDED
+                    mainActivity.viewModel.db.child("Shipping/${selectedShipping.shippingId}/state").setValue(States.CONCLUDED)
+                    //Chiude il vano
+                    mainActivity.viewModel.db.child("Locker/${selectedShipping.lockerId}/compartments/${selectedShipping.compartmentId}/chiuso").setValue(true)
+                    navController.navigate("Customer")
+                }
+            )
         }
         Row ( modifier = Modifier
             .fillMaxWidth()
@@ -78,6 +90,9 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
                     text = "RIAPRI IL CASSETTO",
                     onClickHandler = {
                         //navController.navigate("Locker")
+                        //Apre il vano
+                        mainActivity.viewModel.db.child("Locker/${selectedShipping.lockerId}/compartments/${selectedShipping.compartmentId}/chiuso").setValue(false)
+
                         setFirstTryDone(!firstTry)
                     }
                 )

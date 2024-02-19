@@ -122,8 +122,9 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
                 onClick = {
                     if(codice == correctCode){
 
-                        //TODO("Fare tutti i controlli sul vano")
-                        //TODO("Apri il vano")
+                        //Apre il vano
+                        mainActivity.viewModel.db.child("Locker/${selectedShipping.lockerId}/compartments/${selectedShipping.compartmentId}/chiuso").setValue(false)
+
                         //TODO("Elimina il codice dallo schermo")
 
                         navController.navigate("LockerCorrectedCode")
