@@ -7,7 +7,7 @@ data class Shipping(
     val shippingId: String? = null,
     val userId: String?= null,
     val deliverymanId : String?= null,
-    var state : States,
+    var state : States?= null,
     val articles: List<Article>? = null,
     val depositId: String? = null,
     val pickupId: String? = null,

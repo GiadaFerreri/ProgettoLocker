@@ -3,6 +3,7 @@ package it.polito.progettolocker.graphic
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,11 +29,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import it.polito.progettolocker.R
 
 @Composable
 //Card storico consegne
-fun CardProduct(dataRitiro: String, descrizioneProdotto: String) {
+fun CardProduct(dataRitiro: String, descrizioneProdotto: String, image: String) {
     OutlinedCard(
         colors = CardDefaults.cardColors(
             Color(0xFFF8F6F6)
@@ -71,12 +73,13 @@ fun CardProduct(dataRitiro: String, descrizioneProdotto: String) {
                     //.background(Color.Cyan)
                     .fillMaxWidth()
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.zara_product1),
-                    contentDescription = "ImmagineProdotto",
-                    Modifier
-                    .size(100.dp)
-                    .align(Alignment.CenterVertically)
+
+                AsyncImage(
+                    model = image,
+                    contentDescription = "Immagine prodotto",
+                    modifier = Modifier
+                        .size(200.dp)
+                        .align(Alignment.CenterVertically)
                 )
                 Column (modifier = Modifier
                     .width(300.dp)
@@ -89,7 +92,7 @@ fun CardProduct(dataRitiro: String, descrizioneProdotto: String) {
                         Text(
                             text = descrizioneProdotto, //textproduct
                             fontWeight = FontWeight.Normal,
-                            fontSize = 12.sp,
+                            fontSize = 15.sp,
                             /*style = TextStyle(
                                 fontSize = 15.sp,
                                 fontWeight = FontWeight.Normal,
