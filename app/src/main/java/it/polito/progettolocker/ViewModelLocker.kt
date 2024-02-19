@@ -45,6 +45,8 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
 
     val vanoDaUsare = mutableIntStateOf(0)
 
+    val selectedShipping = mutableStateOf(Shipping())
+
     private val _articles = MutableLiveData<List<Article>>(emptyList())
     var articles : LiveData<List<Article>> = _articles
 

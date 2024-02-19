@@ -3,7 +3,6 @@ package it.polito.progettolocker.views.customer
 import android.content.ContentValues
 import android.util.Log
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,18 +12,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -38,9 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -49,13 +40,11 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import it.polito.progettolocker.MainActivity
-import it.polito.progettolocker.R
 import it.polito.progettolocker.dataClass.Article
 import it.polito.progettolocker.dataClass.DataState
 import it.polito.progettolocker.dataClass.Shipping
 import it.polito.progettolocker.dataClass.States
 import it.polito.progettolocker.graphic.Buttons
-import it.polito.progettolocker.graphic.CardPhotoSwipe
 import it.polito.progettolocker.graphic.CardWarning
 import it.polito.progettolocker.graphic.FooterWarning
 import it.polito.progettolocker.graphic.HeaderX
@@ -72,7 +61,6 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
     val cartState = mainActivity.viewModel.cartState
     val userId = mainActivity.userId
     val db = mainActivity.viewModel.db
-
 
     var quantityTot = remember { mutableIntStateOf(cartList.sumOf {it.quantity!!.toInt() }) }
     var price = remember { mutableDoubleStateOf(cartList.sumOf { it.price!! * it.quantity!! }) }

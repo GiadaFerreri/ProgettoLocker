@@ -47,9 +47,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-
 import coil.compose.AsyncImage
-
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -68,7 +66,7 @@ enum class DragAnchors {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DraggableItem(
-    state: androidx.compose.foundation.gestures.AnchoredDraggableState<DragAnchors>,
+    state: AnchoredDraggableState<DragAnchors>,
     content: @Composable BoxScope.() -> Unit,
     startAction: @Composable (BoxScope.() -> Unit)? = {},
     endAction: @Composable (BoxScope.() -> Unit)? = {}

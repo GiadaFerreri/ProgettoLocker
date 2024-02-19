@@ -1,20 +1,13 @@
 package it.polito.progettolocker.views.customer
 
-import android.content.ContentValues
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -26,17 +19,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import it.polito.progettolocker.MainActivity
-import it.polito.progettolocker.dataClass.Article
-import it.polito.progettolocker.dataClass.DataState
 import it.polito.progettolocker.graphic.Buttons
-import it.polito.progettolocker.graphic.CardProductCard
 import it.polito.progettolocker.graphic.CardWarning
-import it.polito.progettolocker.graphic.CardsJustText
-import it.polito.progettolocker.graphic.FooterDoubleBlack
 import it.polito.progettolocker.graphic.HeaderX
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -44,6 +29,8 @@ import it.polito.progettolocker.graphic.HeaderX
 //Prima pagina locker
 fun LockerConfirmCustomer(mainActivity: MainActivity, navController: NavController) {
     val scrollState = rememberScrollState()
+
+    var selectedShipping = mainActivity.viewModel.selectedShipping.value
 
     Scaffold(
         containerColor = Color.White,
@@ -99,7 +86,11 @@ fun LockerConfirmCustomer(mainActivity: MainActivity, navController: NavControll
                 Row(modifier = Modifier.padding(top = 50.dp)) {
                     Buttons(
                         text = "CONFERMA",
-                        onClickHandler = { navController.navigate("LockerCode") })
+                        onClickHandler = {
+                            //TODO("Mostra il codice sullo schermo: selectedShipping.pickupId")
+                            navController.navigate("LockerCode")
+                        }
+                    )
                 }
                 Row(modifier = Modifier.padding(top = 80.dp)) {
                     CardWarning(
