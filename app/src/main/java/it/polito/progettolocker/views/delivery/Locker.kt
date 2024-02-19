@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,12 +15,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import it.polito.progettolocker.graphic.Buttons
-import it.polito.progettolocker.graphic.CardsJustText
-import it.polito.progettolocker.graphic.HeaderX
 import it.polito.progettolocker.MainActivity
+import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.graphic.CardWarning
-import it.polito.progettolocker.graphic.FooterWarning
+import it.polito.progettolocker.graphic.HeaderX
 
 @Composable
 //Prima pagina del locker
@@ -43,7 +40,14 @@ fun Locker(mainActivity: MainActivity, navController: NavController) {
                 Text(text="VIA NIZZA 294, 10126 TORINO",fontSize = 15.sp,color = Color(0xFF000000) )
             }
             Row(modifier=Modifier.padding(top=50.dp)) {
-                Buttons(text = "CONFERMA", onClickHandler = {navController.navigate("LockerConfirm")})
+                Buttons(
+                    text = "CONFERMA",
+                    onClickHandler = {
+                        val shipping = mainActivity.viewModel.selectedShipping.value
+                        //Apre il cassetto
+                        mainActivity.viewModel.db.child("Locker/${shipping.lockerId}/compartments/${shipping.compartmentId}/chiuso").setValue(false)
+                        navController.navigate("LockerConfirm")
+                    })
             }
            Row(modifier=Modifier.padding(top=200.dp)) {
                 CardWarning(text = "La conferma comporta l'apertura dello sportello del Locker.", mainActivity = mainActivity, navController =navController )

@@ -15,13 +15,13 @@ import androidx.navigation.NavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import it.polito.progettolocker.graphic.HeaderDouble
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.dataClass.DataState
 import it.polito.progettolocker.dataClass.Shipping
 import it.polito.progettolocker.dataClass.States
 import it.polito.progettolocker.graphic.CardOrder
 import it.polito.progettolocker.graphic.CardWarning
+import it.polito.progettolocker.graphic.HeaderDouble
 
 @Composable
 fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
@@ -73,12 +73,14 @@ fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
                                 Row {
                                     if (shipping.state == States.PENDING) {
                                         CardOrder(
+                                            shipping = shipping,
                                             orderNumber = shipping.shippingId!!.toString(),
                                             description = "CONSEGNA AL LOCKER LINGOTTO",
                                             leftButtonText = "PRESA IN CARICO",
                                             mainActivity = mainActivity,
                                             navController = navController,
-                                            onClickDestination = "InCorso"
+                                            onClickDestination = "InCorso",
+                                            toHandle = true
                                         )
                                     }
 

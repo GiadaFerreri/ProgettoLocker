@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.dataClass.Shipping
+import it.polito.progettolocker.dataClass.States
 
 @Composable
 fun CardOrder(
@@ -42,6 +43,7 @@ fun CardOrder(
     navController: NavController,
     onClickDestination: String = "",
     onClickDestination2: String ="",
+    toHandle: Boolean = false
 ){
     OutlinedCard(
         colors = CardDefaults.cardColors(
@@ -79,10 +81,14 @@ fun CardOrder(
                     modifier = Modifier.padding(0.dp,0.dp,32.dp,0.dp)
                 ) {
                     if(leftButton){
-                        mainActivity.viewModel.selectedShipping.value = shipping
                         Button(
-                            onClick = {navController.navigate(onClickDestination)
-                            mainActivity.shippingId=orderNumber},
+                            onClick = {
+                                mainActivity.viewModel.selectedShipping.value = shipping
+                                if(toHandle)
+                                    mainActivity.viewModel.db.child("Shipping/${shipping.shippingId}/state").setValue(States.HANDLED)
+                                navController.navigate(onClickDestination)
+                                mainActivity.shippingId=orderNumber
+                                      },
                             shape= RectangleShape,
                             modifier = Modifier
                                 .shadow(elevation = 4.dp, spotColor = Color.Black, ambientColor = Color.Black)

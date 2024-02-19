@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
+import it.polito.progettolocker.dataClass.States
 import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.graphic.CardsJustText
 import it.polito.progettolocker.graphic.HeaderX
@@ -54,7 +55,16 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
-            Buttons(text = "CONFERMA", onClickHandler = {navController.navigate("DaEffettuare")})
+            Buttons(text = "CONFERMA",
+                onClickHandler = {
+                    val shipping = mainActivity.viewModel.selectedShipping.value
+                    //Imposta stato a DELIVERED
+                    mainActivity.viewModel.db.child("Shipping/${shipping.shippingId}/state").setValue(States.DELIVERED)
+                    //Chiude il cassetto
+                    mainActivity.viewModel.db.child("Locker/${shipping.lockerId}/compartments/${shipping.compartmentId}/chiuso").setValue(true)
+                    navController.navigate("DaEffettuare")
+                }
+            )
         }
         Row ( modifier = Modifier
             .fillMaxWidth()
@@ -79,6 +89,8 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
                     text = "RIAPRI IL CASSETTO",
                     onClickHandler = {
                         //navController.navigate("Locker")
+                        val shipping = mainActivity.viewModel.selectedShipping.value
+                        mainActivity.viewModel.db.child("Locker/${shipping.lockerId}/${shipping.compartmentId}/chiuso").setValue(false)
                         setFirstTryDone(!firstTry)
                     }
                 )
