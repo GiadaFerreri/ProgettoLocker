@@ -29,6 +29,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -61,7 +63,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 //seconda pagina acquisto
-fun Acquisto(mainActivity: MainActivity, navController: NavController, price: Int){
+fun Acquisto(mainActivity: MainActivity, navController: NavController){
     var openButton by remember { mutableStateOf(true) }
     var showFooter by remember { mutableStateOf(true) }
     var openDialog by remember { mutableStateOf(false) }
@@ -70,6 +72,10 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
     val cartState = mainActivity.viewModel.cartState
     val userId = mainActivity.userId
     val db = mainActivity.viewModel.db
+
+
+    var quantityTot = remember { mutableIntStateOf(cartList.sumOf {it.quantity!!.toInt() }) }
+    var price = remember { mutableDoubleStateOf(cartList.sumOf { it.price!! * it.quantity!! }) }
 
     mainActivity.viewModel.db.child("Cart").child(userId).child("articles")
         .addValueEventListener(object: ValueEventListener {
@@ -80,6 +86,8 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
                     val article = snapshot.getValue(Article::class.java)
                     cartList.add(article!!)
                 }
+                quantityTot.value = cartList.sumOf {it.quantity!!.toInt() }
+                price.value = cartList.sumOf { it.price!! * it.quantity!! }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -199,7 +207,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
         }
 
         Row (modifier = Modifier.padding(16.dp)){
-            Text(text = "3 ARTICOLI",fontSize = 12.sp)
+            Text(text = "${quantityTot.value} ARTICOLI",fontSize = 12.sp)
         }
 
         Row (){
@@ -221,7 +229,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
                 Column(
                     Modifier
                         .weight(1f)
-                        .padding(end = 10.dp)
+                        .padding(end = 20.dp)
                 ) {
                     Buttons("MODIFICA",
                         onClickHandler = { navController.navigate("AcquistoLocker",) })
@@ -262,7 +270,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController, price: In
                 }
                 Column(horizontalAlignment = Alignment.End) {
                     Text(
-                        text = "$price EUR",
+                        text = "${price.value.toFloat()} EUR",
                         modifier = Modifier.padding(end = 5.dp),
                         fontSize = 15.sp
                     )

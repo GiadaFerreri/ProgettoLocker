@@ -41,6 +41,7 @@ fun Carrello(mainActivity: MainActivity, navController: NavController){
 
     var price = remember { mutableDoubleStateOf(cartList.sumOf { it.price!! * it.quantity!! }) }
 
+
     //TODO("Controllare che il carrello esista altrimenti crearlo")
 
     mainActivity.viewModel.db.child("Cart").child(userId).child("articles")
