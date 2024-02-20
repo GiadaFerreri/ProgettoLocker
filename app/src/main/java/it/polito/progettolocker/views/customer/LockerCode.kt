@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -63,6 +64,7 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
 
     Column {
         Row(){
+            //TODO("Resetta il codice del locker")
             HeaderX(text ="LOCKER" , navController = navController, onClickDestination = "Spedizioni")
         }
         Row(horizontalArrangement = Arrangement.Center, modifier = Modifier
@@ -84,7 +86,7 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
             TextField(
                 value = codice,
                 onValueChange = {
-                    if (it.length <= 6) {
+                    if (it.length <= 5) {
                         codice = it
                     }
                 },
@@ -103,7 +105,7 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
                     .onFocusChanged {
                         isTextFieldSelected = it.isFocused
                     }
-                    .shadow(elevation = 4.dp, spotColor = Color.Black, ambientColor =Color.Black)
+                    .shadow(elevation = 4.dp, spotColor = Color.Black, ambientColor = Color.Black)
                     )
 
         }
@@ -125,7 +127,8 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
                         //Apre il vano
                         mainActivity.viewModel.db.child("Locker/${selectedShipping.lockerId}/compartments/${selectedShipping.compartmentId}/chiuso").setValue(false)
 
-                        //TODO("Elimina il codice dallo schermo")
+                        //Cancella il codice
+                        mainActivity.viewModel.db.child("Locker/${selectedShipping.lockerId}/pickupId").setValue("00000")
 
                         navController.navigate("LockerCorrectedCode")
                         isError=false
@@ -166,7 +169,7 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
                 colors = ButtonDefaults.buttonColors(
                     contentColor = Color.Black,
                     containerColor = Color.Transparent),
-                enabled = codice.length== 6
+                enabled = codice.length == 5
             ) {
                 Text(
                     text = "CONFERMA",
@@ -181,7 +184,12 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
 
     }
 
-
+    DisposableEffect(Unit){
+        onDispose {
+            //Cancella il codice
+            mainActivity.viewModel.db.child("Locker/${selectedShipping.lockerId}/pickupId").setValue("00000")
+        }
+    }
 
     BackHandler (enabled = true){
         navController.navigate("LockerConfirmCustomer")

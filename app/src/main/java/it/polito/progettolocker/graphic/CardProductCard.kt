@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.util.Log
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.AnchoredDraggableState
@@ -39,7 +38,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -52,7 +50,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import it.polito.progettolocker.MainActivity
-import it.polito.progettolocker.R
 import it.polito.progettolocker.dataClass.Article
 import kotlin.math.roundToInt
 
@@ -139,7 +136,7 @@ fun CardProductCard(mainActivity: MainActivity, navController: NavController, ar
         }
     })
 
-    var state = remember {
+    var state = remember(article.idArticle) {
         AnchoredDraggableState(
             initialValue = DragAnchors.Center,
             anchors = DraggableAnchors {
@@ -260,7 +257,6 @@ fun CardProductCard(mainActivity: MainActivity, navController: NavController, ar
                             Button(
                                 colors = ButtonDefaults.buttonColors(Color.Transparent),
                                 onClick = {
-                                    /*TODO: eliminare articolo dal carrello*/
                                     updateCart(article = article, delete = true, increase = false)
                                           },
                                 modifier = Modifier.padding(0.dp)
@@ -302,7 +298,6 @@ fun CardProductCard(mainActivity: MainActivity, navController: NavController, ar
                             Row() {
 
                                 Text(
-                                    //TODO("Somma prezzi prodotti")
                                     text = "${article.price} EUR\n", //price
                                     fontSize = 15.sp
 //                        style = TextStyle(
@@ -325,8 +320,6 @@ fun CardProductCard(mainActivity: MainActivity, navController: NavController, ar
                             {
                                 Button(
                                     onClick = {
-                                        //TODO("Diminuire quantità")
-                                        //TODO("Se quantità = 0 -> Elimina prodotto")
                                         updateCart(article = article, delete = false, increase = false)
                                     },
                                     shape = RectangleShape,
@@ -352,7 +345,7 @@ fun CardProductCard(mainActivity: MainActivity, navController: NavController, ar
                                         .width(1.dp), color = Color.Black
                                 )
                                 Button(
-                                    onClick = { /*TODO*/ },
+                                    onClick = {  },
                                     shape = RectangleShape,
                                     colors = ButtonDefaults.buttonColors(Color.Transparent),
                                     modifier = Modifier.weight(1.5f)
@@ -374,7 +367,6 @@ fun CardProductCard(mainActivity: MainActivity, navController: NavController, ar
 
                                 Button(
                                     onClick = {
-                                        //TODO("Incrementare quantità")
                                         updateCart(article = article, delete = false, increase = true)
                                     },
                                     shape = RectangleShape,

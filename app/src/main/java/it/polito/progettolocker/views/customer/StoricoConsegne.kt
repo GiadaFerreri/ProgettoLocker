@@ -2,7 +2,6 @@ package it.polito.progettolocker.views.customer
 
 import android.content.ContentValues
 import android.util.Log
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,10 +9,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,11 +17,8 @@ import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.dataClass.DataState
 import it.polito.progettolocker.dataClass.Shipping
 import it.polito.progettolocker.dataClass.States
-import it.polito.progettolocker.graphic.CardOrder
 import it.polito.progettolocker.graphic.CardProduct
 import it.polito.progettolocker.graphic.CardWarning
-import it.polito.progettolocker.graphic.FooterHome
-import it.polito.progettolocker.graphic.HeaderDouble
 
 @Composable
 
@@ -78,14 +70,14 @@ fun StoricoConsegne(mainActivity: MainActivity, navController: NavController){
                         items(result.data as List<Shipping>) { shipping ->
 
                             Row{
-                                if(shipping.state== States.CONCLUDED){
+                                if(shipping.state == States.CONCLUDED){
                                     for (article in shipping.articles!!){
-                                        CardProduct(dataRitiro = "ORDINE RITIRATO", descrizioneProdotto =article.name.toString()+ " + "+quantityTot.toString()+" articoli", image=article.image.toString())
+                                        var desc = if(shipping.articles.size - 1 == 0) "${article.name.toString()}"
+                                        else if(shipping.articles.size - 1 == 1) "${article.name.toString()} + ${(shipping.articles.size - 1)} articolo"
+                                        else "${article.name.toString()} + ${(shipping.articles.size - 1)} articoli"
+                                        CardProduct(dataRitiro = "ORDINE RITIRATO", descrizioneProdotto = desc, image=article.image.toString())
                                     }
-
                                 }
-
-
                             }
                         }
                     }

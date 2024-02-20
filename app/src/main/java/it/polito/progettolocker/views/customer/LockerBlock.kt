@@ -1,5 +1,6 @@
 package it.polito.progettolocker.views.customer
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
@@ -22,5 +23,9 @@ fun LockerBlock(mainActivity: MainActivity, navController: NavController){
             )
 
         }
+    }
+
+    BackHandler (enabled = true){
+        navController.navigate("Customer")
     }
 }

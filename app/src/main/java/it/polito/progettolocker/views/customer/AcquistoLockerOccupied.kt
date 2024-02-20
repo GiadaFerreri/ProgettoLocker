@@ -16,7 +16,6 @@ import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.graphic.CardWarning
-import it.polito.progettolocker.graphic.HeaderX
 
 @Composable
 //SCHERMATA LOCKER OCCUPATI
@@ -35,13 +34,13 @@ fun AcquistoLockerOccupied(mainActivity: MainActivity, navController: NavControl
         Row(modifier = Modifier.fillMaxWidth().padding(top=20.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly){
-            Text(text="PROCEDERE COMUNQUE ALL'ACQUISTO?",fontSize = 15.sp, modifier = Modifier
+            Text(text="CONTINUA LO SHOPPING",fontSize = 15.sp, modifier = Modifier
                 .padding(30.dp,30.dp,30.dp,0.dp))
         }
         Row(modifier = Modifier.fillMaxWidth().padding(top=50.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly){
-            Buttons(text = "ACQUISTA", onClickHandler = {navController.navigate("Acquisto")})
+            Buttons(text = "CATALOGO", onClickHandler = {navController.navigate("Catalogo")})
         }
 
     }

@@ -87,7 +87,8 @@ fun LockerConfirmCustomer(mainActivity: MainActivity, navController: NavControll
                     Buttons(
                         text = "CONFERMA",
                         onClickHandler = {
-                            //TODO("Mostra il codice sullo schermo: selectedShipping.pickupId")
+                            //Mostra il codice
+                            mainActivity.viewModel.db.child("Locker/${selectedShipping.lockerId}/pickupId").setValue(selectedShipping.pickupId)
                             navController.navigate("LockerCode")
                         }
                     )

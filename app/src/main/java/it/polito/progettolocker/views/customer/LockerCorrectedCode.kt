@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -63,6 +64,8 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
                     mainActivity.viewModel.db.child("Shipping/${selectedShipping.shippingId}/state").setValue(States.CONCLUDED)
                     //Chiude il vano
                     mainActivity.viewModel.db.child("Locker/${selectedShipping.lockerId}/compartments/${selectedShipping.compartmentId}/chiuso").setValue(true)
+                    //Libera il vano
+                    mainActivity.viewModel.db.child("Locker/${selectedShipping.lockerId}/compartments/${selectedShipping.compartmentId}/inuso").setValue(false)
                     navController.navigate("Customer")
                 }
             )
@@ -125,6 +128,17 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
             }
         }
 
+    }
+
+    DisposableEffect(Unit){
+        onDispose {
+            //Imposta la spedizione a CONCLUDED
+            mainActivity.viewModel.db.child("Shipping/${selectedShipping.shippingId}/state").setValue(States.CONCLUDED)
+            //Chiude il vano
+            mainActivity.viewModel.db.child("Locker/${selectedShipping.lockerId}/compartments/${selectedShipping.compartmentId}/chiuso").setValue(true)
+            //Libera il vano
+            mainActivity.viewModel.db.child("Locker/${selectedShipping.lockerId}/compartments/${selectedShipping.compartmentId}/inuso").setValue(false)
+        }
     }
 
     BackHandler (enabled = true){

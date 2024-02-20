@@ -46,7 +46,7 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
-            if(firstTry) CardsJustText(text1 = "IL TUO PACCO È STATO DEPOSITATO CORRETTAMENTE?")
+            if(firstTry) CardsJustText(text1 = "IL TUO PACCO È STATO DEPOSITATO CORRETTAMENTE?\nASSICURATI CHE IL CASSETTO SIA CHIUSO CORRETTAMENTE")
            else CardsJustText(text1 = "RIAPERTURA DEL CASSETTO AVVENUTA CON SUCCESSO.\n" + "\nIL TUO PACCO È STATO DEPOSITATO CORRETTAMENTE?")
         }
         Row ( modifier = Modifier
@@ -90,7 +90,7 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
                     onClickHandler = {
                         //navController.navigate("Locker")
                         val shipping = mainActivity.viewModel.selectedShipping.value
-                        mainActivity.viewModel.db.child("Locker/${shipping.lockerId}/${shipping.compartmentId}/chiuso").setValue(false)
+                        mainActivity.viewModel.db.child("Locker/${shipping.lockerId}/compartments/${shipping.compartmentId}/chiuso").setValue(false)
                         setFirstTryDone(!firstTry)
                     }
                 )
