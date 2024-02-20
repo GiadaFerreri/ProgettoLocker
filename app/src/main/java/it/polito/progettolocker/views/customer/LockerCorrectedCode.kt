@@ -142,6 +142,6 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
     }
 
     BackHandler (enabled = true){
-        navController.navigate("LockerCode")
+        navController.navigate("Spedizioni")
     }
 }
