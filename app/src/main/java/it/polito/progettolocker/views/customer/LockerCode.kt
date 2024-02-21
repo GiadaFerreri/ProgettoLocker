@@ -19,6 +19,7 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -38,6 +39,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.graphic.HeaderX
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -60,7 +62,13 @@ fun LockerCode(mainActivity: MainActivity, navController: NavController){
             alert=newValue
 
     }
+    LaunchedEffect(true) {
+            delay(120000) // 120000 millisecondi (2 minuti)
+            mainActivity.viewModel.db.child("Locker/${selectedShipping.lockerId}/pickupId").setValue("00000")
+        navController.navigate("Customer")
 
+
+    }
 
     Column {
         Row(){
