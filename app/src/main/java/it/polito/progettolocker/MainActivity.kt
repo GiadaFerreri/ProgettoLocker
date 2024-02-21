@@ -2,6 +2,9 @@ package it.polito.progettolocker
 
 //import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
+import android.annotation.SuppressLint
+import android.app.NotificationManager
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -68,6 +71,7 @@ import it.polito.progettolocker.views.delivery.InCorso
 import it.polito.progettolocker.views.delivery.Locker
 import it.polito.progettolocker.views.delivery.LockerConfirm
 import kotlinx.coroutines.delay
+import it.polito.progettolocker.MyFirebaseMessagingService
 
 
 class MainActivity : ComponentActivity() {
@@ -86,6 +90,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var user: User
     private lateinit var deliveryMan: DeliveryMan
 
+    @SuppressLint("ServiceCast")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -107,7 +112,8 @@ class MainActivity : ComponentActivity() {
                     }
 
                     Navigation(mainActivity = this)
-
+                    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                    MyFirebaseMessagingService.createNotificationChannel(notificationManager)
 
                 }
             }
