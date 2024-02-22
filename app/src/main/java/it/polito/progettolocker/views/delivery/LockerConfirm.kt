@@ -18,8 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.app.NotificationCompat
 import androidx.navigation.NavController
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import it.polito.progettolocker.MainActivity
+import it.polito.progettolocker.R
+import it.polito.progettolocker.dataClass.Shipping
 import it.polito.progettolocker.dataClass.States
 import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.graphic.CardsJustText
@@ -28,6 +34,32 @@ import it.polito.progettolocker.graphic.HeaderX
 @Composable
 //Seconda pagina del Locker
 fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
+
+    val db = mainActivity.viewModel.db
+    val currentShipping = mainActivity.viewModel.selectedShipping.value
+    val ref = db.child("Shipping/${currentShipping.shippingId}")
+
+    val listener = object : ValueEventListener {
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            // Recupera il nuovo valore dello stato della spedizione
+            val shipping = dataSnapshot.getValue(Shipping::class.java)
+            val state = shipping!!.state
+
+            // Invia una notifica al cliente
+            val notification = NotificationCompat.Builder(mainActivity, mainActivity.notificationChannelId)
+                .setContentTitle("Aggiornamento spedizione")
+                .setContentText("La spedizione ${shipping.shippingId} è ora $state")
+                .setSmallIcon(R.drawable.logo_round)
+                .build()
+            mainActivity.notificationManager.notify(shipping.shippingId!!.toInt(), notification)
+        }
+
+        override fun onCancelled(databaseError: DatabaseError) {
+            // Gestisci l'errore
+        }
+    }
+    ref.addValueEventListener(listener)
+
 
     val (firstTry, setFirstTryDone) = remember {
         mutableStateOf(true)

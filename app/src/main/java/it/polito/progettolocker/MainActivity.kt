@@ -71,7 +71,6 @@ import it.polito.progettolocker.views.delivery.InCorso
 import it.polito.progettolocker.views.delivery.Locker
 import it.polito.progettolocker.views.delivery.LockerConfirm
 import kotlinx.coroutines.delay
-import it.polito.progettolocker.MyFirebaseMessagingService
 
 
 class MainActivity : ComponentActivity() {
@@ -82,7 +81,12 @@ class MainActivity : ComponentActivity() {
     }
 
     val userId = "GiovanniMalnati" //FirebaseAuth.getInstance().currentUser?.uid
+    val deviceId = getDeviceId()
     var shippingId=""
+
+    val notificationChannelId = userId
+
+    lateinit var notificationManager : NotificationManager
 
     private lateinit var auth: FirebaseAuth
     private lateinit var eventListener: ValueEventListener
@@ -112,7 +116,7 @@ class MainActivity : ComponentActivity() {
                     }
 
                     Navigation(mainActivity = this)
-                    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                    notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                     MyFirebaseMessagingService.createNotificationChannel(notificationManager)
 
                 }

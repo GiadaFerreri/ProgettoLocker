@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.ui.graphics.Color
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -48,10 +47,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
           }
       }*/
     companion object{
-        val channelId = "notifica"
+        val channelId = "GiovanniMalnati"
         fun createNotificationChannel(notificationManager: NotificationManager?) {
 
-            val channelName = "channelNotifca"
+            val channelName = "channelNotifica"
             val channelDescription = "Canale di notifica per Jetpack Compose"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
 

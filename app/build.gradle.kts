@@ -80,5 +80,8 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.0.0")
     implementation("com.google.firebase:firebase-storage-ktx")
     implementation("com.google.firebase:firebase-messaging-ktx:23.4.1")
+    implementation("com.google.firebase:firebase-messaging-directboot:23.4.1")
+    implementation("com.google.firebase:firebase-messaging")
+
 
 }
