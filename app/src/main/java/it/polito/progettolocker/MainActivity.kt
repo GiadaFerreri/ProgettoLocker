@@ -42,7 +42,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
@@ -98,9 +97,25 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        auth = Firebase.auth
-        database =
-            Firebase.database("https://locker-53147-default-rtdb.europe-west1.firebasedatabase.app/").reference
+
+        auth = FirebaseAuth.getInstance()
+        database = Firebase.database("https://locker-53147-default-rtdb.europe-west1.firebasedatabase.app/").reference
+
+        val email = "peppe.bruno99@yahoo.it"
+        val password = "zaralocker"
+
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // L'utente è stato autenticato correttamente
+                    val user = auth.currentUser
+                    val myRef = database.child("users/${user!!.uid}").get()
+
+                    // Leggi o scrivi dati nel database in base all'utente
+                } else {
+                    // Errore di autenticazione
+                }
+            }
 
         setContent {
             ProgettoLockerTheme {
