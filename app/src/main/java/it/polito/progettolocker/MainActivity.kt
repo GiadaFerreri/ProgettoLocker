@@ -82,7 +82,7 @@ class MainActivity : ComponentActivity() {
 
     val userId = "GiovanniMalnati" //FirebaseAuth.getInstance().currentUser?.uid
     //val deviceId = getDeviceId()
-    var shippingId=""
+    var shippingId = ""
 
     val notificationChannelId = userId
 

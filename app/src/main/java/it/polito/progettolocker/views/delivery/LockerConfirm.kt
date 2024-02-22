@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import it.polito.progettolocker.MainActivity
+import it.polito.progettolocker.MyFirebaseMessagingService
 import it.polito.progettolocker.R
 import it.polito.progettolocker.dataClass.Shipping
 import it.polito.progettolocker.dataClass.States
@@ -51,7 +52,8 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
                 .setContentText("La spedizione ${shipping.shippingId} è ora $state")
                 .setSmallIcon(R.drawable.logo_round)
                 .build()
-            mainActivity.notificationManager.notify(shipping.shippingId!!.toInt(), notification)
+            //mainActivity.notificationManager.notify(shipping.shippingId!!.toInt(), notification)
+            MyFirebaseMessagingService.sendNotification(mainActivity.applicationContext,"La spedizione ${shipping.shippingId} è ora $state")
         }
 
         override fun onCancelled(databaseError: DatabaseError) {
