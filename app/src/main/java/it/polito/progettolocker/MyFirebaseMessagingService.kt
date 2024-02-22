@@ -52,8 +52,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val channelId = "GiovanniMalnati"
         fun createNotificationChannel(notificationManager: NotificationManager?) {
 
-            val channelName = "channelNotifica"
-            val channelDescription = "Canale di notifica per Jetpack Compose"
+            val channelName = "Aggiornamenti spedizioni"
+            val channelDescription = "Ricevi gli aggiornamenti di stato delle tue spedizioni"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
 
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -72,7 +72,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 .setContentTitle("Aggiornamento spedizione")
                 .setContentText("La spedizione ${shipping.shippingId} è ora ${shipping.state}")
                 .setSmallIcon(R.drawable.logo_round)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
             val notificationManager = NotificationManagerCompat.from(context)
             if (ActivityCompat.checkSelfPermission(

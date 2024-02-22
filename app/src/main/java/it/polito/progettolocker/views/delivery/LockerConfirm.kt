@@ -40,6 +40,7 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
     val currentShipping = mainActivity.viewModel.selectedShipping.value
     val ref = db.child("Shipping/${currentShipping.shippingId}")
 
+
     val listener = object : ValueEventListener {
         override fun onDataChange(dataSnapshot: DataSnapshot) {
             // Recupera il nuovo valore dello stato della spedizione
