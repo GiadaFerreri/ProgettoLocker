@@ -48,11 +48,11 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
 
             // Invia una notifica al cliente
             val notification = NotificationCompat.Builder(mainActivity, mainActivity.notificationChannelId)
-                .setContentTitle("Aggiornamento spedizione")
+                .setContentTitle("Aggiornamento spedizione 2")
                 .setContentText("La spedizione ${shipping.shippingId} è ora $state")
                 .setSmallIcon(R.drawable.logo_round)
                 .build()
-            //mainActivity.notificationManager.notify(shipping.shippingId!!.toInt(), notification)
+            mainActivity.notificationManager.notify(shipping.shippingId!!.toInt(), notification)
             MyFirebaseMessagingService.sendNotification(mainActivity,shipping)
         }
 
