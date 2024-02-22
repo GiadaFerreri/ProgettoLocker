@@ -196,7 +196,7 @@ fun CardProductCard(mainActivity: MainActivity, navController: NavController, ar
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(15.dp)
                 .fillMaxHeight()
 
         ) {
