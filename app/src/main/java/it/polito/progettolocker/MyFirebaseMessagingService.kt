@@ -13,6 +13,8 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import it.polito.progettolocker.dataClass.Shipping
+import java.lang.Math.random
 
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
@@ -65,10 +67,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 notificationManager?.createNotificationChannel(channel)
             }
         }
-        fun sendNotification(context: Context, notificationText: String) {
+        fun sendNotification(context: Context, shipping: Shipping) {
             val builder = NotificationCompat.Builder(context, channelId)
-                .setContentTitle("Jetpack Compose Notification")
-                .setContentText(notificationText)
+                .setContentTitle("Aggiornamento spedizione")
+                .setContentText("La spedizione ${shipping.shippingId} è ora ${shipping.state}")
                 .setSmallIcon(R.drawable.logo_round)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
@@ -87,7 +89,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 // for ActivityCompat#requestPermissions for more details.
                 return
             }
-            notificationManager.notify(101, builder.build())
+            notificationManager.notify(shipping.shippingId!!.toInt(), builder.build())
         }
     }
 
@@ -110,10 +112,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            managerCompact.notify(102, builder.build())
+            managerCompact.notify(random().toInt(), builder.build())
 
         }
-        managerCompact.notify(102, builder.build())
+        managerCompact.notify(random().toInt(), builder.build())
 
     }
 

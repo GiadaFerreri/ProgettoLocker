@@ -53,7 +53,7 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
                 .setSmallIcon(R.drawable.logo_round)
                 .build()
             //mainActivity.notificationManager.notify(shipping.shippingId!!.toInt(), notification)
-            MyFirebaseMessagingService.sendNotification(mainActivity,"La spedizione ${shipping.shippingId} è ora $state")
+            MyFirebaseMessagingService.sendNotification(mainActivity,shipping)
         }
 
         override fun onCancelled(databaseError: DatabaseError) {
