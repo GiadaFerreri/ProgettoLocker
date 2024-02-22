@@ -69,6 +69,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             val builder = NotificationCompat.Builder(context, channelId)
                 .setContentTitle("Jetpack Compose Notification")
                 .setContentText(notificationText)
+                .setSmallIcon(R.drawable.logo_round)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
             val notificationManager = NotificationManagerCompat.from(context)
