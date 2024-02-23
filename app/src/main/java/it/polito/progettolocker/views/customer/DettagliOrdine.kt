@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
@@ -28,7 +27,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -40,7 +38,6 @@ import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.dataClass.DataState
 import it.polito.progettolocker.dataClass.Shipping
 import it.polito.progettolocker.dataClass.States
-import it.polito.progettolocker.graphic.CardOrder
 import it.polito.progettolocker.graphic.CardWarning
 import it.polito.progettolocker.graphic.HeaderX
 
@@ -87,7 +84,7 @@ Row{
                     LazyRow (modifier=Modifier.padding(start=20.dp, top=10.dp)){
                         items(result.data as List<Shipping>) { shipping ->
                             Row{
-                                if(shipping.shippingId==mainActivity.shippingId){
+                                if(shipping.shippingId == mainActivity.shippingId){
                                     for(article in shipping.articles!!){
                                         AsyncImage(
                                             model =article.image,
