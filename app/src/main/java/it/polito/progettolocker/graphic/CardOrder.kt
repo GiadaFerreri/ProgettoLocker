@@ -90,7 +90,7 @@ fun CardOrder(
                                     else "${shipping.articles!![0].name.toString()} + ${(shipping.articles.size - 1)} altri articoli"
                                     mainActivity.viewModel.db.child("Shipping/${shipping.shippingId}/state").setValue(States.HANDLED)
                                     //Invia la notifica al cliente
-                                    mainActivity.createNotification("Spedizione in consegna","Il tuo ordine contente $desc è stato preso in carico da uno dei nostri fattorini")
+                                    mainActivity.createNotification("Spedizione in consegna","Il tuo ordine contente $desc è stato preso in carico da uno dei nostri fattorini",shipping.userId!!)
                                 }
                                 navController.navigate(onClickDestination)
                                 mainActivity.shippingId=orderNumber

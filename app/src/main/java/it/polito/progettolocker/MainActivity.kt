@@ -139,9 +139,9 @@ class MainActivity : ComponentActivity() {
         requestQueue.add(jsonObjectRequest)
     }
 
-    fun createNotification(title: String, message: String) {
+    fun createNotification(title: String, message: String, receiver: String) {
         val topic =
-            "/topics/${user.uid}" //topic has to match what the receiver subscribed to
+            "/topics/$receiver" //topic has to match what the receiver subscribed to
 
         val notification = JSONObject()
         val notificationBody = JSONObject()

@@ -96,7 +96,7 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
                     else "${shipping.articles!![0].name.toString()} + ${(shipping.articles.size - 1)} altri articoli"
                     //mainActivity.viewModel.db.child("Shipping/${shipping.shippingId}/state").setValue(States.DELIVERED)
                     //Invia la notifica al cliente
-                    mainActivity.createNotification("Spedizione consegnata","Il tuo ordine contenente $desc è pronto per il ritiro al locker ${shipping.lockerId!!.uppercase()}")
+                    mainActivity.createNotification("Spedizione consegnata","Il tuo ordine contenente $desc è pronto per il ritiro al locker ${shipping.lockerId!!.uppercase()}",shipping.userId!!)
                     //Chiude il cassetto
                     mainActivity.viewModel.db.child("Locker/${shipping.lockerId}/compartments/${shipping.compartmentId}/chiuso").setValue(true)
                     navController.navigate("DaEffettuare")
