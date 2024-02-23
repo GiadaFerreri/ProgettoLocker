@@ -145,7 +145,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
                 }
 
                 is DataState.Success -> {
-                        LazyRow (modifier=Modifier.padding(start=16.dp, top=10.dp)){
+                        LazyRow (modifier=Modifier.padding(start=16.dp, top=10.dp, end=16.dp)){
                             items(result.data as List<Article>) { article ->
                                 if (article.quantity!!.toFloat() > 0) {
                                     Column(verticalArrangement = Arrangement.Top) {

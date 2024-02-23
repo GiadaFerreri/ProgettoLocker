@@ -50,7 +50,7 @@ fun Customer(mainActivity: MainActivity, navController: NavController){
       Column (
           Modifier
               .background(Color.Magenta)){
-              Image(painter = painterResource(id= R.drawable.zara_home), contentDescription ="ImmagineProdotto",
+              Image(painter = painterResource(id= R.drawable.zaralcrhome_new), contentDescription ="ImmagineProdotto",
                   modifier= Modifier.fillMaxWidth() .fillMaxHeight(), contentScale = ContentScale.Crop)
 
               /*Column(modifier=Modifier.padding(start=25.dp, top=25.dp)

@@ -81,24 +81,33 @@ Row{
 
             is DataState.Success -> {
 
-                    LazyRow (modifier=Modifier.padding(start=20.dp, top=10.dp)){
+                    LazyRow (modifier=Modifier.padding(start=20.dp, top=10.dp, end=20.dp)){
                         items(result.data as List<Shipping>) { shipping ->
-                            Row{
-                                if(shipping.shippingId == mainActivity.shippingId){
-                                    for(article in shipping.articles!!){
-                                        AsyncImage(
-                                            model =article.image,
-                                            contentDescription = "Immagine prodotto",
-                                            modifier = Modifier
-                                                .border(0.5.dp, Color.Black)
-                                        )
-                                    }
 
+                                if(shipping.shippingId == mainActivity.shippingId){
+                                    for(article in shipping.articles!!) {
+                                        Column(verticalArrangement = Arrangement.Top) {
+                                            Column(modifier = Modifier.padding(top = 5.dp)) {
+                                                Row(
+                                                    modifier = Modifier
+                                                        .fillMaxWidth()
+                                                        .padding(2.dp)
+                                                ) {
+                                                    AsyncImage(
+                                                        model = article.image,
+                                                        contentDescription = "Immagine prodotto",
+                                                        modifier = Modifier
+                                                            .border(0.5.dp, Color.Black)
+                                                    )
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
 
 
 
-                            }
+
 
                         }
                     }

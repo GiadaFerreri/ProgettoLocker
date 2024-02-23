@@ -50,7 +50,7 @@ fun CardProduct(dataRitiro: String, descrizioneProdotto: String, image: String) 
     {
         Column(verticalArrangement = Arrangement.Top) {
             Row( modifier = Modifier
-                .fillMaxWidth()
+                //.fillMaxWidth()
                 .height(35.dp)
                 //.background(Color.Yellow)
                 .padding(horizontal = 16.dp),
@@ -70,16 +70,18 @@ fun CardProduct(dataRitiro: String, descrizioneProdotto: String, image: String) 
             Row(
                 modifier = Modifier
                     .height(160.dp)
+                    .padding(16.dp)
                     //.background(Color.Cyan)
-                    .fillMaxWidth()
+                   // .fillMaxWidth()
             ) {
 
                 AsyncImage(
                     model = image,
                     contentDescription = "Immagine prodotto",
                     modifier = Modifier
-                        .size(200.dp)
+                        //.size(180.dp)
                         .align(Alignment.CenterVertically)
+                            .border(0.5.dp, Color.Black)
                 )
                 Column (modifier = Modifier
                     .width(300.dp)
