@@ -21,38 +21,38 @@ val Typography = Typography(
         fontFamily = helveticaFont,
         fontWeight = FontWeight.Normal,
         fontSize = 13.sp,
-        lineHeight = 16.sp,
+        lineHeight = 20.sp,
         letterSpacing = 0.5.sp
     ),
     labelLarge = TextStyle(
         fontFamily = helveticaFont,
         fontWeight = FontWeight.Normal,
         fontSize = 13.sp,
-        lineHeight = 16.sp
+        lineHeight = 20.sp
     ),
     labelMedium = TextStyle(
         fontFamily = helveticaFont,
         fontWeight = FontWeight.Normal,
         fontSize = 13.sp,
-        lineHeight = 16.sp
+        lineHeight = 20.sp
     ),
     labelSmall = TextStyle(
         fontFamily = helveticaFont,
         fontWeight = FontWeight.Normal,
         fontSize = 15.sp,
-        lineHeight = 18.sp
+        lineHeight = 20.sp
     ),
     titleLarge = TextStyle(
         fontFamily = helveticaFont,
         fontWeight = FontWeight.Normal,
         fontSize = 15.sp,
-        lineHeight = 18.sp
+        lineHeight = 20.sp
     ),
     titleMedium = TextStyle(
         fontFamily = helveticaFont,
         fontWeight = FontWeight.Normal,
         fontSize = 15.sp,
-        lineHeight = 18.sp
+        lineHeight = 20.sp
     ),
     /* Other default text styles to override
     titleLarge = TextStyle(
