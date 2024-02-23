@@ -77,7 +77,7 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
-            if(firstTry) CardsJustText(text1 = "IL TUO PACCO È STATO DEPOSITATO CORRETTAMENTE?\nASSICURATI CHE IL CASSETTO SIA CHIUSO CORRETTAMENTE")
+            if(firstTry) CardsJustText(text1 = "IL TUO PACCO È STATO DEPOSITATO CORRETTAMENTE?\n" + "\nASSICURATI CHE IL CASSETTO SIA CHIUSO CORRETTAMENTE")
            else CardsJustText(text1 = "RIAPERTURA DEL CASSETTO AVVENUTA CON SUCCESSO.\n" + "\nIL TUO PACCO È STATO DEPOSITATO CORRETTAMENTE?")
         }
         Row ( modifier = Modifier
@@ -94,7 +94,7 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
                     var desc = if(shipping.articles!!.size - 1 == 0) "${shipping.articles!![0].name.toString()}"
                     else if(shipping.articles.size - 1 == 1) "${shipping.articles!![0].name.toString()} + ${(shipping.articles.size - 1)} altro articolo"
                     else "${shipping.articles!![0].name.toString()} + ${(shipping.articles.size - 1)} altri articoli"
-                    mainActivity.viewModel.db.child("Shipping/${shipping.shippingId}/state").setValue(States.HANDLED)
+                    //mainActivity.viewModel.db.child("Shipping/${shipping.shippingId}/state").setValue(States.DELIVERED)
                     //Invia la notifica al cliente
                     mainActivity.createNotification("Spedizione consegnata","Il tuo ordine contenente $desc è pronto per il ritiro al locker ${shipping.lockerId!!.uppercase()}")
                     //Chiude il cassetto

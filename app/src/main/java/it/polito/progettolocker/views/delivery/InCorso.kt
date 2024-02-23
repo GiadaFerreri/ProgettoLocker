@@ -18,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -87,7 +88,7 @@ fun InCorso(mainActivity: MainActivity, navController: NavController){
 
                 is DataState.Success -> {
                     Row {
-                        LazyColumn {
+                        LazyColumn(modifier=Modifier.padding(bottom=30.dp)) {
                             items(result.data as List<Shipping>) { shipping ->
                                 Row {
                                     if (shipping.state == States.HANDLED) {

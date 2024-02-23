@@ -205,7 +205,6 @@ fun CardProductCard(mainActivity: MainActivity, navController: NavController, ar
                     TextButton(
                         shape= RectangleShape,
                         onClick = {
-                            /*TODO: eliminare articolo da carrello*/
                             updateCart(article = article, delete = true, increase = false)
                                   },
                         colors = ButtonDefaults.buttonColors(

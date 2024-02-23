@@ -145,7 +145,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
                 }
 
                 is DataState.Success -> {
-                        LazyRow {
+                        LazyRow (modifier=Modifier.padding(start=16.dp, top=10.dp)){
                             items(result.data as List<Article>) { article ->
                                 if (article.quantity!!.toFloat() > 0) {
                                     Column(verticalArrangement = Arrangement.Top) {
@@ -195,7 +195,9 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
         }
 
         Row (modifier = Modifier.padding(16.dp)){
-            Text(text = "${quantityTot.value} ARTICOLI",fontSize = 12.sp)
+
+            if(quantityTot.value == 1)Text(text = "${quantityTot.value} ARTICOLO",fontSize = 12.sp)
+            else Text(text = "${quantityTot.value} ARTICOLI",fontSize = 12.sp)
         }
 
         Row (){

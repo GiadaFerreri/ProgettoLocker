@@ -42,6 +42,15 @@ fun LockerConfirmCustomer(mainActivity: MainActivity, navController: NavControll
             )
         },
         bottomBar = {
+            Row(modifier = Modifier.padding(bottom = 50.dp)){ CardWarning(
+                text =
+                "La conferma farà comparire il codice segreto di apertura sul Locker selezionato.\n" +
+                        "Assicurati di essere realmente davanti al Locker.",
+                mainActivity = mainActivity,
+                navController = navController
+            )}
+
+
         },
     ) { innerPadding ->
         Column(
@@ -93,16 +102,9 @@ fun LockerConfirmCustomer(mainActivity: MainActivity, navController: NavControll
                         }
                     )
                 }
-                Row(modifier = Modifier.padding(top = 80.dp)) {
-                    CardWarning(
-                        text =
-                        "La conferma farà comparire il codice segreto di apertura sul Locker selezionato.\n" +
-                                "Assicurati di essere realmente davanti al Locker.",
-                        mainActivity = mainActivity,
-                        navController = navController
-                    )
+               /* Row(modifier = Modifier.padding(top = 100.dp)) {
 
-                }
+                }*/
             }
         }
 
