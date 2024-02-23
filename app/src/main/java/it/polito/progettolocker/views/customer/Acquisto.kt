@@ -130,6 +130,8 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
         db.child("Shipping").child("${shippingId}").setValue(shipping)
         db.child("Cart").child(userId).child("articles").removeValue()
         db.child("Locker").child("${lockerId}/compartments/${compartmentId}/inuso").setValue(true)
+
+        mainActivity.createNotification("Nuova spedizione","È disponibile una nuova spedizione da consegnare al locker ${lockerId.uppercase()}","7BQnIxus53XW3EMTj6UBcYNDCmG3")
     }
 
     Column (){
@@ -235,8 +237,9 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
             delay(3000) // 3000 millisecondi (3 secondi)
             showFooter = false
             openDialog = false
-            openButton =false
+            openButton = false
 
+            navController.navigate("Customer")
         }
     }
     if(showFooter) {
