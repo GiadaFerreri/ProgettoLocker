@@ -18,14 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.app.NotificationCompat
 import androidx.navigation.NavController
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import it.polito.progettolocker.MainActivity
-import it.polito.progettolocker.R
-import it.polito.progettolocker.dataClass.Shipping
 import it.polito.progettolocker.dataClass.States
 import it.polito.progettolocker.graphic.Buttons
 import it.polito.progettolocker.graphic.CardsJustText
@@ -35,9 +29,11 @@ import it.polito.progettolocker.graphic.HeaderX
 //Seconda pagina del Locker
 fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
 
+    /*
     val db = mainActivity.viewModel.db
     val currentShipping = mainActivity.viewModel.selectedShipping.value
     val ref = db.child("Shipping/${currentShipping.shippingId}")
+
 
     val listener = object : ValueEventListener {
         override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -47,11 +43,12 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
 
             // Invia una notifica al cliente
             val notification = NotificationCompat.Builder(mainActivity, mainActivity.notificationChannelId)
-                .setContentTitle("Aggiornamento spedizione")
+                .setContentTitle("Aggiornamento spedizione 2")
                 .setContentText("La spedizione ${shipping.shippingId} è ora $state")
                 .setSmallIcon(R.drawable.logo_round)
                 .build()
             mainActivity.notificationManager.notify(shipping.shippingId!!.toInt(), notification)
+            MyFirebaseMessagingService.sendNotification(mainActivity,shipping)
         }
 
         override fun onCancelled(databaseError: DatabaseError) {
@@ -60,6 +57,8 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
     }
     ref.addValueEventListener(listener)
 
+
+     */
 
     val (firstTry, setFirstTryDone) = remember {
         mutableStateOf(true)
@@ -92,6 +91,12 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
                     val shipping = mainActivity.viewModel.selectedShipping.value
                     //Imposta stato a DELIVERED
                     mainActivity.viewModel.db.child("Shipping/${shipping.shippingId}/state").setValue(States.DELIVERED)
+                    var desc = if(shipping.articles!!.size - 1 == 0) "${shipping.articles!![0].name.toString()}"
+                    else if(shipping.articles.size - 1 == 1) "${shipping.articles!![0].name.toString()} + ${(shipping.articles.size - 1)} altro articolo"
+                    else "${shipping.articles!![0].name.toString()} + ${(shipping.articles.size - 1)} altri articoli"
+                    mainActivity.viewModel.db.child("Shipping/${shipping.shippingId}/state").setValue(States.HANDLED)
+                    //Invia la notifica al cliente
+                    mainActivity.createNotification("Spedizione consegnata","Il tuo ordine contenente $desc è pronto per il ritiro al locker ${shipping.lockerId!!.uppercase()}")
                     //Chiude il cassetto
                     mainActivity.viewModel.db.child("Locker/${shipping.lockerId}/compartments/${shipping.compartmentId}/chiuso").setValue(true)
                     navController.navigate("DaEffettuare")

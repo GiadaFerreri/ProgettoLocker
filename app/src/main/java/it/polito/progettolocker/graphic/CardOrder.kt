@@ -84,8 +84,14 @@ fun CardOrder(
                         Button(
                             onClick = {
                                 mainActivity.viewModel.selectedShipping.value = shipping
-                                if(toHandle)
+                                if(toHandle){
+                                    var desc = if(shipping.articles!!.size - 1 == 0) "${shipping.articles!![0].name.toString()}"
+                                    else if(shipping.articles.size - 1 == 1) "${shipping.articles!![0].name.toString()} + ${(shipping.articles.size - 1)} altro articolo"
+                                    else "${shipping.articles!![0].name.toString()} + ${(shipping.articles.size - 1)} altri articoli"
                                     mainActivity.viewModel.db.child("Shipping/${shipping.shippingId}/state").setValue(States.HANDLED)
+                                    //Invia la notifica al cliente
+                                    mainActivity.createNotification("Spedizione in consegna","Il tuo ordine contente $desc è stato preso in carico da uno dei nostri fattorini")
+                                }
                                 navController.navigate(onClickDestination)
                                 mainActivity.shippingId=orderNumber
                                       },
