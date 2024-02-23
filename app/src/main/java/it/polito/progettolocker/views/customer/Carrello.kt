@@ -44,7 +44,7 @@ fun Carrello(mainActivity: MainActivity, navController: NavController){
 
     val cartList = mutableListOf<Article>()
     val cartState = mainActivity.viewModel.cartState
-    val userId = mainActivity.userId
+    val userId = mainActivity.user.uid!!
 
     var price = remember { mutableDoubleStateOf(cartList.sumOf { it.price!! * it.quantity!! }) }
 

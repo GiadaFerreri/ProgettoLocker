@@ -193,7 +193,7 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
 
     //FIREBASE
     fun database_writeUser(user: User){
-        usersReference.child("${user.userId}").setValue(user)
+        //usersReference.child("${user.userId}").setValue(user)
     }
 
     fun database_readUser(userId: String){

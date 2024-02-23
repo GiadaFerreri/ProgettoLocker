@@ -12,17 +12,12 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
@@ -30,11 +25,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -53,6 +45,7 @@ import com.google.firebase.database.database
 import com.google.firebase.messaging.FirebaseMessaging
 import it.polito.progettolocker.dataClass.DeliveryMan
 import it.polito.progettolocker.dataClass.User
+import it.polito.progettolocker.dataClass.UserType
 import it.polito.progettolocker.ui.theme.ProgettoLockerTheme
 import it.polito.progettolocker.views.customer.Acquisto
 import it.polito.progettolocker.views.customer.AcquistoLocker
@@ -87,7 +80,11 @@ class MainActivity : ComponentActivity() {
         ViewModelProvider(this, factory).get(ViewModelLocker::class.java)
     }
 
-    val userId = "GiovanniMalnati" //FirebaseAuth.getInstance().currentUser?.uid
+    // Email FATTORINO / CLIENTE --> Selezionare quella con cui si vuole operare
+    val userId =
+        "fattorino451@zaralckr.com"
+        //"peppe.bruno99@yahoo.it"
+    val customerId = "peppe.bruno99@yahoo.it"
     //val deviceId = getDeviceId()
     var shippingId = ""
 
@@ -98,7 +95,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var eventListener: ValueEventListener
     private lateinit var database: DatabaseReference
-    private lateinit var user: User
+    lateinit var user: User
     private lateinit var deliveryMan: DeliveryMan
 
     private val FCM_API = "https://fcm.googleapis.com/fcm/send"
@@ -143,7 +140,7 @@ class MainActivity : ComponentActivity() {
 
     fun createNotification(title: String, message: String) {
         val topic =
-            "/topics/${userId}" //topic has to match what the receiver subscribed to
+            "/topics/${customerId}" //topic has to match what the receiver subscribed to
 
         val notification = JSONObject()
         val notificationBody = JSONObject()
@@ -173,15 +170,19 @@ class MainActivity : ComponentActivity() {
         auth = FirebaseAuth.getInstance()
         database = Firebase.database("https://locker-53147-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
-        val email = "peppe.bruno99@yahoo.it"
+        val email = userId
         val password = "zaralocker"
 
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // L'utente è stato autenticato correttamente
-                    val user = auth.currentUser
-                    val myRef = database.child("users/${user!!.uid}").get()
+                    val userAuth = auth.currentUser
+                    val myRef = database.child("Users/${userAuth!!.uid}/type").get()
+
+                    myRef.addOnSuccessListener {
+                        user = User(uid = userAuth.uid, mail = email, type = UserType.valueOf(it.value as String))
+                    }
 
                     // Leggi o scrivi dati nel database in base all'utente
                 } else {
@@ -341,8 +342,15 @@ fun HomePage(mainActivity: MainActivity, navController: NavController) {
     ) {
 
         //TODO("Controllo tipo utente")
+        if(mainActivity.user.type == UserType.CUSTOMER){
+            navController.navigate("Customer")
+        } else if(mainActivity.user.type == UserType.DELIVERY){
+            navController.navigate("Delivery")
+        }
 
-        Button(
+        /*
+
+            Button(
             onClick = { navController.navigate("Delivery") },
             shape= RectangleShape,
             modifier = Modifier
@@ -380,6 +388,8 @@ fun HomePage(mainActivity: MainActivity, navController: NavController) {
         ){
             Text(text = "CUSTOMER", fontWeight = FontWeight.Normal)
         }
+
+         */
     }
 }
 

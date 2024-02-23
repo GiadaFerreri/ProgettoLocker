@@ -1,9 +1,10 @@
 package it.polito.progettolocker.dataClass
 
+enum class UserType {
+    CUSTOMER, DELIVERY
+}
 data class User(
-    val userId : String,
-    val mail: String,
-    val name : String,
-    val surname : String,
-    val phone : String
+    val uid : String? = null,
+    val mail: String? = null,
+    val type: UserType? = null
 )
