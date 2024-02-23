@@ -84,7 +84,8 @@ class MainActivity : ComponentActivity() {
     val userId =
         "fattorino451@zaralckr.com"
         //"peppe.bruno99@yahoo.it"
-    val customerId = "peppe.bruno99@yahoo.it"
+
+    //val customerId = "peppe.bruno99@yahoo.it"
     //val deviceId = getDeviceId()
     var shippingId = ""
 
@@ -140,7 +141,7 @@ class MainActivity : ComponentActivity() {
 
     fun createNotification(title: String, message: String) {
         val topic =
-            "/topics/${customerId}" //topic has to match what the receiver subscribed to
+            "/topics/${user.uid}" //topic has to match what the receiver subscribed to
 
         val notification = JSONObject()
         val notificationBody = JSONObject()
@@ -165,8 +166,6 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
 
-        FirebaseMessaging.getInstance().subscribeToTopic("/topics/$userId")
-
         auth = FirebaseAuth.getInstance()
         database = Firebase.database("https://locker-53147-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
@@ -182,7 +181,10 @@ class MainActivity : ComponentActivity() {
 
                     myRef.addOnSuccessListener {
                         user = User(uid = userAuth.uid, mail = email, type = UserType.valueOf(it.value as String))
+
+                        FirebaseMessaging.getInstance().subscribeToTopic("/topics/${user.uid}")
                     }
+
 
                     // Leggi o scrivi dati nel database in base all'utente
                 } else {

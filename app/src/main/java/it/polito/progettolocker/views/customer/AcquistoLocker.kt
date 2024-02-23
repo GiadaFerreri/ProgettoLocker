@@ -41,7 +41,7 @@ fun AcquistoLocker(mainActivity: MainActivity, navController: NavController) {
 
     val cartList = remember() { mutableListOf<Article>() }
     val cartState = mainActivity.viewModel.cartState
-    val userId = mainActivity.userId
+    val userId = mainActivity.user.uid!!
     val db = mainActivity.viewModel.db
 
     mainActivity.viewModel.db.child("Cart").child(userId).child("articles")

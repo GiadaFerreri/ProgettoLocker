@@ -59,7 +59,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
 
     val cartList = mutableListOf<Article>()
     val cartState = mainActivity.viewModel.cartState
-    val userId = mainActivity.userId
+    val userId = mainActivity.user.uid!!
     val db = mainActivity.viewModel.db
 
     var quantityTot = remember { mutableIntStateOf(cartList.sumOf {it.quantity!!.toInt() }) }

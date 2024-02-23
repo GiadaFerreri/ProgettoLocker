@@ -108,7 +108,7 @@ fun DraggableItem(
 
 
 fun CardProductCard(mainActivity: MainActivity, navController: NavController, article: Article, textProduct:String, price: Float, quantity: Int, image:String) {
-    val userId = mainActivity.userId
+    val userId = mainActivity.user.uid
     val density = LocalDensity.current
     val defaultActionSize = 80.dp
     val endActionSizePx = with(density) { (defaultActionSize ).toPx() }

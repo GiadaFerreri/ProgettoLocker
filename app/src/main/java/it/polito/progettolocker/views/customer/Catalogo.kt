@@ -3,7 +3,6 @@ package it.polito.progettolocker.views.customer
 import android.content.ContentValues
 import android.util.Log
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -35,19 +34,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import coil.compose.rememberAsyncImagePainter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import it.polito.progettolocker.MainActivity
-import it.polito.progettolocker.R
 import it.polito.progettolocker.dataClass.Article
 import it.polito.progettolocker.dataClass.Cart
 import it.polito.progettolocker.dataClass.DataState
@@ -62,7 +58,7 @@ fun Catalogo(mainActivity: MainActivity, navController: NavController) {
     var showFooter by remember { mutableStateOf(true) }
     var openDialog by remember { mutableStateOf(false) }
 
-    val userId = mainActivity.userId
+    val userId = mainActivity.user.uid
 
     // Coroutine per far scomparire il popup dopo qualche secondo
     LaunchedEffect(openDialog) {
