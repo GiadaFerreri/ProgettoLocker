@@ -67,6 +67,8 @@ import it.polito.progettolocker.views.delivery.DaEffettuare
 import it.polito.progettolocker.views.delivery.Delivery
 import it.polito.progettolocker.views.delivery.InCorso
 import it.polito.progettolocker.views.delivery.Locker
+import it.polito.progettolocker.views.delivery.LockerBlockDelivery
+import it.polito.progettolocker.views.delivery.LockerCodeDelivery
 import it.polito.progettolocker.views.delivery.LockerConfirm
 import kotlinx.coroutines.delay
 import org.json.JSONException
@@ -237,6 +239,12 @@ fun Navigation(mainActivity: MainActivity){
         }
         composable("Locker"){
             Locker(mainActivity, navController)
+        }
+        composable("LockerCodeDelivery"){
+            LockerCodeDelivery(mainActivity, navController)
+        }
+        composable("LockerBlockDelivery"){
+            LockerBlockDelivery(mainActivity, navController)
         }
         composable("LockerConfirm"){
             LockerConfirm(mainActivity, navController)

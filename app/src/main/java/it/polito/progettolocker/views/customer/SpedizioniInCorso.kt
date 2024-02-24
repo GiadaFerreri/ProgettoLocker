@@ -34,7 +34,7 @@ import it.polito.progettolocker.graphic.CardWarning
 fun SpedizioniInCorso(mainActivity: MainActivity, navController: NavController) {
 
     val tempList = mutableListOf<Shipping>()
-    var spedizioni=false
+    var spedizioni = false
 
     mainActivity.viewModel.db.child("Shipping")
         .addValueEventListener(object: ValueEventListener {
@@ -107,7 +107,7 @@ fun SpedizioniInCorso(mainActivity: MainActivity, navController: NavController) 
                     }
                     if (!spedizioni) {
                         Row(
-                            modifier = Modifier.padding(start = 60.dp, top=350.dp),
+                            modifier = Modifier.padding(start = 80.dp, top=350.dp),
                             horizontalArrangement = Arrangement.Center
                         ) {
                             Text(

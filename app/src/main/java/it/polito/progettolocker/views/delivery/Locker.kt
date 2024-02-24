@@ -90,11 +90,11 @@ fun Locker(mainActivity: MainActivity, navController: NavController) {
                     Buttons(
                         text = "CONFERMA",
                         onClickHandler = {
-                            val shipping = mainActivity.viewModel.selectedShipping.value
-                            //Apre il cassetto
-                            mainActivity.viewModel.db.child("Locker/${shipping.lockerId}/compartments/${shipping.compartmentId}/chiuso")
-                                .setValue(false)
-                            navController.navigate("LockerConfirm")
+                            val selectedShipping = mainActivity.viewModel.selectedShipping.value
+                            //Mostra il codice
+                            mainActivity.viewModel.db.child("Locker/${selectedShipping.lockerId}/pickupId").setValue(selectedShipping.depositId)
+
+                            navController.navigate("LockerCodeDelivery")
                         })
                 }
                 /* Row(modifier = Modifier.padding(top = 100.dp)) {

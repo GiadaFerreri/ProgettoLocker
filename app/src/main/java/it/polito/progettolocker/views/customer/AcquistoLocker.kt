@@ -98,7 +98,7 @@ fun AcquistoLocker(mainActivity: MainActivity, navController: NavController) {
 
     Column (){
         Row {
-            HeaderX(text = "ACQUISTO", navController = navController, onClickDestination = "Carrello")
+            HeaderX(text = "LOCKER", navController = navController, onClickDestination = "Carrello")
         }
 
         when (val result = lockerState.value) {

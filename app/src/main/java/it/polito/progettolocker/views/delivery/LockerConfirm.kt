@@ -163,6 +163,6 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
     }
 
     BackHandler (enabled = true){
-        navController.navigate("Locker")
+        navController.navigate("InCorso")
     }
 }

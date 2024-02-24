@@ -12,7 +12,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -96,7 +95,7 @@ fun StoricoConsegne(mainActivity: MainActivity, navController: NavController){
                     if (!spedizioni) {
 
                             Row(
-                                modifier = Modifier.padding(start = 70.dp, top = 350.dp),
+                                modifier = Modifier.padding(start = 80.dp, top = 350.dp),
                                 horizontalArrangement = Arrangement.Center
                             ) {
                                 Text(

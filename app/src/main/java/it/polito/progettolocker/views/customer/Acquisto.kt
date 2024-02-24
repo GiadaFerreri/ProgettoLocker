@@ -118,7 +118,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
             Shipping(
                 shippingId = shippingId,
                 userId = userId,
-                deliverymanId = "fattorino",
+                deliverymanId = "7BQnIxus53XW3EMTj6UBcYNDCmG3",
                 state = States.PENDING,
                 articles = cartList as List<Article>,
                 pickupId = pickupId,
@@ -136,7 +136,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
 
     Column (){
         Row(){
-            HeaderX(text = "ACQUISTO", navController = navController, onClickDestination = "Customer")
+            HeaderX(text = "ACQUISTO", navController = navController, onClickDestination = "Carrello")
         }
         Row {
             when (val result = mainActivity.viewModel.cartState.value) {
