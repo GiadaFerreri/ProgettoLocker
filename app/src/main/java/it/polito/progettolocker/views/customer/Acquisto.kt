@@ -136,7 +136,7 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
 
     Column (){
         Row(){
-            HeaderX(text = "ACQUISTO", navController = navController, onClickDestination = "Carrello")
+            HeaderX(text = "ACQUISTO", navController = navController, onClickDestination = "Customer")
         }
         Row {
             when (val result = mainActivity.viewModel.cartState.value) {

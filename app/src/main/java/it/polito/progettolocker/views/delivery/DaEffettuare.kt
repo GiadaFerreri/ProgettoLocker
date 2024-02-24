@@ -107,7 +107,7 @@ fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
                     }
                     if (!spedizioni) {
                         Row(
-                            modifier = Modifier.padding(start = 100.dp, end = 35.dp, top=70.dp),
+                            modifier = Modifier.padding(start = 40.dp, top=350.dp),
                             horizontalArrangement = Arrangement.Center
                         ) {
                             Text(
@@ -116,6 +116,7 @@ fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
                                 fontSize = 15.sp,
                                 color = Color(0xFF000000)
                             )
+
 
 
                         }
@@ -142,7 +143,7 @@ fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
 
             }
 
-            //TODO: creare le card dalla lista di spedizioni da efffettuare
+
             /*TODO: quando si clicca sul bottone 'presa in carico' si deve eliminare la card da questa schermata e aggiungerla alla schermata 'In corso'
                     ovvero si deve cambiare lo stato dell'ordine in questione*/
         }

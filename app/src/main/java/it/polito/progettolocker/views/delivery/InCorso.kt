@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -113,8 +114,9 @@ fun InCorso(mainActivity: MainActivity, navController: NavController){
                         }
                         if (!spedizioni) {
                             Row(
-                                modifier = Modifier.padding(start = 60.dp, end = 35.dp, top=70.dp),
-                                horizontalArrangement = Arrangement.Center
+                                modifier = Modifier.padding(start = 60.dp, end = 35.dp, top=350.dp),
+                                horizontalArrangement = Arrangement.Center,
+                                verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
                                     text = "NESSUNA SPEDIZIONE IN CORSO",
