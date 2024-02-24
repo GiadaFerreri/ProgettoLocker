@@ -153,7 +153,7 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
                             Toast.makeText(ctx, "An error occurred", Toast.LENGTH_LONG)
                                 .show()
                         }
-                        navController.navigate("DaEffettuare")
+                        //navController.navigate("DaEffettuare")
                     },
 
                     )
