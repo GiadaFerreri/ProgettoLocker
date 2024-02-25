@@ -17,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -44,7 +45,7 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
 
         Row ( modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 80.dp),
+            .padding(top = 60.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
@@ -53,7 +54,7 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
         }
         Row ( modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 24.dp),
+            .padding(top = 50.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
@@ -76,12 +77,12 @@ fun LockerCorrectedCode(mainActivity: MainActivity, navController: NavController
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
-            Text("Problemi durante il ritiro?",fontSize = 15.sp,)
+            Text("Problemi durante il ritiro?",fontSize = 15.sp,fontWeight = FontWeight.Medium)
         }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 24.dp),
+                .padding(top = 40.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {

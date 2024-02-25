@@ -37,7 +37,8 @@ fun Locker(mainActivity: MainActivity, navController: NavController) {
         bottomBar = {
             Row(modifier = Modifier.padding(bottom = 50.dp)) {
                 CardWarning(
-                    text = "La conferma comporta l'apertura dello sportello del Locker.",
+                    text = "La conferma farà comparire il codice segreto di apertura sul Locker selezionato.\n" +
+                            "Assicurati di essere realmente davanti al Locker.",
                     mainActivity = mainActivity,
                     navController = navController
                 )

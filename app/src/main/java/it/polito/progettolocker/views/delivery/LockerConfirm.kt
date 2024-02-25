@@ -16,12 +16,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import it.polito.progettolocker.MainActivity
 import it.polito.progettolocker.dataClass.States
 import it.polito.progettolocker.graphic.Buttons
+import it.polito.progettolocker.graphic.CardWarning
 import it.polito.progettolocker.graphic.CardsJustText
 import it.polito.progettolocker.graphic.HeaderX
 
@@ -73,16 +75,16 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
         }
         Row ( modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 100.dp),
+            .padding(top = 60.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
-            if(firstTry) CardsJustText(text1 = "IL TUO PACCO È STATO DEPOSITATO CORRETTAMENTE?\n" + "\nASSICURATI CHE IL CASSETTO SIA CHIUSO CORRETTAMENTE")
+            if(firstTry) CardsJustText(text1 = "IL TUO PACCO È STATO DEPOSITATO CORRETTAMENTE?")
            else CardsJustText(text1 = "RIAPERTURA DEL CASSETTO AVVENUTA CON SUCCESSO.\n" + "\nIL TUO PACCO È STATO DEPOSITATO CORRETTAMENTE?")
         }
         Row ( modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 24.dp),
+            .padding(top = 50.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
@@ -109,12 +111,12 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly)
         {
-            Text("Problemi durante il deposito?",fontSize = 15.sp,)
+            Text("Problemi durante il deposito?",fontSize = 15.sp,fontWeight = FontWeight.Medium)
         }
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 24.dp),
+                .padding(top = 40.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -158,6 +160,14 @@ fun LockerConfirm(mainActivity: MainActivity, navController: NavController){
 
                     )
             }
+        }
+        Row(modifier = Modifier.padding(top= 70.dp)) {
+            CardWarning(
+                text = "Assicurati che il cassetto sia chiuso correttamente prima di confermare.",
+                mainActivity = mainActivity,
+                navController = navController
+            )
+
         }
 
     }
