@@ -35,7 +35,7 @@ fun Locker(mainActivity: MainActivity, navController: NavController) {
             HeaderX(text ="LOCKER" , navController = navController, onClickDestination = "DaEffettuare")
         },
         bottomBar = {
-            Row(modifier = Modifier.padding(bottom = 50.dp)) {
+            Row(modifier = Modifier.padding(bottom = 50.dp).fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                 CardWarning(
                     text = "La conferma farà comparire il codice segreto di apertura sul Locker selezionato.\n" +
                             "Assicurati di essere realmente davanti al Locker.",

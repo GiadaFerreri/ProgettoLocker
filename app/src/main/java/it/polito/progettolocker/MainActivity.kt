@@ -84,8 +84,8 @@ class MainActivity : ComponentActivity() {
 
     // Email FATTORINO / CLIENTE --> Selezionare quella con cui si vuole operare
     val userId =
-        "fattorino451@zaralckr.com"
-        //"peppe.bruno99@yahoo.it"
+        //"fattorino451@zaralckr.com"
+        "peppe.bruno99@yahoo.it"
 
     //val customerId = "peppe.bruno99@yahoo.it"
     //val deviceId = getDeviceId()
