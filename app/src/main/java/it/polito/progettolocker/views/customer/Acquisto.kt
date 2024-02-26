@@ -214,15 +214,13 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
         }
 
         Row (){
-            Text(
-                text = "ZARA LCKR",
-                fontSize = 15.sp,
-                modifier = Modifier.padding(16.dp,5.dp),
-                fontWeight = FontWeight.Medium
-            )
-        }
-        Row (Modifier.fillMaxWidth()){
-            Column (Modifier.weight(2f)){
+            Column (Modifier.weight(2f)) {
+                Text(
+                    text = "ZARA LCKR",
+                    fontSize = 15.sp,
+                    modifier = Modifier.padding(16.dp, 5.dp),
+                    fontWeight = FontWeight.Medium
+                )
                 Text(
                     text = "LOCKER LINGOTTO\nVIA NIZZA 294, 10126 TORINO",
                     fontSize = 12.sp,
@@ -232,14 +230,17 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
                 Column(
                     Modifier
                         .weight(1f)
-                        .padding(end = 20.dp)
+                        .padding(end = 20.dp, top=15.dp),
                 ) {
                     Buttons("MODIFICA",
-                        onClickHandler = { navController.navigate("AcquistoLocker",) })
+                        onClickHandler = { navController.navigate("AcquistoLocker") })
                 }
             }
-
         }
+
+
+
+
     }
 
     // Coroutine per far scomparire il popup dopo qualche secondo
