@@ -66,7 +66,7 @@ fun SpedizioniInCorso(mainActivity: MainActivity, navController: NavController) 
             is DataState.Success -> {
                 Row {
                     LazyColumn (modifier= Modifier.padding(bottom=30.dp)){
-                        items(result.data as List<Shipping>) { shipping ->
+                        items((result.data as List<Shipping>).sortedBy { shipping -> shipping.countShipping }.asReversed()) { shipping ->
                             Row{
                                 if(shipping.state==States.PENDING){
                                     CardOrder(
