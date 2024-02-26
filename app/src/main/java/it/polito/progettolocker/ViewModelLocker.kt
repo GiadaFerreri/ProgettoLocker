@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
@@ -44,6 +45,9 @@ class ViewModelLocker(val auth: FirebaseAuth,val databaseReference: DatabaseRefe
     val db = Firebase.database.reference
 
     val vanoDaUsare = mutableIntStateOf(0)
+
+    val _countShipping = mutableIntStateOf(0)
+    var countShipping: State<Int> = _countShipping
 
     val selectedShipping = mutableStateOf(Shipping())
 

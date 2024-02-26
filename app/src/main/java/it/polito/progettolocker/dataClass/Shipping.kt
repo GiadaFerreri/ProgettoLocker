@@ -12,6 +12,7 @@ data class Shipping(
     val depositId: String? = null,
     val pickupId: String? = null,
     val lockerId: String? = null,
-    val compartmentId: String? = null
+    val compartmentId: String? = null,
     //var updates : Map<States, Date>
+    val countShipping: Int?=null
 )

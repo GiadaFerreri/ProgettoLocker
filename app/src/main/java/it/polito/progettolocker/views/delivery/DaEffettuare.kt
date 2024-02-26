@@ -13,9 +13,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableDoubleStateOf
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -36,9 +33,10 @@ import it.polito.progettolocker.graphic.HeaderDouble
 @Composable
 fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
 
-    val tempList = mutableListOf<Shipping>()
+    val sortedShippingList = mutableListOf<Shipping>()
     var available=0
     var spedizioni=false
+
 
     mainActivity.viewModel.db.child("Shipping")
         .addValueEventListener(object: ValueEventListener {
@@ -47,15 +45,21 @@ fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
 
                 for(snapshot in snapshot.children){
                     val shipping = snapshot.getValue(Shipping::class.java)
-                    tempList.add(shipping!!)
+                    sortedShippingList.add(shipping!!)
                 }
-                mainActivity.viewModel.shippingState.value = DataState.Success(tempList)
+                /*val sortedCountShippingList = sortedShippingList
+                    .mapNotNull { it }
+                    .sortedByDescending { it.countShipping }*/
+
+                mainActivity.viewModel.shippingState.value = DataState.Success(sortedShippingList)
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.w(ContentValues.TAG, "Failed to read value.", error.toException())
             }
         })
+
+
 
     Column{
         Row{
@@ -80,31 +84,28 @@ fun DaEffettuare(mainActivity: MainActivity, navController: NavController){
 
                 is DataState.Success -> {
 
-
                     LazyColumn(modifier = Modifier.padding(bottom = 30.dp)) {
-
-                        items(result.data as List<Shipping>) { shipping ->
+                        items((result.data as List<Shipping>).sortedBy { shipping -> shipping.countShipping }) { shipping ->
                             Row {
-                                if (shipping.state == States.PENDING) {
-                                    CardOrder(
-                                        shipping = shipping,
-                                        orderNumber = shipping.shippingId!!.toString(),
-                                        description = "CONSEGNA AL LOCKER LINGOTTO",
-                                        leftButtonText = "PRESA IN CARICO",
-                                        mainActivity = mainActivity,
-                                        navController = navController,
-                                        onClickDestination = "InCorso",
-                                        toHandle = true
-                                    )
-                                    spedizioni = true
+                               if(shipping.state== States.PENDING){
+                                   CardOrder(
+                                       shipping = shipping,
+                                       orderNumber = shipping.shippingId!!.toString(),
+                                       description = "CONSEGNA AL LOCKER LINGOTTO",
+                                       leftButtonText = "PRESA IN CARICO",
+                                       mainActivity = mainActivity,
+                                       navController = navController,
+                                       onClickDestination = "InCorso",
+                                       toHandle = true
+                                   )
+                                   spedizioni = true
+                               }
                                 }
-
 
                             }
 
                         }
 
-                    }
                     if (!spedizioni) {
                         Row(
                             modifier = Modifier.padding(start = 40.dp, top=350.dp),

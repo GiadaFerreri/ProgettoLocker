@@ -62,8 +62,11 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
     val userId = mainActivity.user.uid!!
     val db = mainActivity.viewModel.db
 
+
     var quantityTot = remember { mutableIntStateOf(cartList.sumOf {it.quantity!!.toInt() }) }
     var price = remember { mutableDoubleStateOf(cartList.sumOf { it.price!! * it.quantity!! }) }
+
+
 
     mainActivity.viewModel.db.child("Cart").child(userId).child("articles")
         .addValueEventListener(object: ValueEventListener {
@@ -114,6 +117,9 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
         var lockerId = "lingotto"
         var compartmentId = mainActivity.viewModel.vanoDaUsare.value.toString()
 
+
+
+
         var shipping =
             Shipping(
                 shippingId = shippingId,
@@ -124,12 +130,17 @@ fun Acquisto(mainActivity: MainActivity, navController: NavController){
                 pickupId = pickupId,
                 depositId = depositId,
                 lockerId = lockerId,
-                compartmentId = compartmentId
+                compartmentId=compartmentId,
+                countShipping = mainActivity.viewModel._countShipping.value
+
             )
 
         db.child("Shipping").child("${shippingId}").setValue(shipping)
         db.child("Cart").child(userId).child("articles").removeValue()
         db.child("Locker").child("${lockerId}/compartments/${compartmentId}/inuso").setValue(true)
+
+        mainActivity.viewModel._countShipping.value++
+
 
         mainActivity.createNotification("Nuova spedizione","È disponibile una nuova spedizione da consegnare al locker ${lockerId.uppercase()}","7BQnIxus53XW3EMTj6UBcYNDCmG3")
     }
